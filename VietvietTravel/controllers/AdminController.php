@@ -11,17 +11,23 @@
 	class AdminController extends Controller{
 		public $defaultAction = "login";
 		public $layout = "admin";
+		public $defaultRoute = "admin";
 
 		public function behaviors(){
 	        return [
 	            'access' => [
 	                'class' => AccessControl::className(),
-	                'only' => ['logout'],
+	                'only' => ['logout', 'index', 'about', 'login'],
 	                'rules' => [
 	                    [
-	                        'actions' => ['logout'],
+	                        'actions' => ['logout', 'index', 'about'],
 	                        'allow' => true,
 	                        'roles' => ['@'],
+	                    ],
+	                    [
+	                    	'actions' => ['login'],
+	                    	'allow' => true,
+	                    	'roles' => ['?'],
 	                    ],
 	                ],
 	            ],
@@ -39,6 +45,10 @@
 		}
 
 		public function actionAbout(){
+			if(isset($_POST["submit"])){
+				echo $_POST["mytext"];
+				die();
+			}
 			return $this->render("about");
 		}
 

@@ -6,6 +6,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
 {
     public $id;
     public $username;
+    public $email;
     public $password;
     public $authKey;
     public $accessToken;
@@ -14,6 +15,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         '100' => [
             'id' => '100',
             'username' => 'admin',
+            'email' => 'admin@gmail.com',
             'password' => 'admin',
             'authKey' => 'test100key',
             'accessToken' => '100-token',
@@ -21,6 +23,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
         '101' => [
             'id' => '101',
             'username' => 'demo',
+            'email' => '',
             'password' => 'demo',
             'authKey' => 'test101key',
             'accessToken' => '101-token',
@@ -55,10 +58,10 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
      * @param  string      $username
      * @return static|null
      */
-    public static function findByUsername($username)
+    public static function findByEmail($email)
     {
         foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
+            if (strcasecmp($user['email'], $email) === 0) {
                 return new static($user);
             }
         }

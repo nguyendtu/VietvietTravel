@@ -16,9 +16,13 @@ img{
 .wrap .container{
 	padding: 0;
 }
+.relative{
+	position: relative;
+}
 .fixed-right{
 	position: absolute;
 	right: 0;
+	bottom: -60px;
 }
 .admin{
 	text-align: center;
@@ -48,10 +52,6 @@ img{
 }
 .horizontal{
 	float: left;
-}
-.fixed-right{
-	position: absolute;
-	right: 25px;
 }
 .logo-size{
 	width: 20%;
