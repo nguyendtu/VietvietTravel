@@ -7,6 +7,8 @@
 	use yii\web\Controller;
 	use yii\filters\VerbFilter;
 	use app\models\LoginForm;
+	use app\components\AccessRule;
+	use app\models\User;
 
 	class AdminController extends Controller{
 		public $defaultAction = "login";
@@ -17,13 +19,26 @@
 	        return [
 	            'access' => [
 	                'class' => AccessControl::className(),
-	                'only' => ['logout', 'index', 'about', 'login'],
+					'ruleConfig' => [
+						'class' => AccessRule::className(),
+					],
+	                'only' => ['logout', 'index', 'login', 'tour', 'hotel', 'about'],
 	                'rules' => [
 	                    [
-	                        'actions' => ['logout', 'index', 'about'],
+	                        'actions' => ['logout', 'index'],
 	                        'allow' => true,
-	                        'roles' => ['@'],
+	                        'roles' => [
+								User::ROLE_ADMIN,
+								User::ROLE_USER
+							],
 	                    ],
+						[
+							'actions' => ['tour', 'hotel', 'about'],
+							'allow' => true,
+							'roles' => [
+								User::ROLE_ADMIN
+							],
+						],
 	                    [
 	                    	'actions' => ['login'],
 	                    	'allow' => true,
@@ -52,29 +67,34 @@
 			return $this->render("about");
 		}
 
-		public function acionHotel(){
-
+		public function actionHotel(){
+			echo "hotel action admin";
 		}
 
 		public function actionLogin(){
 			$this->layout = "admin-login";
 	        if (!\Yii::$app->user->isGuest) {
-	            return $this->redirect("?r=admin/index");
+	            return $this->redirect("['admin/index']");
 	        }
 
 	        $model = new LoginForm();
-	        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-	            return $this->goBack();
+			if ($model->load(Yii::$app->request->post()) && $model->login()) {
+				return $this->goBack();
 	        }
-	        return $this->render('login', [
+
+			return $this->render('login', [
 	            'model' => $model,
 	        ]);
 	    }
 	    public function actionLogout(){
 	        Yii::$app->user->logout();
 
-	        return $this->redirect("?r=admin/login");
+	        return $this->redirect(['admin/login']);
 	    }
+
+		public function actionTour(){
+			echo "tour controller";
+		}
 
 	}
 

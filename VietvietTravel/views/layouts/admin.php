@@ -44,10 +44,10 @@ AppAsset::register($this);
             ['label' => 'ABOUT US', 'url' => ['/admin/about']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/admin/login']] :
-                ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                ['label' => 'Logout ('. Yii::$app->user->identity->fullname .')',
                     'url' => ['/admin/logout'],
                     'linkOptions' => ['data-method' => 'post']],
-        ],
+         ],
     ]);
     NavBar::end();
     ?>

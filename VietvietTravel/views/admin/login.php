@@ -18,6 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;*/
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'options' => ['role' => 'form'],
+        'method' => 'post',
+        'action' => ['admin/login'],
         'fieldConfig' => [
             'template' => "{label}<div class=\"col-md-12\">{input}</div>\n<div class=\"col-md-12\">{error}</div>",
             'labelOptions' => ['class' => 'control-label'],

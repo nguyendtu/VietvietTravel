@@ -21,7 +21,7 @@ $config = [
             'loginUrl' => ['admin/login'],
         ],
         'errorHandler' => [
-            'errorAction' => 'admin/error',
+            'errorAction' => 'site/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -40,6 +40,9 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'accessRule' => [
+            'class' => 'app\components\AccessRule',
+        ],
     ],
     'params' => $params,
 ];
