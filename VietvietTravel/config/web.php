@@ -4,8 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
-    /*'defaultRoute' => 'admin',*/
-    'homeUrl' => '?r=admin/index',
+    'homeUrl' => ['admin/index'],
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
@@ -19,9 +18,10 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['admin/login'],
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'admin/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

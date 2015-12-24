@@ -17,7 +17,7 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
             'username' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => 'admin',
-            'authKey' => 'test100key',
+            'authKey' => 'test100keyabcxys',
             'accessToken' => '100-token',
         ],
         '101' => [

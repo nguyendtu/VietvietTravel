@@ -25,25 +25,6 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <div class="top">
-        <ul class="nav-top">
-            <li>
-                <a href="#">
-                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Hotline: (84-8) 3920 4766 (16 lines)
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email: info@tnktravel.com
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact us
-                </a>
-            </li>
-        </ul>
-    </div>
     <?php
     NavBar::begin([
         'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name]),
@@ -57,7 +38,9 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'dropDownCaret' => '',
         'items' => [
-            ['label' => 'HOME', 'url' => ['/admin/index']],
+            ['label' => 'PROFILE', 'url' => ['/admin/index']],
+            ['label' => 'TOUR', 'url' => ['/admin/tour']],
+            ['label' => 'HOTEL', 'url' => ['/admin/hotel']],
             ['label' => 'ABOUT US', 'url' => ['/admin/about']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/admin/login']] :

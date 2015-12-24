@@ -335,10 +335,10 @@ AppAsset::register($this);
         </ul>
         <div class="follow">
             <p><strong>Follow us:</strong></p>
-            <span><a href="#"><img src="assets/images/facebook.png" alt="facebook icon"></a></span>
-            <span><a href="#"><img src="assets/images/twitter.png" alt="twitter icon"></a></span>
-            <span><a href="#"><img src="assets/images/google.png" alt="google icon"></a></span>
-            <span><a href="#"><img src="assets/images/youtube.png" alt="youtube icon"></a></span>
+            <span><a href="#"><img src="images/facebook.png" alt="facebook icon"></a></span>
+            <span><a href="#"><img src="images/twitter.png" alt="twitter icon"></a></span>
+            <span><a href="#"><img src="images/google.png" alt="google icon"></a></span>
+            <span><a href="#"><img src="images/youtube.png" alt="youtube icon"></a></span>
         </div>
         <div class="row">
             <div class="col-md-6">
