@@ -8,9 +8,15 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\Infocompany;
 
 AppAsset::register($this);
+
+/* select info company */
+$info = Infocompany::find()->one();
+
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -29,16 +35,16 @@ AppAsset::register($this);
         <ul class="nav-top">
             <li>
                 <a href="#">
-                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Hotline: (84-8) 3920 4766 (16 lines)
+                    <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Hotline: <?php echo $info->tel; ?>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email: info@tnktravel.com
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email: <?php echo $info->email; ?>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="?r=site/contact">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact us
                 </a>
             </li>
@@ -106,11 +112,6 @@ AppAsset::register($this);
                  ['label' => 'Bicycle for rent', 'url' => '/service/'],
             ],
             ],
-            /*Yii::$app->user->isGuest ?
-                        ['label' => 'Login', 'url' => ['/site/login']] :
-                        ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']],*/
         ],
 
     ]);
@@ -336,7 +337,7 @@ AppAsset::register($this);
         </ul>
         <div class="follow">
             <p><strong>Follow us:</strong></p>
-            <span><a href="#"><img src="images/facebook.png" alt="facebook icon"></a></span>
+            <span><a href="<?php echo $info->facebook ?>"><img src="images/facebook.png" alt="facebook icon"></a></span>
             <span><a href="#"><img src="images/twitter.png" alt="twitter icon"></a></span>
             <span><a href="#"><img src="images/google.png" alt="google icon"></a></span>
             <span><a href="#"><img src="images/youtube.png" alt="youtube icon"></a></span>
@@ -344,17 +345,17 @@ AppAsset::register($this);
         <div class="row">
             <div class="col-md-6">
                 <p>Copyright &copy; 2015. All Rights Reserved to <img src="assets/images/logo.ong" alt="logo"> Co.,Ltd.</p>
-                <strong><p>International Touroperator License No: 79-102/2010/TCLD_GP LHQT</p></strong>
+                <strong><p>International Touroperator License No: <?php echo $info->license ?></p></strong>
                 <br>
-                <p>Head Office: 220 De Tham st., Dist 1, Ho Chi Minh city, Vietnam</p>
-                <p>Phone: (84-8) 3920 4767 - (84-8) 3920 4767 - (84-8) 3920 5847 (16 lines)</p>
-                <p>Fax: (84-8) 3920 5377</p>
+                <p>Head Office: <?php echo $info->address ?></p>
+                <p>Phone: <?php echo $info->mobile ?></p>
+                <p>Fax: <?php echo $info->fax ?></p>
             </div>
             <div class="col-md-6">
                 <img src="assets/images/top.png" alt="top">
-                <p>In Hanoi: 13 Nguyen Huu Huan st., Hoan Kiem dist., Ha Noi capital, Vietnam</p>
-                <p>E-mail: info@tnktravel.com</p>
-                <p>Website: https://www.tnktravel.com</p>
+                <p>In Hanoi: <?php echo $info->address ?></p>
+                <p>E-mail: <?php echo $info->email ?></p>
+                <p>Website: <?php echo $info->website ?></p>
             </div>
         </div>
     </div>

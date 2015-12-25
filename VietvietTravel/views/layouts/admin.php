@@ -38,9 +38,9 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'dropDownCaret' => '',
         'items' => [
-            ['label' => 'PROFILE', 'url' => ['/admin/index']],
-            ['label' => 'TOUR', 'url' => ['/admin/tour']],
-            ['label' => 'HOTEL', 'url' => ['/admin/hotel']],
+            ['label' => 'Info Company', 'url' => ['/infocompany/index']],
+            ['label' => 'TOUR', 'url' => ['/tour/index']],
+            ['label' => 'HOTEL', 'url' => ['/hotel/index']],
             ['label' => 'ABOUT US', 'url' => ['/admin/about']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/admin/login']] :

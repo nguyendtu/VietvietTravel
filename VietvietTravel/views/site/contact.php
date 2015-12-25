@@ -88,20 +88,6 @@ $map = new Map([
  
 // lets use the directions renderer
 $home = new LatLng(['lat' => 39.720991014764536, 'lng' => 2.911801719665541]);
-$school = new LatLng(['lat' => 39.719456079114956, 'lng' => 2.8979293346405166]);
-$santo_domingo = new LatLng(['lat' => 39.72118906848983, 'lng' => 2.907628202438368]);
- 
-// setup just one waypoint (Google allows a max of 8)
-$waypoints = [
-    new DirectionsWayPoint(['location' => $santo_domingo])
-];
- 
-$directionsRequest = new DirectionsRequest([
-    'origin' => $home,
-    'destination' => $school,
-    'waypoints' => $waypoints,
-    'travelMode' => TravelMode::DRIVING
-]);
  
 // Lets configure the polyline that renders the direction
 $polylineOptions = new PolylineOptions([
@@ -127,13 +113,13 @@ $map->appendScript($directionsService->getJs());
 // Lets add a marker now
 $marker = new Marker([
     'position' => $home,
-    'title' => 'My Home',
+    'title' => 'Viet viet travel',
 ]);
  
 // Provide a shared InfoWindow to the marker
 $marker->attachInfoWindow(
     new InfoWindow([
-        'content' => '<p>This is my super cool content</p>'
+        'content' => '<p>Viet viet Travel company</p>'
     ])
 );
  
