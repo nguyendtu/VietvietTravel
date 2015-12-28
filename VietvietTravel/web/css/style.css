@@ -493,7 +493,10 @@ ul#nav_search .active a{
 #order_form h4{
 	text-decoration: underline;
 }
-
+.related-hotel .row{
+	margin: 0px;
+	margin-bottom: 10px;
+}
 @media screen and (max-width: 767px){
 	.countries-tour .country{
 		width: 100%;

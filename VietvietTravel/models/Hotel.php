@@ -24,6 +24,12 @@ use Yii;
  */
 class Hotel extends \yii\db\ActiveRecord
 {
+    /* @var $smallIMG : upload img*/
+    public $smallIMG;
+
+    /* @var $largeIMG: upload img slide*/
+    public $largeIMG;
+
     /**
      * @inheritdoc
      */
@@ -38,13 +44,15 @@ class Hotel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'id_location', 'address', 'price', 'briefinfo'], 'required'],
+            //[['name', 'id_location', 'address', 'price', 'briefinfo'], 'required'],
             [['star', 'id_location', 'status', 'hot'], 'integer'],
             [['briefinfo', 'detailinfo'], 'string'],
             [['regdate', 'editdate'], 'safe'],
             [['name', 'address', 'price'], 'string', 'max' => 255],
             [['smallimg'], 'string', 'max' => 100],
-            [['largeimg'], 'string', 'max' => 1024]
+            [['largeimg'], 'string', 'max' => 1024],
+            [['smallIMG'], 'file'],
+            [['largeIMG'], 'file', 'maxFiles' => 4]
         ];
     }
 
@@ -62,12 +70,19 @@ class Hotel extends \yii\db\ActiveRecord
             'price' => 'Price',
             'briefinfo' => 'Briefinfo',
             'detailinfo' => 'Detailinfo',
+            'smallIMG' => 'Small Image Upload',
             'smallimg' => 'Smallimg',
+            'largeIMG' => 'Large Image Upload',
             'largeimg' => 'Largeimg',
             'regdate' => 'Regdate',
             'editdate' => 'Editdate',
             'status' => 'Status',
             'hot' => 'Hot',
         ];
+    }
+
+    /* relation to location table */
+    public function getLocation(){
+        return $this->hasOne(Location::className(), ['id' => 'id_location']);
     }
 }

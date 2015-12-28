@@ -2,21 +2,25 @@
 
 namespace app\controllers;
 
-use Yii;
+use app\components\AccessRule;
 use app\models\Hotel;
 use app\models\HotelSearch;
+use app\models\Location;
+use app\models\User;
+use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use app\components\AccessRule;
-use app\models\User;
+use yii\data\ActiveDataProvider;
+use app\models\FileUpload;
 
 /**
  * HotelController implements the CRUD actions for Hotel model.
  */
 class HotelController extends Controller
 {
+    public $layout = "admin";
     public function behaviors()
     {
         return [
@@ -28,12 +32,33 @@ class HotelController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
-                'ruleConfig' => AccessRule::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
                 'rules' => [
                     [
-                        'action' => ['index', 'view'],
+                        'actions' => ['show', 'show-detail'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => [
+                            '?',
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
+                    [
+                        'actions' => ['index', 'view'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
+                    [
+                        'actions' => ['create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                        ],
                     ],
                 ],
             ],
@@ -75,12 +100,16 @@ class HotelController extends Controller
     public function actionCreate()
     {
         $model = new Hotel();
+        $small = new FileUpload();
+        $large = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'small' => $small,
+                'large' => $large
             ]);
         }
     }
@@ -115,6 +144,36 @@ class HotelController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /* show info from hotel*/
+    public function actionShow(){
+        $this->layout = "main";
+        $param = Yii::$app->getRequest()->getQueryParam('1');
+        $model = Location::find()->where(['name' => $param])->one();
+        $provider = new ActiveDataProvider([
+            'query' => $model->getHotels(),
+            'pagination' => [
+                'pageSize' => 2,
+            ],
+        ]);
+
+        return $this->render('show', [
+            'model' => $model,
+            'provider' => $provider,
+        ]);
+    }
+
+    /* show detail about hotel*/
+    public function actionShowDetail($id){
+        $this->layout = "main";
+        $model = $this->findModel($id);
+        $location = Location::findOne($model->id_location);
+        $related = $location->hotels;
+        return $this->render('show-detail', [
+            'model' => $model,
+            'related' => $related,
+        ]);
     }
 
     /**

@@ -41,4 +41,11 @@ class Location extends \yii\db\ActiveRecord
             'name' => 'Name',
         ];
     }
+
+    /*
+     * relation to hotel table
+     */
+    public function getHotels(){
+        return $this->hasMany(Hotel::className(), ['id_location' => 'id']);
+    }
 }

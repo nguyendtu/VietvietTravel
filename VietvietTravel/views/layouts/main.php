@@ -9,11 +9,19 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\Infocompany;
+use app\models\Slide;
+use app\models\Article;
 
 AppAsset::register($this);
 
 /* select info company */
 $info = Infocompany::find()->one();
+/* select slide */
+$slides = Slide::find()->where(['position' => '1'])->all();
+/* select article*/
+$article = Article::find()->where(['type' => '1'])->all();
+
+$this->title = $info->name;
 
 ?>
 
@@ -52,7 +60,7 @@ $info = Infocompany::find()->one();
     </div>
     <?php
     NavBar::begin([
-        'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name]),
+        'brandLabel' => Html::img('@web/images/'. $info->logo, ['alt'=>Yii::$app->name]),
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar navbar-default',
@@ -64,52 +72,51 @@ $info = Infocompany::find()->one();
         'dropDownCaret' => '',
         'items' => [
             ['label' => 'HOME', 'url' => ['/site/index']],
-            ['label' => 'ABOUT US', 'url' => ['/site/about']],
+            ['label' => 'ABOUT US', 'url' => ['/article/show', 'about']],
             [
             'label' => 'BICYCLE TOUR',
             'items' => [
-                 ['label' => 'Bicycle tour 1 day', 'url' => '#'],
-                 ['label' => 'Bicycle tour 2 day', 'url' => '#'],
-                 ['label' => 'Bicycle tour 3 day', 'url' => '#'],
-                 ['label' => 'Bicycle tour 4 day', 'url' => '#'],
+                 ['label' => 'Bicycle tour 1 day', 'url' => ['tour/show', 'length' => 1]],
+                 ['label' => 'Bicycle tour 2 day', 'url' => ['tour/show', 'length' => 2]],
+                 ['label' => 'Bicycle tour 3 day', 'url' => ['tour/show', 'length' => 3]],
+                 ['label' => 'Bicycle tour 4 day', 'url' => ['tour/show', 'length' => 4]],
             ],
             ],
             [
             'label' => 'TRAVEL STYLE',
             'items' => [
-                 ['label' => 'Day tour', 'url' => '/tour/'],
-                 ['label' => 'Mekong Delta tour', 'url' => '/tour/'],
-                 ['label' => 'Tour packages', 'url' => '/tour/'],
-                 ['label' => 'Open packages tour', 'url' => '/tour/'],
-                 ['label' => 'Northern Cruise', 'url' => '/tour/'],
-                 ['label' => 'Adventure Tour', 'url' => '/tour/'],
-                 ['label' => 'National park tour', 'url' => '/tour/'],
+                 ['label' => 'Day tour', 'url' => ['tour/show', 'day-tour']],
+                 ['label' => 'Mekong Delta tour', 'url' => ['tour/show', 'mekong-delta-tour']],
+                 ['label' => 'Tour packages', 'url' => ['tour/show', 'tour-packages']],
+                 ['label' => 'Open packages tour', 'url' => ['tour/show', 'open-packages-tour']],
+                 ['label' => 'Northern Cruise', 'url' => ['tour/show', 'northern-cruise']],
+                 ['label' => 'Adventure Tour', 'url' => ['tour/show', 'adventure-tour']],
+                 ['label' => 'National park tour', 'url' => ['tour/show', 'national-park-tour']],
             ],
             ],
             [
             'label' => 'HOTEL DIRECTORY',
             'items' => [
-                 ['label' => 'Hotels in HCM city', 'url' => '/hotel/'],
-                 ['label' => 'Hotels in Dalat', 'url' => '/hotel/'],
-                 ['label' => 'Hotels in Nhatrang', 'url' => '/hotel/'],
-                 ['label' => 'Hotels in Hoi An', 'url' => '/hotel/'],
-                 ['label' => 'Hotels in Hue', 'url' => '/hotel/'],
-                 ['label' => 'Hotels in Hoi An', 'url' => '/hotel/'],
-                 ['label' => 'Hotels in Danang', 'url' => '/hotel/'],
-                 ['label' => 'Hotels in HaNoi', 'url' => '/hotel/'],
-                 ['label' => 'Hotels in SaPa', 'url' => '/hotel/'],
+                 ['label' => 'Hotels in HCM city', 'url' => ['hotel/show', 'hcm']],
+                 ['label' => 'Hotels in Dalat', 'url' => ['hotel/show', 'da-lat']],
+                 ['label' => 'Hotels in Nhatrang', 'url' => ['hotel/show', 'nha-trang']],
+                 ['label' => 'Hotels in Hoi An', 'url' => ['hotel/show', 'hoi-an']],
+                 ['label' => 'Hotels in Hue', 'url' => ['hotel/show', 'hue']],
+                 ['label' => 'Hotels in Danang', 'url' => ['hotel/show', 'da-nang']],
+                 ['label' => 'Hotels in HaNoi', 'url' => ['hotel/show', 'ha-noi']],
+                 ['label' => 'Hotels in SaPa', 'url' => ['hotel/show', 'sa-pa']],
             ],
             ],
-            ['label' => 'Vietnam visa on Arrival', 'url' => ['/site/']],
-            ['label' => 'TOUR DIARY', 'url' => ['/tour-diary/index']],
+            ['label' => 'Vietnam visa on Arrival', 'url' => ['article/show', 'visa']],
+            ['label' => 'TOUR DIARY', 'url' => ['/article/show', 'tour-diary']],
             [
             'label' => 'TRAVEL SERVICES',
             'items' => [
-                 ['label' => 'Booking Flight ticket', 'url' => '/service/'],
-                 ['label' => 'Booking train ticket', 'url' => '/service/'],
-                 ['label' => 'Car for rent', 'url' => '/service/'],
-                 ['label' => 'Moto bike for rent', 'url' => '/service/'],
-                 ['label' => 'Bicycle for rent', 'url' => '/service/'],
+                 ['label' => 'Booking Flight ticket', 'url' => ['article/show', 'booking-flight']],
+                 ['label' => 'Booking train ticket', 'url' => ['article/show', 'booking-train']],
+                 ['label' => 'Car for rent', 'url' => ['article/show', 'car']],
+                 ['label' => 'Moto bike for rent', 'url' => ['article/show', 'moto-bike']],
+                 ['label' => 'Bicycle for rent', 'url' => ['article/show', 'bicycle']],
             ],
             ],
         ],
@@ -120,10 +127,9 @@ $info = Infocompany::find()->one();
     <div id="wrapper">
         <div class="slider-wrapper theme-default">
             <div id="slider" class="nivoSlider">
-                <img src="images/slide1.jpg" data-thumb="images/slide1.jpg" alt="" />
-                <img src="images/slide2.jpg" data-thumb="images/slide2.jpg" alt="" title="This is an example of a caption" />
-                <img src="images/slide3.jpg" data-thumb="images/slide3.jpg" alt="" data-transition="slideInLeft"/>
-                <img src="images/slide4.jpg" data-thumb="images/slide4.jpg" alt="" title="#htmlcaption" />
+                <?php foreach($slides as $slide){ ?>
+                    <img src="<?php echo $slide['link'] ?>" data-thumb="<?php echo $slide['link'] ?>" alt="" />
+                <?php } ?>
             </div>
             <div id="htmlcaption" class="nivo-html-caption">
                 <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>. 
@@ -151,17 +157,14 @@ $info = Infocompany::find()->one();
                                 <label for="tour-style" class="sr-only">Tour style</label>
                                 <select name="tour-style" id="tour-style" class="form-control">
                                     <option value="">Select tour style</option>
-                                    <option value="bicycle_tour" checked="checked">Bicycle tour</option>
-                                    <option value="travel_style">Travel style</option>
+                                    <option value="bicycle">Bicycle tour</option>
+                                    <option value="travel">Travel style</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tour-detination" class="sr-only">Tour style destination</label>
                                 <select name="tour-detination" id="tour-detination" class="form-control">
                                     <option value="">Select tour destination</option>
-                                    <option value="1">Bicycle tour 1 day</option>
-                                    <option value="1">Bicycle tour 2 day</option>
-                                    <option value="1">Bicycle tour 3 day</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -191,8 +194,8 @@ $info = Infocompany::find()->one();
                 </div>
                 <div class="video-box sidebar">
                     <video controls>
-                        <source src="movie.mp4" type="video/mp4">
-                        <source src="movie.mp4" type="video/ogg">
+                        <source src="images/<?php echo $info->video ?>" type="video/mp4">
+                        <source src="images/<?php echo $info->video ?>" type="video/ogg">
                     </video>
                     <h4>Welcome to Our Site!</h4>
                     <p>Established in 2001, TNK Travel have been wholly dedicated to providing the ultimate experience for those wishing to discover all that Vietnam, Laos, Cambodia, Thailand and Myanamar have to offer...</p>
@@ -215,46 +218,12 @@ $info = Infocompany::find()->one();
                     <div class="row">
                         <h4 class="title">TRAVEL ARTICLE</h4>
                         <ul class="travel sidebar">
+                            <?php foreach($article as $row){ ?>
                             <li>
                                 <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">The International Travel Exhibition (ITE)</a>
+                                <a href="#"><?php echo $row->title ?></a>
                             </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">Asian Tour You Will Nevver Forget</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">Lifetime Travel Experience in Yangon and Bagan</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">Learning the Inthar Life from River Cruise</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">The Best Cambodia Island Cruises You Need</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">The Heart of Asis</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">VISIT MISTIC CAMBODIA</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">The Joy of Siem Reap Bird Watching Tour with TNK Travel</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">Trekking the Himalayas: the Essential Tips</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#">An interesting Holiday in Laos</a>
-                            </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

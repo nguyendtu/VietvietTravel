@@ -10,9 +10,11 @@ use yii\widgets\ActiveForm;
 
 <div class="infocompany-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'logoImg')->fileInput(['accept' => 'image/*']) ?>
 
     <?= $form->field($model, 'logo')->textInput(['maxlength' => true]) ?>
 
@@ -41,6 +43,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'viber')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'map')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'videoMp4')->fileInput(['accept' => 'video/*']) ?>
 
     <?= $form->field($model, 'video')->textInput(['maxlength' => true]) ?>
 

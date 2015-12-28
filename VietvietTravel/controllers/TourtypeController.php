@@ -103,6 +103,15 @@ class TourtypeController extends Controller
         return $this->redirect(['index']);
     }
 
+    /*
+     * Render ajax tour type
+    */
+    public function actionGetTour($tourtype){
+        $model = Tourtype::find()->where(['parent' => $tourtype])->all();
+
+        return $this->renderAjax('get-tour', ['model' => $model]);
+    }
+
     /**
      * Finds the Tourtype model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -118,4 +127,6 @@ class TourtypeController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
 }

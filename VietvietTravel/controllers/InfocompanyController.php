@@ -8,12 +8,17 @@ use app\models\InfocompanySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\models\User;
+use app\components\AccessRule;
+use yii\web\UploadedFile;
 
 /**
  * InfocompanyController implements the CRUD actions for Infocompany model.
  */
 class InfocompanyController extends Controller
 {
+    public $layout = "admin";
     public function behaviors()
     {
         return [
@@ -21,6 +26,30 @@ class InfocompanyController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'only' => ['index', 'create', 'view', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
+                    [
+                        'actions' => ['create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                        ],
+                    ],
                 ],
             ],
         ];
@@ -61,7 +90,14 @@ class InfocompanyController extends Controller
     public function actionCreate()
     {
         $model = new Infocompany();
-
+        $model->logoImg = UploadedFile::getInstanceByName('Infocompany[logoImg]');
+        if($model->logoImg){
+            $model->logoImg->saveAs('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $model->logoImg->baseName . '.' . $model->logoImg->extension);
+        }
+        $model->videoMp4 = UploadedFile::getInstanceByName('Infocompany[videoMp4]');
+        if($model->videoMp4){
+            $model->videoMp4->saveAs('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $model->videoMp4->baseName . '.' . $model->videoMp4->extension);
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
