@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\AccessRule;
+use app\models\FileUpload;
 use app\models\Hotel;
 use app\models\HotelSearch;
 use app\models\Location;
@@ -13,7 +14,8 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\data\ActiveDataProvider;
-use app\models\FileUpload;
+use yii\web\UploadedFile;
+
 
 /**
  * HotelController implements the CRUD actions for Hotel model.
@@ -54,7 +56,7 @@ class HotelController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['create', 'update', 'delete'],
+                        'actions' => ['create', 'update', 'delete', 'upload'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -109,8 +111,31 @@ class HotelController extends Controller
             return $this->render('create', [
                 'model' => $model,
                 'small' => $small,
-                'large' => $large
+                'large' => $large,
             ]);
+        }
+    }
+
+    /* upload file */
+    public function actionUpload($model){
+        echo "abc"; die();
+        $model->imgHotel = UploadedFile::getInstanceByName('Hotel[imgHotel]');
+        echo "<pre>";
+        print_r($model);
+        echo "</pre>";
+        exit;
+        if($model->imgHotel){
+            $model->imgHotel->saveAs('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $model->imgHotel->baseName . '.' . $model->imgHotel->extension);
+        }
+
+        $model->imgSlideHotel = UploadedFile::getInstanceByName('Hotel[imgSlideHotel]');
+        if($model->imgSlideHotel){
+            echo "<pre>";
+            foreach($model->imgSlideHotel as $img){
+                print_r($img);
+            }
+            echo "</pre>";
+            exit;
         }
     }
 

@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <a href="">
-                            <img src="<?php echo $model->smallimg ?>" alt="<?php echo $model->name ?>">
+                            <img src="images/<?php echo $model->smallimg ?>" alt="<?php echo $model->name ?>">
                         </a>
                     </div>
                     <div class="col-md-7">
@@ -54,7 +54,7 @@
                         <?php $slides = explode(' ', $model->largeimg);
                             for($i = 0; $i < sizeOf($slides); $i++){
                         ?>
-                        <img src="assets/images/<?php echo $slides[$i] ?>" data-thumb="assets/images/<?php echo $slides[$i] ?>" alt="" />
+                        <img src="images/<?php echo $slides[$i] ?>" data-thumb="images/<?php echo $slides[$i] ?>" alt="" />
                         <?php } ?>
                     </div>
                     <div id="htmlcaption" class="nivo-html-caption">
@@ -70,15 +70,15 @@
                     <?php foreach($related as $hotel){
                         if($hotel->id != $model->id){
                     ?>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-5 col-sm-5 col-xs-5">
                                 <a href="">
                                     <img src="<?php echo $hotel->smallimg ?>" alt="hotel">
                                 </a>
                             </div>
-                            <div class="col-md-7">
-                                <h4><?php echo $hotel->name ?></h4>
+                            <div class="col-md-6 col-sm-7 col-xs-7">
+                                <h4><a href="<?php echo yii\helpers\Url::to(['hotel/show-detail', 'id' => $hotel->id])?>"><?php echo $hotel->name ?></a></h4>
                                 <ul class="star-yellow hotel-star">
                                     <?php for($i = 0; $i < $hotel->star; $i++){ ?>
                                         <li><span class="glyphicon glyphicon-star"></span></li>

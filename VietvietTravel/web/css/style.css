@@ -226,6 +226,7 @@ ul#nav_search .active a{
 .thumbnail{
 	background-color: rgb(242, 242, 242);
 	position: relative;
+	margin-bottom: 50px;
 }
 .thumbnail .caption > h4{
 	color: rgb(0, 70, 0);
@@ -477,12 +478,12 @@ ul#nav_search .active a{
 	margin-left: 50px;
 	list-style-type: circle;
 }
-.related-hotel .col-md-5{
+/*.related-hotel .col-md-5{
 	width: 150px;
 	height: 120px;
 	border: 1px solid rgb(242, 242, 242);
 	padding: 4px;
-}
+}*/
 .related-tour{
 	padding-bottom: 10px;
 }
@@ -518,12 +519,20 @@ ul#nav_search .active a{
 		margin-bottom: 10px;
 		padding: 0;
 	}
+	.pagination{
+		position: absolute;
+		bottom: -50px;
+		right: 25px;
+	}
 }
 
 @media screen and (min-width: 768px){
 	.countries-tour .country{
 		width: 20%;
 		margin-bottom: 10px;
+	}
+	.tour-info{
+		margin-top: 13px;
 	}
 	.navbar-header{
 		width: 100%;
@@ -561,6 +570,11 @@ ul#nav_search .active a{
 		margin-bottom: 10px;
 		padding: 0;
 	}
+	.pagination{
+		position: absolute;
+		bottom: -50px;
+		right: 25px;
+	}
 }
 @media screen and (min-width: 1199px){
 	.navbar-header{
@@ -585,7 +599,7 @@ ul#nav_search .active a{
 		width: 50%;
 	}
 	.bottom-bar .details{
-		margin-top: 10%;
+		margin-top: -5px;
 		padding-left: 10px;
 	}
 	.bottom-bar{
@@ -594,5 +608,10 @@ ul#nav_search .active a{
 	}
 	.bottom-bar .hotel-price{
 		padding: 8px;
+	}
+	.pagination{
+		position: absolute;
+		bottom: -50px;
+		right: 15px;
 	}
 }

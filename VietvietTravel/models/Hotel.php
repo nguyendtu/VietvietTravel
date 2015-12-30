@@ -24,12 +24,6 @@ use Yii;
  */
 class Hotel extends \yii\db\ActiveRecord
 {
-    /* @var $smallIMG : upload img*/
-    public $smallIMG;
-
-    /* @var $largeIMG: upload img slide*/
-    public $largeIMG;
-
     /**
      * @inheritdoc
      */
@@ -51,8 +45,6 @@ class Hotel extends \yii\db\ActiveRecord
             [['name', 'address', 'price'], 'string', 'max' => 255],
             [['smallimg'], 'string', 'max' => 100],
             [['largeimg'], 'string', 'max' => 1024],
-            [['smallIMG'], 'file'],
-            [['largeIMG'], 'file', 'maxFiles' => 4]
         ];
     }
 

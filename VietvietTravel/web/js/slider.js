@@ -5,3 +5,6 @@ $('#slider_tour_featured').nivoSlider({
 $('#slider_tour_interested').nivoSlider({
     controlNav: false,
 });
+$('#hotel_slider').nivoSlider({
+    controlNav: false,
+});

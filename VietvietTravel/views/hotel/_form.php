@@ -29,55 +29,9 @@ use dosamigos\fileupload\FileUploadUI;
             <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
         </div>
         <div class="col-xs-12">
-            <?/*= FileUploadUI::widget([
-                'model' => $small,
-                'attribute' => 'fileUpload',
-                'url' => ['file-upload/upload'],
-                'gallery' => false,
-                'fieldOptions' => [
-                    'accept' => 'image/*'
-                ],
-                'clientOptions' => [
-                    'maxFileSize' => 2000000
-                ],
-                // ...
-                'clientEvents' => [
-                    'fileuploaddone' => 'function(e, data) {
-                            console.log(e);
-                            console.log(data);
-                        }',
-                    'fileuploadfail' => 'function(e, data) {
-                            console.log(e);
-                            console.log(data);
-                        }',
-                ],
-            ]);
-            */?>
+
             <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
-            <?= FileUploadUI::widget([
-                'model' => $large,
-                'attribute' => 'fileUpload',
-                'url' => ['file-upload/upload'],
-                'gallery' => false,
-                'fieldOptions' => [
-                    'accept' => 'image/*'
-                ],
-                'clientOptions' => [
-                    'maxFileSize' => 2000000
-                ],
-                // ...
-                'clientEvents' => [
-                    'fileuploaddone' => 'function(e, data) {
-                                    console.log(e);
-                                    console.log(data);
-                                }',
-                    'fileuploadfail' => 'function(e, data) {
-                                    console.log(e);
-                                    console.log(data);
-                                }',
-                ],
-            ]);
-            ?>
+
             <?= $form->field($model, 'largeimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
             <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
@@ -92,4 +46,58 @@ use dosamigos\fileupload\FileUploadUI;
 
 </div>
 
-
+<?= FileUploadUI::widget([
+    'model' => $small,
+    'attribute' => 'fileUpload',
+    'url' => ['file-upload/upload', 'field' => 'hotel-smallimg'],
+    'gallery' => false,
+    'options' => ['id' => 'smallimg'],
+    'fieldOptions' => [
+        'accept' => 'image/*',
+    ],
+    'clientOptions' => [
+        'maxFileSize' => 2000000
+    ],
+    // ...
+    'clientEvents' => [
+        'fileuploaddone' => 'function(e, data) {
+                                    files = data.result.files;
+                                    for(var i = 0; i < files.length; i++){
+                                        document.getElementById("hotel-smallimg").value = files[i].name;
+                                    }
+                                }',
+        'fileuploadfail' => 'function(e, data) {
+                                    console.log(e);
+                                    console.log(data);
+                                }',
+    ],
+]);
+?>
+<?= FileUploadUI::widget([
+    'model' => $large,
+    'attribute' => 'fileUpload',
+    'url' => ['file-upload/upload', 'field' => 'hotel-largeimg'],
+    'gallery' => false,
+    'options' => ['id' => 'largeimg'],
+    'fieldOptions' => [
+        'accept' => 'image/*',
+        'multiple' => true,
+    ],
+    'clientOptions' => [
+        'maxFileSize' => 2000000
+    ],
+    // ...
+    'clientEvents' => [
+        'fileuploaddone' => 'function(e, data) {
+                                    files = data.result.files;
+                                    for(var i = 0; i < files.length; i++){
+                                        document.getElementById("hotel-largeimg").value += files[i].name + " ";
+                                    }
+                                }',
+        'fileuploadfail' => 'function(e, data) {
+                                    console.log(e);
+                                    console.log(data);
+                                }',
+    ],
+]);
+?>

@@ -13,11 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="hotel-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_form', [
         'model' => $model,
         'small' => $small,
-        'large' => $large
+        'large' => $large,
     ]) ?>
 
 </div>
