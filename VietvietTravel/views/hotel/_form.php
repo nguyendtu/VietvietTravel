@@ -49,7 +49,7 @@ use dosamigos\fileupload\FileUploadUI;
 <?= FileUploadUI::widget([
     'model' => $small,
     'attribute' => 'fileUpload',
-    'url' => ['file-upload/upload', 'field' => 'hotel-smallimg'],
+    'url' => ['file-upload/upload'],
     'gallery' => false,
     'options' => ['id' => 'smallimg'],
     'fieldOptions' => [
@@ -58,12 +58,13 @@ use dosamigos\fileupload\FileUploadUI;
     'clientOptions' => [
         'maxFileSize' => 2000000
     ],
-    // ...
     'clientEvents' => [
         'fileuploaddone' => 'function(e, data) {
-                                    files = data.result.files;
+                                    var smallimg = document.getElementById("hotel-smallimg");
+                                    smallimg.value = "";
+                                    var files = data.result.files;
                                     for(var i = 0; i < files.length; i++){
-                                        document.getElementById("hotel-smallimg").value = files[i].name;
+                                        smallimg.value = files[i].name;
                                     }
                                 }',
         'fileuploadfail' => 'function(e, data) {
@@ -76,7 +77,7 @@ use dosamigos\fileupload\FileUploadUI;
 <?= FileUploadUI::widget([
     'model' => $large,
     'attribute' => 'fileUpload',
-    'url' => ['file-upload/upload', 'field' => 'hotel-largeimg'],
+    'url' => ['file-upload/upload'],
     'gallery' => false,
     'options' => ['id' => 'largeimg'],
     'fieldOptions' => [
@@ -86,12 +87,13 @@ use dosamigos\fileupload\FileUploadUI;
     'clientOptions' => [
         'maxFileSize' => 2000000
     ],
-    // ...
     'clientEvents' => [
         'fileuploaddone' => 'function(e, data) {
+                                    var largeimg = document.getElementById("hotel-largeimg");
                                     files = data.result.files;
+                                    console.log(files.length);
                                     for(var i = 0; i < files.length; i++){
-                                        document.getElementById("hotel-largeimg").value += files[i].name + " ";
+                                        largeimg.value += files[i].name + " ";
                                     }
                                 }',
         'fileuploadfail' => 'function(e, data) {

@@ -116,28 +116,6 @@ class HotelController extends Controller
         }
     }
 
-    /* upload file */
-    public function actionUpload($model){
-        echo "abc"; die();
-        $model->imgHotel = UploadedFile::getInstanceByName('Hotel[imgHotel]');
-        echo "<pre>";
-        print_r($model);
-        echo "</pre>";
-        exit;
-        if($model->imgHotel){
-            $model->imgHotel->saveAs('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $model->imgHotel->baseName . '.' . $model->imgHotel->extension);
-        }
-
-        $model->imgSlideHotel = UploadedFile::getInstanceByName('Hotel[imgSlideHotel]');
-        if($model->imgSlideHotel){
-            echo "<pre>";
-            foreach($model->imgSlideHotel as $img){
-                print_r($img);
-            }
-            echo "</pre>";
-            exit;
-        }
-    }
 
     /**
      * Updates an existing Hotel model.
@@ -148,12 +126,16 @@ class HotelController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $small = new FileUpload();
+        $large = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'small' => $small,
+                'large' => $large,
             ]);
         }
     }
@@ -175,7 +157,9 @@ class HotelController extends Controller
     public function actionShow(){
         $this->layout = "main";
         $param = Yii::$app->getRequest()->getQueryParam('1');
-        $model = Location::find()->where(['name' => $param])->one();
+        $arr = [];
+        $arr = explode("-", $param);
+        $model = Location::find()->where(['name' => join(" ", $arr)])->one();
         $provider = new ActiveDataProvider([
             'query' => $model->getHotels(),
             'pagination' => [

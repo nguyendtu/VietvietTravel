@@ -8,3 +8,6 @@ $('#slider_tour_interested').nivoSlider({
 $('#hotel_slider').nivoSlider({
     controlNav: false,
 });
+$('#tour_slider').nivoSlider({
+    controlNav: false,
+});

@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <h3 class="thumb-caption">Hotels in <?php echo $model->name ?></h3>
         <div class="thumb-content">
             <div class="header">
-                <p>TnkTravel.com offers the best selection of hotels and resorts in Vietnam to fit your travel budget and preferences. We are providing Vietnam Hotels information and full details for all of them. Luxury hotels 5 stars,first class 4 stars, tourists and cheap hotels standard class.The most concerning issue for foreign travelers when visiting Vietnam is to find a convenient and reasonable-priced accommodation. That’s why we would like to introduce here the accommodation system in Vietnam which comprises ...</p>
+                <p><?php echo $model->description ?></p>
                 <p class="right"><a href="#"><em>Read more</em></a></p>
             </div>
             <div class="sort">

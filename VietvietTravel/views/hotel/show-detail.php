@@ -52,7 +52,7 @@
                 <div class="slider-wrapper theme-default">
                     <div id="hotel_slider" class="nivoSlider">
                         <?php $slides = explode(' ', $model->largeimg);
-                            for($i = 0; $i < sizeOf($slides); $i++){
+                            for($i = 0; $i < sizeOf($slides) - 1; $i++){
                         ?>
                         <img src="images/<?php echo $slides[$i] ?>" data-thumb="images/<?php echo $slides[$i] ?>" alt="" />
                         <?php } ?>
@@ -74,7 +74,7 @@
                         <div class="row">
                             <div class="col-md-5 col-sm-5 col-xs-5">
                                 <a href="">
-                                    <img src="<?php echo $hotel->smallimg ?>" alt="hotel">
+                                    <img src="images/<?php echo $hotel->smallimg ?>" alt="hotel">
                                 </a>
                             </div>
                             <div class="col-md-6 col-sm-7 col-xs-7">

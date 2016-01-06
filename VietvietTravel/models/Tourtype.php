@@ -48,4 +48,11 @@ class Tourtype extends \yii\db\ActiveRecord
             'icon' => 'Icon',
         ];
     }
+
+    /*
+     * relation to tour table
+     */
+    public function getTours(){
+        return $this->hasMany(Tour::className(), ['id_tourtype' => 'id']);
+    }
 }

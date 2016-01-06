@@ -26,8 +26,8 @@ class Location extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string', 'max' => 255]
+            [['name', 'description'], 'required'],
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,6 +39,7 @@ class Location extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
+            'description' => 'Description',
         ];
     }
 

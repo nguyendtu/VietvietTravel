@@ -40,7 +40,7 @@ $(document).ready(function(){
 		info.css(styles);
 	});
 
-	var tour = document.getElementById("tour-style");
+	/*var tour = document.getElementById("tour-style");
 	tour.onchange = function(e){
 		var url = "index.php?r=tourtype/get-tour&tourtype="+ e.target.value;
 		$.post(url, function(data){
@@ -55,7 +55,7 @@ $(document).ready(function(){
 				detination.appendChild(option);
 			}
 		})
-	};
+	};*/
 
 	$('.file-upload').each(function () {
 		$(this).fileupload({

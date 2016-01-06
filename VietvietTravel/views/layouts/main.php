@@ -76,22 +76,22 @@ $this->title = $info->name;
             [
             'label' => 'BICYCLE TOUR',
             'items' => [
-                 ['label' => 'Bicycle tour 1 day', 'url' => ['tour/show', 'length' => 1]],
-                 ['label' => 'Bicycle tour 2 day', 'url' => ['tour/show', 'length' => 2]],
-                 ['label' => 'Bicycle tour 3 day', 'url' => ['tour/show', 'length' => 3]],
-                 ['label' => 'Bicycle tour 4 day', 'url' => ['tour/show', 'length' => 4]],
+                 ['label' => 'Bicycle tour 1 day', 'url' => ['tour/show', 'Bicycle tour 1 day']],
+                 ['label' => 'Bicycle tour 2 day', 'url' => ['tour/show', 'Bicycle tour 2 day']],
+                 ['label' => 'Bicycle tour 3 day', 'url' => ['tour/show', 'Bicycle tour 3 day']],
+                 ['label' => 'Bicycle tour 4 day', 'url' => ['tour/show', 'Bicycle tour 4 day']],
             ],
             ],
             [
             'label' => 'TRAVEL STYLE',
             'items' => [
-                 ['label' => 'Day tour', 'url' => ['tour/show', 'day-tour']],
-                 ['label' => 'Mekong Delta tour', 'url' => ['tour/show', 'mekong-delta-tour']],
-                 ['label' => 'Tour packages', 'url' => ['tour/show', 'tour-packages']],
-                 ['label' => 'Open packages tour', 'url' => ['tour/show', 'open-packages-tour']],
-                 ['label' => 'Northern Cruise', 'url' => ['tour/show', 'northern-cruise']],
-                 ['label' => 'Adventure Tour', 'url' => ['tour/show', 'adventure-tour']],
-                 ['label' => 'National park tour', 'url' => ['tour/show', 'national-park-tour']],
+                 ['label' => 'Day tour', 'url' => ['tour/show', 'Day Tour']],
+                 ['label' => 'Mekong Delta tour', 'url' => ['tour/show', 'Mekong Delta Tour']],
+                 ['label' => 'Tour packages', 'url' => ['tour/show', 'Tour Packages']],
+                 ['label' => 'Open packages tour', 'url' => ['tour/show', 'Open Packages Tour']],
+                 ['label' => 'Northern Cruise', 'url' => ['tour/show', 'Northern Cruise']],
+                 ['label' => 'Adventure Tour', 'url' => ['tour/show', 'Adventure Tour']],
+                 ['label' => 'National park tour', 'url' => ['tour/show', 'National Park Tour']],
             ],
             ],
             [

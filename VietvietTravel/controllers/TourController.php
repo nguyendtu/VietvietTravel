@@ -8,12 +8,24 @@ use app\models\TourSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\components\AccessRule;
+use app\models\User;
+use yii\data\ActiveDataProvider;
+use app\models\Tourtype;
+use app\models\FileUpload;
+use yii\data\Sort;
 
 /**
  * TourController implements the CRUD actions for Tour model.
  */
 class TourController extends Controller
 {
+    public function beforeAction($action) {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+    public $layout = "admin";
     public function behaviors()
     {
         return [
@@ -21,6 +33,38 @@ class TourController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'rules' => [
+                    [
+                        'actions' => ['show', 'show-detail', 'sort'],
+                        'allow' => true,
+                        'roles' => [
+                            '?',
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
+                    [
+                        'actions' => ['index', 'view'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
+                    [
+                        'actions' => ['create', 'update', 'delete', 'upload'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                        ],
+                    ],
                 ],
             ],
         ];
@@ -61,12 +105,16 @@ class TourController extends Controller
     public function actionCreate()
     {
         $model = new Tour();
+        $small = new FileUpload();
+        $large = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'small' => $small,
+                'large' => $large,
             ]);
         }
     }
@@ -80,12 +128,16 @@ class TourController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $small = new FileUpload();
+        $large = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'small' => $small,
+                'large' => $large,
             ]);
         }
     }
@@ -101,6 +153,77 @@ class TourController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /*
+     * show tour
+     */
+    public function actionShow(){
+        $this->layout = "main";
+        $param = Yii::$app->getRequest()->getQueryParam('1');
+        $model = Tourtype::find()->where(['name' => $param])->one();
+
+        $provider = new ActiveDataProvider([
+            'query' => $model->getTours(),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
+        $sortTour = new Sort([
+            'attributes' => [
+                'length' => [
+                    'asc' => ['length' => SORT_ASC],
+                    'desc' => ['length' => SORT_DESC],
+                    'default' => 'length',
+                    'label' => 'Length',
+                ],
+            ],
+        ]);
+
+        return $this->render('show', [
+            'model' => $model,
+            'provider' => $provider,
+            //'sort' => $sortTour,
+        ]);
+    }
+
+    /*
+     * sort tour
+     */
+    public function actionSort(){
+        $this->layout = "main";
+        $param = Yii::$app->request->post();
+        $attribute = $param['tour'];
+        $sort = $param['sort-tour'];
+        $tourtype = $param['tourtype'];
+
+        $model = Tourtype::find()->where(['name' => $tourtype])->one();
+
+        $provider = new ActiveDataProvider([
+            'query' => $model->getTours()->orderby([$attribute => $sort]),
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
+
+        return $this->render('show', [
+            'model' => $model,
+            'provider' => $provider,
+            'sort' => $param,
+        ]);
+    }
+
+    /* show detail about tour*/
+    public function actionShowDetail($id){
+        $this->layout = "main";
+        $model = $this->findModel($id);
+        $tourtype = Tourtype::findOne($model->id_tourtype);
+        $related = $tourtype->tours;
+
+        return $this->render('show-detail', [
+            'model' => $model,
+            'related' => $related,
+        ]);
     }
 
     /**

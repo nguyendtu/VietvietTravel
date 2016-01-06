@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class LocationController extends Controller
 {
+    public $layout = "admin";
     public function behaviors()
     {
         return [
