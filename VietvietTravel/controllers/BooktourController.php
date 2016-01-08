@@ -34,12 +34,12 @@ class BooktourController extends Controller
                 //'only' => [],
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['book-tour'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['create', 'update', 'view'],
+                        'actions' => ['index', 'create', 'update', 'view'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -96,6 +96,24 @@ class BooktourController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Creates a new Booktour model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionBookTour()
+    {
+        $model = new Booktour();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['tour/show-detail', 'id' => $model['id_tour']]);
         } else {
             return $this->render('create', [
                 'model' => $model,

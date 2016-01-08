@@ -62,4 +62,20 @@ $(document).ready(function(){
 			dropZone: $(this)
 		});
 	});
+
+	if(document.getElementById("length_desc")){
+		document.getElementById("length_desc").className += "";
+	}
+	if(document.getElementById("sort")){
+		document.getElementById("sort").onchange = function(e){
+			var sort = document.getElementById("length_desc");
+			if(e.target.value == "Descending"){
+				sort.setAttribute("class", "sr-only desc");
+				sort.click();
+			}else if(e.target.value = "Ascending"){
+				sort.setAttribute("class", "sr-only asc");
+				sort.click();
+			}
+		};
+	}
 });

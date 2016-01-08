@@ -38,8 +38,8 @@ class Hotel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            //[['name', 'id_location', 'address', 'price', 'briefinfo'], 'required'],
-            [['star', 'id_location', 'status', 'hot'], 'integer'],
+            [['name', 'id_location', 'address', 'price', 'briefinfo', 'phone'], 'required'],
+            [['star', 'id_location', 'status', 'hot', 'phone'], 'integer'],
             [['briefinfo', 'detailinfo'], 'string'],
             [['regdate', 'editdate'], 'safe'],
             [['name', 'address', 'price'], 'string', 'max' => 255],
@@ -57,7 +57,7 @@ class Hotel extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'star' => 'Star',
-            'id_location' => 'Id Location',
+            'id_location' => 'Location',
             'address' => 'Address',
             'price' => 'Price',
             'briefinfo' => 'Briefinfo',
@@ -70,6 +70,7 @@ class Hotel extends \yii\db\ActiveRecord
             'editdate' => 'Editdate',
             'status' => 'Status',
             'hot' => 'Hot',
+            'phone' => 'Phone',
         ];
     }
 

@@ -15,7 +15,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\data\ActiveDataProvider;
 use yii\web\UploadedFile;
-
+use yii\data\Sort;
 
 /**
  * HotelController implements the CRUD actions for Hotel model.
@@ -56,7 +56,7 @@ class HotelController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['create', 'update', 'delete', 'upload'],
+                        'actions' => ['create', 'update', 'delete', 'upload', 'upload'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -102,6 +102,7 @@ class HotelController extends Controller
     public function actionCreate()
     {
         $model = new Hotel();
+        $location = new Location();
         $small = new FileUpload();
         $large = new FileUpload();
 
@@ -110,6 +111,7 @@ class HotelController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'location' => $location,
                 'small' => $small,
                 'large' => $large,
             ]);
@@ -126,14 +128,16 @@ class HotelController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $location = new Location();
         $small = new FileUpload();
         $large = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'location' => $location,
                 'small' => $small,
                 'large' => $large,
             ]);
@@ -157,7 +161,6 @@ class HotelController extends Controller
     public function actionShow(){
         $this->layout = "main";
         $param = Yii::$app->getRequest()->getQueryParam('1');
-        $arr = [];
         $arr = explode("-", $param);
         $model = Location::find()->where(['name' => join(" ", $arr)])->one();
         $provider = new ActiveDataProvider([
@@ -167,9 +170,21 @@ class HotelController extends Controller
             ],
         ]);
 
+        $sortHotel = new Sort([
+            'attributes' => [
+                'star' => [
+                    'asc' => ['star' => SORT_ASC],
+                    'desc' => ['star' => SORT_DESC],
+                    'default' => 'star',
+                    'label' => 'Star',
+                ],
+            ],
+        ]);
+
         return $this->render('show', [
             'model' => $model,
             'provider' => $provider,
+            'sort' => $sortHotel,
         ]);
     }
 

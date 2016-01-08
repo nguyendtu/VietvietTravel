@@ -28,6 +28,7 @@ class AppAsset extends AssetBundle
         'js/script.js',
         'js/jquery.nivo.slider.js',
         'js/slider.js',
+        'js/galleria.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

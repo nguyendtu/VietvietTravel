@@ -331,6 +331,25 @@ $this->title = $info->name;
 </footer>
 
 <?php $this->endBody() ?>
+<?php
+    $this->registerJs("if (Galleria) {
+			Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+			if(!empty($('.galerria'))){
+                Galleria.run('.galleria', {
+                    autoplay: 3000,
+                    transition: 'fade',
+                    imageCrop: true
+                });
+			}
+		}", yii\web\View::POS_END);
+?>
+<script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
+<script>
+    tinymce.init({
+        selector: '#mytextarea',
+        height: '300',
+    });
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>

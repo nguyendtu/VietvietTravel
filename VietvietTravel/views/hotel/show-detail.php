@@ -41,27 +41,34 @@
                             </ul>
                             <button class="btn btn-primary">
                                 <span class="glyphicon glyphicon-share-alt"></span>
-                                BOOK THIS HOTEL
+                                <?php echo $model->phone ?>
                             </button>
                         </div>
                     </div>
                 </div>
                 <p><?php echo $model->briefinfo ?></p>
             </div>
-            <div id="wrapper">
+            <div class="galleria">
+                <?php $slides = explode(' ', $model->largeimg);
+                for($i = 0; $i < sizeOf($slides) - 1; $i++){
+                    ?>
+                    <img src="images/<?php echo $slides[$i] ?>" />
+                <?php } ?>
+            </div>
+            <!--<div id="wrapper">
                 <div class="slider-wrapper theme-default">
                     <div id="hotel_slider" class="nivoSlider">
-                        <?php $slides = explode(' ', $model->largeimg);
+                        <?php /*$slides = explode(' ', $model->largeimg);
                             for($i = 0; $i < sizeOf($slides) - 1; $i++){
-                        ?>
-                        <img src="images/<?php echo $slides[$i] ?>" data-thumb="images/<?php echo $slides[$i] ?>" alt="" />
-                        <?php } ?>
+                        */?>
+                        <img src="images/<?php /*echo $slides[$i] */?>" data-thumb="images/<?php /*echo $slides[$i] */?>" alt="" />
+                        <?php /*} */?>
                     </div>
                     <div id="htmlcaption" class="nivo-html-caption">
                         <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
                     </div>
                 </div>
-            </div>
+            </div>-->
             <div class="hotel-info">
                 <?php echo $model->detailinfo ?>
             </div>

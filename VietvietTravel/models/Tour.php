@@ -56,7 +56,7 @@ class Tour extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Name',
-            'id_tourtype' => 'Id Tourtype',
+            'id_tourtype' => 'Tourtype',
             'code' => 'Code',
             'length' => 'Length',
             'startfrom' => 'Startfrom',

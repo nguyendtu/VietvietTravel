@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'tourtype' => $tourtype,
         'small' => $small,
         'large' => $large,
     ]) ?>

@@ -22,20 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 <form id="sort-hotel" class="form-inline" action="#" method="get" role="form">
                     <div class="form-group">
                         <label for="sort_hotel">Sorting Hotel</label>
-                        <select name="sort-hotel" id="sort_hotel" class="form-control">
-                            <option value="1">Descending</option>
-                            <option value="1">Escending</option>
+                        <select name="sort-hotel" id="sort" class="form-control">
+                            <option value="">None</option>
+                            <option value="Descending">Descending</option>
+                            <option value="Ascending">Ascending</option>
                         </select>
+                        <?php echo $sort->link('star', ['id' => 'length_desc', 'class' => 'sr-only']); ?>
                     </div>
-                    <div class="form-group">
-                        <input type="radio" name="hotel" id="default">
-                        <label for="default">Default</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="radio" name="hotel" id="star">
-                        <label for="star">Star Rating</label>
-                    </div>
-                    <button class="btn btn-default">Sort</button>
                 </form>
             </div>
             <div class="row">

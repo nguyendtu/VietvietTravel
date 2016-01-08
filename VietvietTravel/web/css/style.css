@@ -491,12 +491,35 @@ ul#nav_search .active a{
 	list-style-type: circle;
 	margin-left: 20px;
 }
-#order_form h4{
+#order_form h4,
+#book_tour h4{
 	text-decoration: underline;
 }
 .related-hotel .row{
 	margin: 0px;
 	margin-bottom: 10px;
+}
+.margin-top-1{
+	position: relative;
+	top: 150px;
+}
+.margin-top-2{
+	position: relative;
+	top: 300px;
+}
+.smallUpload{
+	position: relative;
+	top: -750px;
+	height: 150px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.largeUpload{
+	position: relative;
+	top: -675px;
+	height: 150px;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 @media screen and (max-width: 767px){
 	.countries-tour .country{
@@ -614,4 +637,10 @@ ul#nav_search .active a{
 		bottom: -50px;
 		right: 15px;
 	}
+}
+
+.galleria{
+	width: 100%;
+	height: 400px;
+	background: #000;
 }

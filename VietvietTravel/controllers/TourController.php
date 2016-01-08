@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Booktour;
 use Yii;
 use app\models\Tour;
 use app\models\TourSearch;
@@ -15,7 +16,6 @@ use yii\data\ActiveDataProvider;
 use app\models\Tourtype;
 use app\models\FileUpload;
 use yii\data\Sort;
-
 /**
  * TourController implements the CRUD actions for Tour model.
  */
@@ -105,6 +105,7 @@ class TourController extends Controller
     public function actionCreate()
     {
         $model = new Tour();
+        $tourtype = new Tourtype();
         $small = new FileUpload();
         $large = new FileUpload();
 
@@ -113,6 +114,7 @@ class TourController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'tourtype' => $tourtype,
                 'small' => $small,
                 'large' => $large,
             ]);
@@ -183,33 +185,7 @@ class TourController extends Controller
         return $this->render('show', [
             'model' => $model,
             'provider' => $provider,
-            //'sort' => $sortTour,
-        ]);
-    }
-
-    /*
-     * sort tour
-     */
-    public function actionSort(){
-        $this->layout = "main";
-        $param = Yii::$app->request->post();
-        $attribute = $param['tour'];
-        $sort = $param['sort-tour'];
-        $tourtype = $param['tourtype'];
-
-        $model = Tourtype::find()->where(['name' => $tourtype])->one();
-
-        $provider = new ActiveDataProvider([
-            'query' => $model->getTours()->orderby([$attribute => $sort]),
-            'pagination' => [
-                'pageSize' => 5,
-            ],
-        ]);
-
-        return $this->render('show', [
-            'model' => $model,
-            'provider' => $provider,
-            'sort' => $param,
+            'sort' => $sortTour,
         ]);
     }
 
