@@ -58,18 +58,25 @@ class Visa extends \yii\db\ActiveRecord
             'id' => 'ID',
             'fullname' => 'Fullname',
             'email' => 'Email',
-            'mobile' => 'Mobile',
-            'nation' => 'Nation',
-            'numapply' => 'Numapply',
-            'visatype' => 'Visatype',
-            'processtime' => 'Processtime',
+            'mobile' => 'Phone number',
+            'nation' => 'Nationality',
+            'numapply' => 'Number of Applications',
+            'visatype' => 'Visa type',
+            'processtime' => 'Processing time',
             'message' => 'Message',
-            'usebefore' => 'Usebefore',
-            'receiveinfo' => 'Receiveinfo',
-            'knwthrough' => 'Knwthrough',
-            'paymethod' => 'Paymethod',
+            'usebefore' => 'Yes, i have travelled with TNK Travel before',
+            'receiveinfo' => 'Yes, i want to receive newsletters from TNK Travel',
+            'knwthrough' => 'You know us through',
+            'paymethod' => 'Your preferred payment method',
             'regdate' => 'Regdate',
             'status' => 'Status',
         ];
+    }
+
+    /*
+     * relation to visadetail table
+     */
+    public function getVisadetails(){
+        return $this->hasMany(Visadetail::className(), ['id_visa' => 'id']);
     }
 }

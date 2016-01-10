@@ -9,6 +9,7 @@ use yii\helpers\Html;
 $this->title = 'Create Visa';
 $this->params['breadcrumbs'][] = ['label' => 'Visas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="visa-create">
 
@@ -16,6 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'visadetails' => $visadetails,
+        'num' => $num,
     ]) ?>
 
 </div>

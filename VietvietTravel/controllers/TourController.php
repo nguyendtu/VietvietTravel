@@ -130,6 +130,7 @@ class TourController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $tourtype = new Tourtype();
         $small = new FileUpload();
         $large = new FileUpload();
 
@@ -138,6 +139,7 @@ class TourController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'tourtype' => $tourtype,
                 'small' => $small,
                 'large' => $large,
             ]);

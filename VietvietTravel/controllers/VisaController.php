@@ -2,18 +2,23 @@
 
 namespace app\controllers;
 
+use app\models\Visadetail;
 use Yii;
 use app\models\Visa;
 use app\models\VisaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\components\AccessRule;
+use app\models\User;
 
 /**
  * VisaController implements the CRUD actions for Visa model.
  */
 class VisaController extends Controller
 {
+    public $layout = "admin";
     public function behaviors()
     {
         return [
@@ -21,6 +26,38 @@ class VisaController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'rules' => [
+                    [
+                        'actions' => ['info', 'create'],
+                        'allow' => true,
+                        'roles' => [
+                            '?',
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
+                    [
+                        'actions' => ['index', 'view'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
+                    [
+                        'actions' => ['update', 'delete', 'upload', 'upload'],
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                        ],
+                    ],
                 ],
             ],
         ];
@@ -61,12 +98,27 @@ class VisaController extends Controller
     public function actionCreate()
     {
         $model = new Visa();
+        $visadetail = new Visadetail();
+        $num = 1;
+
+        /*echo "<pre>";
+        $model->load(Yii::$app->request->post());
+        print_r($model);
+        echo "</pre>";
+
+        echo "<pre>";
+        $visadetail->load(Yii::$app->request->post());
+        print_r($visadetail);
+        echo "</pre>";
+        exit;*/
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'visadetails' => [$visadetail],
+                'num' => $num,
             ]);
         }
     }
@@ -101,6 +153,21 @@ class VisaController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /*
+     * show info visa article
+     * */
+    public function actionInfo(){
+        $model = new Visa();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->render('info', [
+                'model' => $model,
+            ]);
+        }
     }
 
     /**

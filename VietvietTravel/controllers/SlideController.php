@@ -8,12 +8,17 @@ use app\models\SlideSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\components\AccessRule;
+use app\models\User;
+use app\models\FileUpload;
 
 /**
  * SlideController implements the CRUD actions for Slide model.
  */
 class SlideController extends Controller
 {
+    public $layout = "admin";
     public function behaviors()
     {
         return [
@@ -21,6 +26,21 @@ class SlideController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'ruleConfig' => [
+                    'class' => AccessRule::className(),
+                ],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => [
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER,
+                        ],
+                    ],
                 ],
             ],
         ];
@@ -61,12 +81,14 @@ class SlideController extends Controller
     public function actionCreate()
     {
         $model = new Slide();
+        $image = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'image' => $image,
             ]);
         }
     }

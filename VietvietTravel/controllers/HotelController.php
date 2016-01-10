@@ -14,7 +14,6 @@ use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\data\ActiveDataProvider;
-use yii\web\UploadedFile;
 use yii\data\Sort;
 
 /**

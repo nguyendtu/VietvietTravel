@@ -70,6 +70,8 @@ $tourtype = $model->tourtype;
                 </div>
             </div>-->
             <hr>
+            <div class="fb-like" data-href="http://localhost/VietvietTravel/VietvietTravel/web/index.php?r=tour%2Fshow-detail&id=<?php echo $model->id ?>" data-width="100" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="fb-comments" data-href="http://localhost/VietvietTravel/VietvietTravel/web/index.php?r=tour%2Fshow-detail&id=<?php echo $model->id ?>" data-width="100%" data-numposts="5"></div>
             <div class="related-tour">
                 <h4>Related Tours</h4>
                 <ul>
@@ -80,6 +82,7 @@ $tourtype = $model->tourtype;
                     <?php }} ?>
                 </ul>
             </div>
+
         </div>
     </div>
     <div class="modal fade" id="book_tour" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">

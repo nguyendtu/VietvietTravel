@@ -18,6 +18,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+//        'css/bootstrap.css',
         'css/fonts.css',
         'css/site.css',
         'css/nivo-slider.css',

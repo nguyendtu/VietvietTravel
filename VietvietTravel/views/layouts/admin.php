@@ -41,6 +41,8 @@ AppAsset::register($this);
             ['label' => 'Info Company', 'url' => ['/infocompany/index']],
             ['label' => 'TOUR', 'url' => ['/tour/index']],
             ['label' => 'HOTEL', 'url' => ['/hotel/index']],
+            ['label' => 'Vietnam visa on Arrival', 'url' => ['/visa/info']],
+            ['label' => 'Article', 'url' => ['/article/index']],
             ['label' => 'ABOUT US', 'url' => ['/admin/about']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/admin/login']] :

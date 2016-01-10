@@ -2,9 +2,12 @@
 
 namespace app\controllers;
 
+use app\models\FileUpload;
+use app\models\Tourtype;
 use Yii;
 use app\models\Article;
 use app\models\ArticleSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -17,6 +20,7 @@ use app\models\User;
  */
 class ArticleController extends Controller
 {
+    public $layout = "admin";
     public function behaviors()
     {
         return [
@@ -34,12 +38,16 @@ class ArticleController extends Controller
                 //'only' => [],
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['tour', 'detail'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => [
+                            '?',
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER
+                        ],
                     ],
                     [
-                        'actions' => ['create', 'update', 'view'],
+                        'actions' => ['create', 'update', 'view', 'index'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -93,12 +101,16 @@ class ArticleController extends Controller
     public function actionCreate()
     {
         $model = new Article();
+        $tourtype = new Tourtype();
+        $small = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'tourtype' => $tourtype,
+                'small' => $small,
             ]);
         }
     }
@@ -112,14 +124,54 @@ class ArticleController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $tourtype = new Tourtype();
+        $small = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'tourtype' => $tourtype,
+                'small' => $small,
             ]);
         }
+    }
+
+    /**
+     * show tour diary article
+     */
+    public function actionTour(){
+        $this->layout = "main";
+        $model = Article::find()->where(['not in', 'type', [100, 101]]);
+
+        $provider = new ActiveDataProvider([
+            'query' => $model,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
+        ]);
+        return $this->render("tour", [
+            'model' => $model,
+            'provider' => $provider,
+        ]);
+    }
+
+    /**
+     * show article
+     */
+    public function actionDetail($id = 0, $title = ""){
+        $this->layout = "main";
+
+        if($id) {
+            $model = Article::find()->where(['id' => $id])->one();
+        }else{
+            $model = Article::find()->where(['title' => $title])->one();
+        }
+
+        return $this->render("detail", [
+            'model' => $model,
+        ]);
     }
 
     /**

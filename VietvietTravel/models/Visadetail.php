@@ -36,7 +36,7 @@ class Visadetail extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_visa', 'fullame', 'nation', 'idpassport', 'birthday', 'expire'], 'required'],
+            [['id_visa', 'fullname', 'nation', 'idpassport', 'birthday', 'expire'], 'required'],
             [['id_visa'], 'integer'],
             [['birthday', 'expire', 'arrivaldate', 'exitdate'], 'safe'],
             [['fullame', 'nation', 'idpassport', 'flightdetail', 'portarrival', 'purposevisit'], 'string', 'max' => 255]
@@ -51,16 +51,24 @@ class Visadetail extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_visa' => 'Id Visa',
-            'fullame' => 'Fullame',
-            'nation' => 'Nation',
-            'idpassport' => 'Idpassport',
-            'birthday' => 'Birthday',
-            'expire' => 'Expire',
-            'flightdetail' => 'Flightdetail',
-            'arrivaldate' => 'Arrivaldate',
-            'exitdate' => 'Exitdate',
-            'portarrival' => 'Portarrival',
-            'purposevisit' => 'Purposevisit',
+            'fullname' => 'Passport\'s full name',
+            'nation' => 'Present nationality',
+            'idpassport' => 'Passport number',
+            'birthday' => 'Date of birth',
+            'expire' => 'Date of exprire',
+            'flightdetail' => 'Arrival Flight details',
+            'arrivaldate' => 'Date of arrival',
+            'exitdate' => 'Date of exit',
+            'portarrival' => 'Port of arrival',
+            'purposevisit' => 'Port of visit',
         ];
+    }
+
+    /**
+     * relation to visa table
+     *
+     */
+    public function getVisa(){
+        return $this->hasOne(Visa::className(), ['id' => 'id_visa']);
     }
 }

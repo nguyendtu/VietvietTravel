@@ -19,10 +19,10 @@ $info = Infocompany::find()->one();
 /* select slide */
 $slides = Slide::find()->where(['position' => '1'])->all();
 /* select article*/
-$article = Article::find()->where(['type' => '1'])->all();
-
+$article = Article::find()->where(['type' => '101'])->all();
+/* select article services */
+$articleService = Article::find()->where(['type' => "100"])->all();
 $this->title = $info->name;
-
 ?>
 
 <?php $this->beginPage() ?>
@@ -36,6 +36,14 @@ $this->title = $info->name;
     <?php $this->head() ?>
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1492399707732296";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -107,16 +115,16 @@ $this->title = $info->name;
                  ['label' => 'Hotels in SaPa', 'url' => ['hotel/show', 'sa-pa']],
             ],
             ],
-            ['label' => 'Vietnam visa on Arrival', 'url' => ['article/show', 'visa']],
-            ['label' => 'TOUR DIARY', 'url' => ['/article/show', 'tour-diary']],
+            ['label' => 'Vietnam visa on Arrival', 'url' => ['article/show', 'Vietnam visa on Arrival']],
+            ['label' => 'TOUR DIARY', 'url' => ['/article/tour']],
             [
             'label' => 'TRAVEL SERVICES',
             'items' => [
-                 ['label' => 'Booking Flight ticket', 'url' => ['article/show', 'booking-flight']],
-                 ['label' => 'Booking train ticket', 'url' => ['article/show', 'booking-train']],
-                 ['label' => 'Car for rent', 'url' => ['article/show', 'car']],
-                 ['label' => 'Moto bike for rent', 'url' => ['article/show', 'moto-bike']],
-                 ['label' => 'Bicycle for rent', 'url' => ['article/show', 'bicycle']],
+                 ['label' => 'Booking Flight ticket', 'url' => ['article/detail', 'title' => 'Booking Flight ticket']],
+                 ['label' => 'Booking train ticket', 'url' => ['article/detail', 'title' => 'Booking train ticket']],
+                 ['label' => 'Car for rent', 'url' => ['article/detail', 'title' => 'Car for rent']],
+                 ['label' => 'Moto bike for rent', 'url' => ['article/detail', 'title' => 'Moto bike for rent']],
+                 ['label' => 'Bicycle for rent', 'url' => ['article/detail', 'title' => 'Bicycle for rent']],
             ],
             ],
         ],
@@ -207,10 +215,9 @@ $this->title = $info->name;
                     <div class="row">
                         <h4 class="title">Our Services</h4>
                         <ul class="list-services">
-                            <li class="item"><a href="#"><img src="images/flight.jpg" alt="service"></a></li>
-                            <li class="item"><a href="#"><img src="images/train.jpg" alt="service"></a></li>
-                            <li class="item"><a href="#"><img src="images/car.jpg" alt="service"></a></li>
-                            <li class="item"><a href="#"><img src="images/visa.jpg" alt="service"></a></li>
+                            <?php foreach($articleService as $row){ ?>
+                            <li class="item"><a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => $row->id])?>"><img src="images/<?php echo $row->smallimg ?>" alt="service"></a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -221,7 +228,7 @@ $this->title = $info->name;
                             <?php foreach($article as $row){ ?>
                             <li>
                                 <span class="glyphicon glyphicon-share-alt"></span>
-                                <a href="#"><?php echo $row->title ?></a>
+                                <a href="<?php echo yii\helpers\Url::to(['article/detail', 'id' => $row->id]) ?>"><?php echo $row->title ?></a>
                             </li>
                             <?php } ?>
                         </ul>
