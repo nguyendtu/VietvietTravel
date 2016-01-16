@@ -39,7 +39,7 @@ class Visadetail extends \yii\db\ActiveRecord
             [['id_visa', 'fullname', 'nation', 'idpassport', 'birthday', 'expire'], 'required'],
             [['id_visa'], 'integer'],
             [['birthday', 'expire', 'arrivaldate', 'exitdate'], 'safe'],
-            [['fullame', 'nation', 'idpassport', 'flightdetail', 'portarrival', 'purposevisit'], 'string', 'max' => 255]
+            [['fullname', 'nation', 'idpassport', 'flightdetail', 'portarrival', 'purposevisit'], 'string', 'max' => 255]
         ];
     }
 

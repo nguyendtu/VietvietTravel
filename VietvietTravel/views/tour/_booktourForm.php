@@ -22,9 +22,9 @@ use kartik\date\DatePicker;
     <h4>Contact Information</h4>
     <?= $form->field($booktour, 'fullname', [
         'template' => "{label}\n<div class=\"col-md-2\"><select name='genderName' id='' class=\"form-control\">
-    <option value='1'>Mr</option>
-    <option value='2'>Ms</option>
-    <option value='3'>Mrs</option>
+    <option value='Mr'>Mr</option>
+    <option value='Ms'>Ms</option>
+    <option value='Mrs'>Mrs</option>
 </select></div><div class=\"col-md-5\" >\n{input}\n</div><div class=\"col-md-3\">\n{hint}\n{error}</div>",
     ])->textInput(['maxlength' => true])->hint("*") ?>
 

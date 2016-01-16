@@ -11,6 +11,7 @@ use app\assets\AppAsset;
 use app\models\Infocompany;
 use app\models\Slide;
 use app\models\Article;
+use yii\widgets\ActiveForm;
 
 AppAsset::register($this);
 
@@ -60,7 +61,7 @@ $this->title = $info->name;
                 </a>
             </li>
             <li>
-                <a href="?r=site/contact">
+                <a href="?r=contact/create">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact us
                 </a>
             </li>
@@ -80,7 +81,7 @@ $this->title = $info->name;
         'dropDownCaret' => '',
         'items' => [
             ['label' => 'HOME', 'url' => ['/site/index']],
-            ['label' => 'ABOUT US', 'url' => ['/article/show', 'about']],
+            ['label' => 'ABOUT US', 'url' => ['/article/about-us']],
             [
             'label' => 'BICYCLE TOUR',
             'items' => [
@@ -115,7 +116,7 @@ $this->title = $info->name;
                  ['label' => 'Hotels in SaPa', 'url' => ['hotel/show', 'sa-pa']],
             ],
             ],
-            ['label' => 'Vietnam visa on Arrival', 'url' => ['article/show', 'Vietnam visa on Arrival']],
+            ['label' => 'Vietnam visa on Arrival', 'url' => ['visa/create']],
             ['label' => 'TOUR DIARY', 'url' => ['/article/tour']],
             [
             'label' => 'TRAVEL SERVICES',
@@ -156,14 +157,17 @@ $this->title = $info->name;
                         <li role="presentation" data-target="hotel"><a>HOTEL</a></li>
                     </ul>
                     <div id="tour" class="search-style">
-                        <form action="#" id="search-tour" method="get" role="form">
+                        <?php ActiveForm::begin([
+                            'action' => ['tour/search'],
+                            'method' => 'get',
+                        ]); ?>
                             <div class="form-group">
                                 <label for="tour-name" class="sr-only">Tour name</label>
-                                <input type="text" id="tour-name" name="tour-name" class="form-control" placeholder="Enter tour name or trip code....">
+                                <input type="text" id="tour-name" name="tourName" class="form-control" placeholder="Enter tour name or trip code....">
                             </div>
                             <div class="form-group">
                                 <label for="tour-style" class="sr-only">Tour style</label>
-                                <select name="tour-style" id="tour-style" class="form-control">
+                                <select name="tourStyle" id="tour-style" class="form-control">
                                     <option value="">Select tour style</option>
                                     <option value="bicycle">Bicycle tour</option>
                                     <option value="travel">Travel style</option>
@@ -171,33 +175,43 @@ $this->title = $info->name;
                             </div>
                             <div class="form-group">
                                 <label for="tour-detination" class="sr-only">Tour style destination</label>
-                                <select name="tour-detination" id="tour-detination" class="form-control">
+                                <select name="tourDetination" id="tour-detination" class="form-control">
                                     <option value="">Select tour destination</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="tour-len" class="sr-only">Tour length</label>
-                                <input type="text" id="tour-len" name="tour-len" class="form-control" placeholder="Length of tour...">
+                                <input type="text" id="tour-len" name="tourLen" class="form-control" placeholder="Length of tour...">
                             </div>
-                            <button class="btn btn-primary btn-block">Search</button>
-                        </form>
+                            <button type="submit" class="btn btn-primary btn-block">Search</button>
+                        <?php ActiveForm::end(); ?>
                     </div>
                     <div id="hotel" class="search-style">
-                        <form action="#" method="get" role="form" id="search-hotel">
+                        <?php ActiveForm::begin([
+                            'action' => ['hotel/search'],
+                            'method' => 'get',
+                        ]); ?>
                             <div class="form-group">
                                 <label for="hotel-name" class="sr-only">Hotel name</label>
-                                <input type="text" name="hotel-name" id="hotel-name" class="form-control" placeholder="Enter hotel name...">
+                                <input type="text" name="hotelName" id="hotel-name" class="form-control" placeholder="Enter hotel name...">
                             </div>
                             <div class="form-group">
                                 <label for="hotel-area" class="sr-only">Hotel area</label>
-                                <input type="text" name="hotel-area" id="hotel-area" class="form-control" placeholder="Enter hotel area...">
+                                <select name="hotelArea" id="hotel-area" class="form-control">
+                                    <?php
+                                        $htArea = app\models\Location::find()->all();
+                                        foreach($htArea as $row){
+                                    ?>
+                                    <option value="<?php echo $row->id ?>"><?php echo $row->name ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="hotel-number" class="sr-only">Hotel number</label>
-                                <input type="text" name="hotel-number" id="hotel-number" class="form-control" placeholder="Enter hotel number....">
+                                <input type="text" name="hotelNumber" id="hotel-number" class="form-control" placeholder="Enter hotel number....">
                             </div>
                             <button class="btn btn-primary btn-block">Search</button>
-                        </form>
+                        <?php ActiveForm::end(); ?>
                     </div>
                 </div>
                 <div class="video-box sidebar">
@@ -245,13 +259,13 @@ $this->title = $info->name;
 <footer class="footer">
     <div class="container">
         <ul id="menu-bottom">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Customized Tour</a></li>
-            <li><a href="#">Hotel Reservation</a></li>
-            <li><a href="#">Flight Booking</a></li>
-            <li><a href="#">Train Booking</a></li>
-            <li><a href="#">Visa Requirements</a></li>
-            <li><a href="#">Car Rental</a></li>
+            <li><a href="#">Home</a></li><!--
+            --><li><a href="#">Customized Tour</a></li><!--
+            --><li><a href="#">Hotel Reservation</a></li><!--
+            --><li><a href="#">Flight Booking</a></li><!--
+            --><li><a href="#">Train Booking</a></li><!--
+            --><li><a href="#">Visa Requirements</a></li><!--
+            --><li><a href="#">Car Rental</a></li>
         </ul>
         <ul class="countries-tour">
             <li class="country">
@@ -338,24 +352,39 @@ $this->title = $info->name;
 </footer>
 
 <?php $this->endBody() ?>
-<?php
-    $this->registerJs("if (Galleria) {
-			Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
-			if(!empty($('.galerria'))){
-                Galleria.run('.galleria', {
-                    autoplay: 3000,
-                    transition: 'fade',
-                    imageCrop: true
-                });
-			}
-		}", yii\web\View::POS_END);
-?>
 <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
 <script>
+    var tour = document.getElementById("tour-style");
+    tour.onchange = function(e){
+        var url = "index.php?r=tourtype/get-tour&tourtype="+ e.target.value;
+        $.get(url, function(data){
+            data = $.parseJSON(data);
+            var detination = document.getElementById("tour-detination");
+            detination.innerHTML = "";
+            for(var i = 0; i < data.length; i++){
+                var option = document.createElement("option");
+                option.value = data[i].id;
+                option.innerHTML = data[i].name;
+
+                detination.appendChild(option);
+            }
+        })
+    };
     tinymce.init({
         selector: '#mytextarea',
         height: '300',
     });
+    if (Galleria) {
+        console.log('abc');
+        Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+        if($('.galerria')){
+            Galleria.run('.galleria', {
+                autoplay: 3000,
+                transition: 'fade',
+                imageCrop: true
+            });
+        }
+    }
 </script>
 </body>
 </html>

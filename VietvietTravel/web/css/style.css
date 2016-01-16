@@ -370,6 +370,9 @@ ul#nav_search .active a{
 	width: 16px;
 	height: 16px;
 }
+.center{
+	text-align: center;
+}
 #menu-bottom{
 	list-style-type: none;
     border-top: 1px solid #707070;
@@ -380,7 +383,7 @@ ul#nav_search .active a{
 	display: inline-block;
 }
 #menu-bottom a{
-	padding: 0 5px;
+	padding: 0 15px;
 	border-right: 1px solid #707070;
 	text-transform: uppercase;
 }
@@ -540,6 +543,14 @@ ul#nav_search .active a{
 	height: 150px;
 	overflow-y: scroll;
 	overflow-x: hidden;
+}
+.address tr td:first-child{
+	background: rgb(242, 242, 242);
+	text-transform: uppercase;
+	text-align: center;
+}
+.address tr td{
+	padding: 10px;
 }
 @media screen and (max-width: 767px){
 	.countries-tour .country{

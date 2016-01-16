@@ -90,6 +90,8 @@ class VisadetailController extends Controller
         }
     }
 
+
+
     /**
      * Deletes an existing Visadetail model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

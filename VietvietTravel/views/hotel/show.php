@@ -12,12 +12,14 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="main-content">
     <div class="thumb">
-        <h3 class="thumb-caption">Hotels in <?php echo $model->name ?></h3>
+        <h3 class="thumb-caption">Hotels in <?php if(isset($model->name)) echo $model->name; else echo "search result" ?></h3>
         <div class="thumb-content">
+            <?php if(isset($model->description)){ ?>
             <div class="header">
                 <p><?php echo $model->description ?></p>
                 <p class="right"><a href="#"><em>Read more</em></a></p>
             </div>
+            <?php } ?>
             <div class="sort">
                 <form id="sort-hotel" class="form-inline" action="#" method="get" role="form">
                     <div class="form-group">
@@ -27,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <option value="Descending">Descending</option>
                             <option value="Ascending">Ascending</option>
                         </select>
-                        <?php echo $sort->link('star', ['id' => 'length_desc', 'class' => 'sr-only']); ?>
+                        <?php //echo $sort->link('star', ['id' => 'length_desc', 'class' => 'sr-only']); ?>
                     </div>
                 </form>
             </div>

@@ -38,7 +38,7 @@ class HotelController extends Controller
                 ],
                 'rules' => [
                     [
-                        'actions' => ['show', 'show-detail'],
+                        'actions' => ['show', 'show-detail', 'search'],
                         'allow' => true,
                         'roles' => [
                             '?',
@@ -196,6 +196,50 @@ class HotelController extends Controller
         return $this->render('show-detail', [
             'model' => $model,
             'related' => $related,
+        ]);
+    }
+
+    /**
+     * search hotel
+     */
+    public function actionSearch($hotelName = "", $hotelArea = "", $hotelNumber = ""){
+        //$sql = "SELECT * FROM tour WHERE code LIKE ISNULL(" . $tourName . ")  AND id_tourtype LIKE ISNULL(" . $tourDetination . ")  AND length LIKE ISNULL(" . $tourLen . ")";
+        $this->layout = "main";
+        $model = Hotel::find();
+
+        if($hotelName){
+            $model = $model->where(['name' => $hotelName]);
+        }
+        if($hotelArea){
+            $model = $model->andWhere(['id_location' => $hotelArea]);
+        }
+        if($hotelNumber){
+            $model = $model->andWhere(['phone' => $hotelNumber]);
+        }
+
+        //$model = $model->all();
+
+        $provider = new ActiveDataProvider([
+            'query' => $model,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
+        $sortTour = new Sort([
+            'attributes' => [
+                'length' => [
+                    'asc' => ['length' => SORT_ASC],
+                    'desc' => ['length' => SORT_DESC],
+                    'default' => 'length',
+                    'label' => 'Length',
+                ],
+            ],
+        ]);
+
+        return $this->render('show', [
+            //'tour' => $tour,
+            'provider' => $provider,
+            'sort' => $sortTour,
         ]);
     }
 

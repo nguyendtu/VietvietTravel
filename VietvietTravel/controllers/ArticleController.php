@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\models\FileUpload;
 use app\models\Tourtype;
+use app\models\Visa;
+use app\models\Visadetail;
 use Yii;
 use app\models\Article;
 use app\models\ArticleSearch;
@@ -38,7 +40,7 @@ class ArticleController extends Controller
                 //'only' => [],
                 'rules' => [
                     [
-                        'actions' => ['tour', 'detail'],
+                        'actions' => ['tour', 'detail', 'about-us', 'visa', 'set-model'],
                         'allow' => true,
                         'roles' => [
                             '?',
@@ -171,6 +173,61 @@ class ArticleController extends Controller
 
         return $this->render("detail", [
             'model' => $model,
+        ]);
+    }
+
+    /**
+     * show article about us
+     */
+    public function actionAboutUs(){
+        $this->layout = "main";
+
+        $model = Article::find()->where(['type' => 102])->one();
+
+        return $this->render("about-us", [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionSetModel($num){
+        $visa = new Visa();
+        $models = [];
+        for($i = 0; $i < $num; $i++){
+            array_push($models, new Visadetail());
+        }
+
+        return $this->renderAjax('../visa/_form', [
+            'visaDetails' => $models,
+            'model' => $visa,
+        ]);
+    }
+
+    /**
+     * show article visa
+     */
+    public function actionVisa(){
+        $this->layout = "main";
+
+        $visa = new Visa();
+        $visaDetails = [];
+
+        $num = 1;
+        if(Yii::$app->request->post('numapply')){
+            $num = Yii::$app->request->post('numapply');
+            echo $num; return;
+        }
+
+        for ($i = 0; $i < $num; $i++) {
+            $visaDetail = new Visadetail();
+            array_push($visaDetails, $visaDetail);
+        }
+
+        $model = Article::find()->where(['type' => 103])->one();
+
+        return $this->render("visa", [
+            'model' => $model,
+            'visa' => $visa,
+            'visaDetails' => $visaDetails,
         ]);
     }
 

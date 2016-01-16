@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Infocompany;
 use Yii;
 use app\models\Contact;
 use app\models\ContactSearch;
@@ -34,7 +35,7 @@ class ContactController extends Controller
                 //'only' => [],
                 'rules' => [
                     [
-                        'actions' => ['index'],
+                        'actions' => ['create'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -93,14 +94,22 @@ class ContactController extends Controller
     public function actionCreate()
     {
         $model = new Contact();
+        $infoCompany = Infocompany::findOne(['id' => 1]);
+        if($model->load(Yii::$app->request->post())) {
+            $model->fullname = $_POST['genderName'] . " " . $model->fullname;
+            if ($model->save()) {
+                //return $this->redirect(['create', 'id' => $model->id]);
+                Yii::$app->session->setFlash('contactFormSubmitted');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+                return $this->refresh();
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'infoCompany' => $infoCompany,
             ]);
         }
+
     }
 
     /**

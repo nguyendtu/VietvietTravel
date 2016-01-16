@@ -51,16 +51,36 @@ class Contact extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'fullname' => 'Fullname',
+            'fullname' => 'Full name',
             'email' => 'Email',
-            'phone' => 'Phone',
-            'nation' => 'Nation',
+            'phone' => 'Phone number',
+            'nation' => 'Nationality',
             'message' => 'Message',
-            'usebefore' => 'Usebefore',
-            'receiveinfo' => 'Receiveinfo',
-            'knwthrough' => 'Knwthrough',
+            'usebefore' => 'Yes, i have travelled with TNK Travel before',
+            'receiveinfo' => 'Yes, i want to receive newsletters from TNK Travel',
+            'knwthrough' => 'You know us through',
             'regdate' => 'Regdate',
             'status' => 'Status',
         ];
+    }
+
+    /**
+     * Sends an email to the specified email address using the information collected by this model.
+     * @param  string  $email the target email address
+     * @return boolean whether the model passes validation
+     */
+    public function contact($email)
+    {
+        if ($this->validate()) {
+            Yii::$app->mailer->compose()
+                ->setTo($email)
+                ->setFrom([$this->email => $this->name])
+                ->setSubject("Contact") /*$this->subject*/
+                ->setTextBody($this->message)
+                ->send();
+
+            return true;
+        }
+        return false;
     }
 }

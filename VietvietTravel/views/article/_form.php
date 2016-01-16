@@ -17,6 +17,14 @@ $type = new \app\models\Tourtype();
 $type->id = "101";
 $type->name = "Travel articles";
 array_push($tour, $type);
+$type = new \app\models\Tourtype();
+$type->id = "102";
+$type->name = "Abou us";
+array_push($tour, $type);
+$type = new \app\models\Tourtype();
+$type->id = "103";
+$type->name = "Vietnam visa on arrival";
+array_push($tour, $type);
 ?>
 
 <div class="article-form">

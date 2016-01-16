@@ -11,10 +11,13 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="contact-index">
+    <div class="main-content">
+        <h3 class="thumb-caption"><?= Html::encode($this->title) ?> us</h3>
 
-    <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
+        <?php // show map ?>
+
+        <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
         <div class="alert alert-success">
             Thank you for contacting us. We will respond to you as soon as possible.
@@ -65,11 +68,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
 
     <?php endif; ?>
+    </div>
 </div>
-
-<iframe width="600" height="450" frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?q=place_id:Ek8yNSDEkMaw4budbmcgc-G7kSAyLCBCw6xuaCBIxrBuZyBIw7JhIEEsIELDrG5oIFTDom4sIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt&key=AIzaSyCsNXKcEQCH057KL8w_8mTe_rxq11fCgBY" allowfullscreen></iframe>
-
-
-
-

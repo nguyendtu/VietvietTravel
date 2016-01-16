@@ -42,7 +42,7 @@ class TourController extends Controller
                 ],
                 'rules' => [
                     [
-                        'actions' => ['show', 'show-detail', 'sort'],
+                        'actions' => ['show', 'show-detail', 'sort', 'search'],
                         'allow' => true,
                         'roles' => [
                             '?',
@@ -201,6 +201,50 @@ class TourController extends Controller
         return $this->render('show-detail', [
             'model' => $model,
             'related' => $related,
+        ]);
+    }
+
+    /**
+     * search tour
+     */
+    public function actionSearch($tourName = "", $tourStyle = "", $tourDetination = "", $tourLen = ""){
+        //$sql = "SELECT * FROM tour WHERE code LIKE ISNULL(" . $tourName . ")  AND id_tourtype LIKE ISNULL(" . $tourDetination . ")  AND length LIKE ISNULL(" . $tourLen . ")";
+        $this->layout = "main";
+        $model = Tour::find();
+
+        if($tourName){
+            $model = $model->where(['or', 'code='. $tourName.'', 'name='. $tourName.'']);
+        }
+        if($tourDetination){
+            $model = $model->andWhere(['id_tourtype' => $tourDetination]);
+        }
+        if($tourLen){
+            $model = $model->andWhere(['length' => $tourLen]);
+        }
+
+        //$model = $model->all();
+
+        $provider = new ActiveDataProvider([
+            'query' => $model,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
+        ]);
+        $sortTour = new Sort([
+            'attributes' => [
+                'length' => [
+                    'asc' => ['length' => SORT_ASC],
+                    'desc' => ['length' => SORT_DESC],
+                    'default' => 'length',
+                    'label' => 'Length',
+                ],
+            ],
+        ]);
+
+        return $this->render('show', [
+            //'tour' => $tour,
+            'provider' => $provider,
+            'sort' => $sortTour,
         ]);
     }
 

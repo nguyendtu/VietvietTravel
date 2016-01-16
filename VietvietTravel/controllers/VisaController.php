@@ -12,6 +12,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\components\AccessRule;
 use app\models\User;
+use app\models\Article;
 
 /**
  * VisaController implements the CRUD actions for Visa model.
@@ -95,30 +96,51 @@ class VisaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($num = 1)
     {
+        $this->layout = "main";
         $model = new Visa();
-        $visadetail = new Visadetail();
-        $num = 1;
+        $article = Article::find()->where(['type' => 103])->one();
 
-        /*echo "<pre>";
-        $model->load(Yii::$app->request->post());
-        print_r($model);
-        echo "</pre>";
+        $visaDetails = [];
 
-        echo "<pre>";
-        $visadetail->load(Yii::$app->request->post());
-        print_r($visadetail);
-        echo "</pre>";
-        exit;*/
+        for($i = 0; $i < $num; $i++){
+            $visaDetails[] = new Visadetail();
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $visaId = $model->id;
+
+            if (isset($_POST['Visadetail'])) {
+                foreach ($_POST['Visadetail'] as $index => $arr) {
+                    foreach ($arr as $i => $val) {
+                        $visaDetails[$index - 1][$i] = $val;
+                    }
+                    $visaDetails[$index - 1]['id_visa'] = $visaId;
+                }
+                foreach ($visaDetails as $visaDetail) {
+                    if ($visaDetail->save()) {
+                        return $this->redirect(['create',
+                            'model' => $model,
+                            'visaDetails' => $visaDetails,
+                            'article' => $article,
+                        ]);
+                    }
+                }
+            }
+            echo "save"; die();
+        } else if(Yii::$app->request->isAjax){
+            return $this->renderAjax('create', [
+                'model' => $model,
+                'article' => $article,
+                'visaDetails' => $visaDetails,
+            ]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'visadetails' => [$visadetail],
-                'num' => $num,
+                'visaDetails' => $visaDetails,
+                'article' => $article,
+                //'num' => $num,
             ]);
         }
     }

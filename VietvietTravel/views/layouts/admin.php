@@ -43,7 +43,7 @@ AppAsset::register($this);
             ['label' => 'HOTEL', 'url' => ['/hotel/index']],
             ['label' => 'Vietnam visa on Arrival', 'url' => ['/visa/info']],
             ['label' => 'Article', 'url' => ['/article/index']],
-            ['label' => 'ABOUT US', 'url' => ['/admin/about']],
+            //['label' => 'ABOUT US', 'url' => ['/article/create']],
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/admin/login']] :
                 ['label' => 'Logout ('. Yii::$app->user->identity->fullname .')',

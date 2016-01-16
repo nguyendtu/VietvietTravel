@@ -35,10 +35,10 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'briefinfo', 'smallimg', 'detailinfo', 'id_user'], 'required'],
+            [['title', 'briefinfo', 'detailinfo', 'id_user'], 'required'],
             [['type', 'id_user', 'hot', 'status'], 'integer'],
             [['briefinfo', 'detailinfo'], 'string'],
-            [['regdate', 'editdate'], 'safe'],
+            [['regdate', 'editdate', 'smallimg'], 'safe'],
             [['title', 'smallimg'], 'string', 'max' => 255]
         ];
     }

@@ -36,7 +36,11 @@ class BooktourController extends Controller
                     [
                         'actions' => ['book-tour'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => [
+                            '?',
+                            User::ROLE_ADMIN,
+                            User::ROLE_USER
+                        ],
                     ],
                     [
                         'actions' => ['index', 'create', 'update', 'view'],
@@ -111,10 +115,13 @@ class BooktourController extends Controller
     public function actionBookTour()
     {
         $model = new Booktour();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['tour/show-detail', 'id' => $model['id_tour']]);
-        } else {
+        if($model->load(Yii::$app->request->post())){
+            $model->fullname = $_POST['genderName'] . " " . $model->fullname;
+            if ($model->save()) {
+                return $this->redirect(['tour/show-detail', 'id' => $model['id_tour']]);
+            }
+        }
+        else {
             return $this->render('create', [
                 'model' => $model,
             ]);

@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="main-content">
     <div class="thumb">
-        <h3 class="thumb-caption"><?php echo $model->name ?></h3>
+        <h3 class="thumb-caption"><?php if(isset($model->name)) echo $model->name; else echo "RESULT"  ?></h3>
         <div class="sort">
             <form id="sort-tour" class="form-inline" action="<?php echo \yii\helpers\Url::to(['tour/sort']); ?>" method="post" role="form">
                 <div class="form-group">

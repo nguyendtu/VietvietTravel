@@ -2,11 +2,23 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Visa */
 /* @var $form yii\widgets\ActiveForm */
+if(isset($_GET['num'])) {
+    $num = $_GET['num'];
+    $js = <<<JS
+    var b = $('#visa-numapply').find($('option'));
+    for(var i = 0; i < b.length; i++){
+        if(b[i].value == $num){
+            b[i].selected = "selected";
+        }
+        console.log(b[i].value);
+    }
+JS;
+    $this->registerJs($js);
+}
 ?>
 
 <div class="visa-form">
@@ -15,7 +27,7 @@ use yii\widgets\Pjax;
         'action' => ['visa/create'],
         'options' => [
             'class' => 'form-horizontal',
-            'id' => 'book_tour',
+            'id' => 'visa',
         ],
         'fieldConfig' => [
             'template' => "{label}\n<div class=\"col-md-7\" >\n{input}\n</div><div class=\"col-md-3\">\n{hint}\n{error}</div>",
@@ -34,7 +46,7 @@ use yii\widgets\Pjax;
 </select></div><div class=\"col-md-5\" >\n{input}\n</div><div class=\"col-md-3\">\n{hint}\n{error}</div>",
     ])->textInput(['maxlength' => true])->hint("*") ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true, 'required']) ?>
 
     <?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
 
@@ -72,37 +84,10 @@ use yii\widgets\Pjax;
         '4' => '3 month multiple',
     ]) ?>
 
-    <!-- visa detail info -->
-
-
-    <?php foreach($visadetails as $visadetail){ ?>
-        <?= $form->field($visadetail, 'fullname', [
-            'template' => "{label}\n<div class=\"col-md-2\"><select name='genderName' id='' class=\"form-control\">
-    <option value='1'>Mr</option>
-    <option value='2'>Ms</option>
-    <option value='3'>Mrs</option>
-</select></div><div class=\"col-md-5\" >\n{input}\n</div><div class=\"col-md-3\">\n{hint}\n{error}</div>",
-        ])->textInput(['maxlength' => true])->hint("*") ?>
-
-        <?= $form->field($visadetail, 'nation[]')->textInput() ?>
-
-        <?= $form->field($visadetail, 'idpassport[]')->textInput() ?>
-
-        <?= $form->field($visadetail, 'birthday[]')->textInput() ?>
-
-        <?= $form->field($visadetail, 'expire[]')->textInput() ?>
-
-        <?= $form->field($visadetail, 'flightdetail[]')->textInput() ?>
-
-        <?= $form->field($visadetail, 'arrivaldate[]')->textInput() ?>
-
-        <?= $form->field($visadetail, 'exitdate[]')->textInput() ?>
-
-        <?= $form->field($visadetail, 'portarrival[]')->textInput() ?>
-
-        <?= $form->field($visadetail, 'purposevisit[]')->textInput() ?>
-    <?php } ?>
-    <!-- end visa detail info -->
+    <?= $this->render('../visadetail/visadetail', [
+        'visaDetails' => $visaDetails,
+        'form' => $form,
+    ]) ?>
 
     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
@@ -153,16 +138,15 @@ use yii\widgets\Pjax;
 
 </div>
 
+
 <?php
-
 $js = <<<JS
-    var numapply = document.getElementById('visa-numapply');
-
-    numapply.onchange = function(e){
-        var url = "index.php?r=visadetail/create-ajax&numapply=" . e.target.value;
-        $.get(url, function(){});
-    };
+    $('#visa-numapply').change(function(e){
+        $('#change_num_appply').attr('href', '/VietvietTravel/VietvietTravel/web/index.php?r=visa%2Fcreate&num=' + e.target.value + '');
+        var href = $('#change_num_appply').attr('href');
+        $('#change_num_appply').click();
+        $(this).val = e.target.value;
+    });
 JS;
-
-
+$this->registerJs($js);
 ?>

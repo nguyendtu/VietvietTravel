@@ -40,22 +40,7 @@ $(document).ready(function(){
 		info.css(styles);
 	});
 
-	/*var tour = document.getElementById("tour-style");
-	tour.onchange = function(e){
-		var url = "index.php?r=tourtype/get-tour&tourtype="+ e.target.value;
-		$.post(url, function(data){
-			data = $.parseJSON(data);
-			var detination = document.getElementById("tour-detination");
-			detination.innerHTML = "";
-			for(var i = 0; i < data.length; i++){
-				var option = document.createElement("option");
-				option.value = data[i].name;
-				option.innerHTML = data[i].name;
 
-				detination.appendChild(option);
-			}
-		})
-	};*/
 
 	$('.file-upload').each(function () {
 		$(this).fileupload({
@@ -78,6 +63,4 @@ $(document).ready(function(){
 			}
 		};
 	}
-
-
 });

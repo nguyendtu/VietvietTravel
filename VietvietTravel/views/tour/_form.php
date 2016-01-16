@@ -24,20 +24,7 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'length')->textInput() ?>
 
-    <?= $form->field($model, 'startfrom')->widget(DatePicker::className(), [
-        'name' => 'startfrom',
-        'value' => date('d-M-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'attribute' => 'startfrom',
-        'type' => DatePicker::TYPE_RANGE,
-        'name2' => 'startfrom',
-        'attribute2' => 'startfrom',
-        'options2' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose'=>true,
-            'format' => 'dd-mm-yyyy'
-        ]
-    ]) ?>
+    <?= $form->field($model, 'startfrom')->textInput() ?>
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
