@@ -104,7 +104,9 @@ class VisaController extends Controller
 
         $visaDetails = [];
 
-        for($i = 0; $i < $num; $i++){
+        $numApply = isset($_POST['Visa']['numapply']) ? $_POST['Visa']['numapply'] : $num;
+
+        for($i = 0; $i < $numApply; $i++){
             $visaDetails[] = new Visadetail();
         }
 
@@ -120,13 +122,14 @@ class VisaController extends Controller
                 }
                 foreach ($visaDetails as $visaDetail) {
                     if ($visaDetail->save()) {
-                        return $this->redirect(['create',
-                            'model' => $model,
-                            'visaDetails' => $visaDetails,
-                            'article' => $article,
-                        ]);
+
                     }
                 }
+                return $this->redirect(['create',
+                    'model' => $model,
+                    'visaDetails' => $visaDetails,
+                    'article' => $article,
+                ]);
             }
             echo "save"; die();
         } else if(Yii::$app->request->isAjax){
