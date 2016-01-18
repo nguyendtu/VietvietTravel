@@ -142,7 +142,8 @@ JS;
 <?php
 $js = <<<JS
     $('#visa-numapply').change(function(e){
-        $('#change_num_appply').attr('href', '/VietvietTravel/VietvietTravel/web/index.php?r=visa%2Fcreate&num=' + e.target.value + '');
+        var href = $('#change_num_appply').attr('href');
+        $('#change_num_appply').attr('href', href + e.target.value);
         var href = $('#change_num_appply').attr('href');
         $('#change_num_appply').click();
         $(this).val = e.target.value;

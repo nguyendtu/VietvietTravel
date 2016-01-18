@@ -1,12 +1,11 @@
 <?php
 use yii\helpers\Html;
-use yii\widgets\Pjax;
 
 ?>
 <!-- visa detail info -->
-<?= Html::a('change num apply', ['visa/create', 'num' => ''], ['id' => 'change_num_appply']) ?>
+<?= Html::a('change num apply', ['visa/create', 'num' => ''], ['id' => 'change_num_appply', 'class' => 'sr-only']) ?>
 <?php $i = 1; foreach($visaDetails as $visaDetail){ ?>
-    <h3>Begin VisaDetail</h3>
+    <img src="images/person.png" alt="Person" style="width: 100px">
     <div class="visa-detail">
         <?= $form->field($visaDetail, '[' .$i . ']fullname', [
             'template' => "{label}\n<div class=\"col-md-2\"><select name='genderName' id='' class=\"form-control\">
@@ -34,6 +33,5 @@ use yii\widgets\Pjax;
 
         <?= $form->field($visaDetail, '[' .$i . ']purposevisit')->textInput() ?>
     </div>
-    <h3 id="end_visa">End VisaDetail</h3>
     <?php $i++; } ?>
 <!-- end visa detail info -->

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Visa */
@@ -9,6 +10,14 @@ use yii\widgets\DetailView;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Visas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$visaDetails = \app\models\Visadetail::find()->where(['id_visa' => $model->id]);
+$provider = new \yii\data\ActiveDataProvider([
+    'query' => $visaDetails,
+    'pagination' => [
+        'pageSize' => 20,
+    ],
+]);
 ?>
 <div class="visa-view">
 
@@ -45,5 +54,28 @@ $this->params['breadcrumbs'][] = $this->title;
             'status',
         ],
     ]) ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $provider,
+        //'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'id_visa',
+            'fullname',
+            'nation',
+            'idpassport',
+            // 'birthday',
+            // 'expire',
+            // 'flightdetail',
+            // 'arrivaldate',
+            // 'exitdate',
+            // 'portarrival',
+            // 'purposevisit',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
 
 </div>

@@ -573,11 +573,11 @@ ul#nav_search .active a{
 		margin-bottom: 10px;
 		padding: 0;
 	}
-	.pagination{
+	/*.pagination{
 		position: absolute;
 		bottom: -50px;
 		right: 25px;
-	}
+	}*/
 }
 
 @media screen and (min-width: 768px){
@@ -624,11 +624,11 @@ ul#nav_search .active a{
 		margin-bottom: 10px;
 		padding: 0;
 	}
-	.pagination{
+	/*.pagination{
 		position: absolute;
 		bottom: -50px;
 		right: 25px;
-	}
+	}*/
 }
 @media screen and (min-width: 1199px){
 	.navbar-header{
@@ -663,11 +663,11 @@ ul#nav_search .active a{
 	.bottom-bar .hotel-price{
 		padding: 8px;
 	}
-	.pagination{
+	/*.pagination{
 		position: absolute;
 		bottom: -50px;
 		right: 15px;
-	}
+	}*/
 }
 
 .galleria{

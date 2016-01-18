@@ -35,6 +35,15 @@ $this->title = $info->name;
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+            d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+            _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+            $.src="//v2.zopim.com/?3cbqwXxHmokwre1bDdhoxRPmqagz5ZFu";z.t=+new Date;$.
+                type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
 </head>
 <body>
 <div id="fb-root"></div>
@@ -268,6 +277,24 @@ $this->title = $info->name;
             --><li><a href="#">Car Rental</a></li>
         </ul>
         <ul class="countries-tour">
+            <?php  ?>
+            <li class="country">
+                <h4 class="country-caption">VIETNAM TOURS</h4>
+                <ul class="list-tour">
+                    <li><a href="#">Vietnam Tour Packages</a></li>
+                    <li><a href="#">Vietnam Muslim Tours</a></li>
+                    <li><a href="#">Vietnam Adventure Tours</a></li>
+                    <li><a href="#">Vietnam Halong Cruises</a></li>
+                    <li><a href="#">Mekong River Cruises</a></li>
+                    <li><a href="#">Mekong Delta Tours</a></li>
+                    <li><a href="#">Vietnam Trek, Kayak, Cycle</a></li>
+                    <li><a href="#">Vietnam Beach Breaks</a></li>
+                    <li><a href="#">Vietnam Day Trips</a></li>
+                </ul>
+            </li><!--
+            -->
+
+            <?php ?>
             <li class="country">
                 <h4 class="country-caption">VIETNAM TOURS</h4>
                 <ul class="list-tour">
