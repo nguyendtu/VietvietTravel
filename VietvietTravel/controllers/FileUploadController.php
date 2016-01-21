@@ -36,5 +36,9 @@ class FileUploadController extends Controller{
             return $response;
         }
     }
+
+    public function actionDelete($name){
+        return unlink('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $name);
+    }
 }
 ?>

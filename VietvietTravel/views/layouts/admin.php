@@ -38,12 +38,14 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'dropDownCaret' => '',
         'items' => [
-            ['label' => 'Info Company', 'url' => ['/infocompany/index']],
+            ['label' => 'Info Company', 'url' => ['/infocompany/view', 'id' => 1]],
             ['label' => 'TOUR', 'url' => ['/tour/index']],
             ['label' => 'HOTEL', 'url' => ['/hotel/index']],
             ['label' => 'Vietnam visa on Arrival', 'url' => ['/visa/info']],
-            ['label' => 'Article', 'url' => ['/article/index']],
             ['label' => 'Visa', 'url' => ['/visa/index']],
+            ['label' => 'Article', 'url' => ['/article/index']],
+            Yii::$app->user->identity->permit == 'A' ?
+                ['label' => 'Account', 'url' => ['/users/index']] : "",
             Yii::$app->user->isGuest ?
                 ['label' => 'Login', 'url' => ['/admin/login']] :
                 ['label' => 'Logout ('. Yii::$app->user->identity->fullname .')',

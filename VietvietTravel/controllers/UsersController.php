@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Users;
+use app\models\User;
 use app\models\UsersSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class UsersController extends Controller
 {
+    public $layout = "admin";
 
     public function behaviors()
     {
@@ -61,7 +62,7 @@ class UsersController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Users();
+        $model = new User();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

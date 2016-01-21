@@ -11,7 +11,7 @@
 	use app\models\User;
 
 	class AdminController extends Controller{
-		public $defaultAction = "login";
+		public $defaultAction = "index";
 		public $layout = "admin";
 		public $defaultRoute = "admin";
 
@@ -56,7 +56,8 @@
 	    }
 
 		public function actionIndex(){
-			return $this->render("index");
+			//return $this->render("index");
+			return $this->redirect(['infocompany/view', 'id' => 1]);
 		}
 
 		public function actionAbout(){
@@ -74,7 +75,7 @@
 		public function actionLogin(){
 			$this->layout = "admin-login";
 	        if (!\Yii::$app->user->isGuest) {
-	            return $this->redirect("['admin/index']");
+	            return $this->redirect(['infocompany/view', 'id' => 1]);
 	        }
 
 	        $model = new LoginForm();

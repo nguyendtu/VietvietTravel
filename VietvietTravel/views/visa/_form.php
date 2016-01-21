@@ -2,7 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\widgets\Pjax;
+use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\Visa */
 /* @var $form yii\widgets\ActiveForm */
@@ -25,6 +26,7 @@ JS;
 
     <?php $form = ActiveForm::begin([
         'action' => ['visa/create'],
+        //'enableClientValidation' => false,
         'options' => [
             'class' => 'form-horizontal',
             'id' => 'visa',
@@ -91,7 +93,16 @@ JS;
 
     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'regdate')->textInput() ?>
+    <?= $form->field($model, 'regdate')->widget(DatePicker::className(),[
+        'name' => 'depdate',
+        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+        'value' => date('d-m-Y'),
+        'options' => ['placeholder' => date('d-m-Y')],
+        'pluginOptions' => [
+            'autoclose' => true,
+            'format' => 'dd-M-yyyy'
+        ]
+    ]) ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
 
@@ -131,7 +142,7 @@ JS;
     ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary', 'id' => 'visaSubmit']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
@@ -141,13 +152,82 @@ JS;
 
 <?php
 $js = <<<JS
+    var fullName = $('#visa-fullname').attr("value")? $('#visa-fullname').attr("value"): "";
+    var email = $('#visa-email').attr("value")? $('#visa-email').attr("value"): "";
+    var mobile = $('#visa-mobile').attr("value")? $('#visa-mobile').attr("value"): "";
+    var nation = $('#visa-nation').attr("value")? $('#visa-nation').attr("value"): "";
+    var processTime = $('#visa-processtime').attr("value")? $('#visa-processtime').attr("value"): "";
+    var visaType = $('#visa-visatype').attr("value")? $('#visa-visatype').attr("value"): "";
+    var useBefore = $('#visa-usebefore').attr("value")? $('#visa-usebefore').attr("value"): "";
+    var receiveInfo = $('#visa-receiveinfo').attr("value")? $('#visa-receiveinfo').attr("value"): "";
+    var payMethod = $('#visa-paymethod').attr("value")? $('#visa-paymethod').attr("value"): "";
+    var knwThrough = $('#visa-knwthrough').attr("value")? $('#visa-knwthrough').attr("value"): "";
+    $('#visa-fullname').keydown(function(e){
+        var key = e.keyCode;
+        if( key == 8 || key == 46){
+            fullName = fullName.substr(0, fullName.length - 1);
+        }else{
+            fullName += String.fromCharCode(key);
+        }
+    });
+    $('#visa-email').keypress(function(e){
+        email += String.fromCharCode(e.keyCode);
+    });
+    $('#visa-mobile').keypress(function(e){
+        mobile += String.fromCharCode(e.keyCode);
+    });
+    $('#visa-nation').keypress(function(e){
+        nation += String.fromCharCode(e.keyCode);
+    });
+    $('#visa-processtime').change(function(e){
+        processTime = e.target.value;
+    });
+    $('#visa-visatype').change(function(e){
+        visaType = e.target.value;
+    });
+    $('#visa-paymethod').change(function(e){
+        payMethod = e.target.value;
+    });
+    $('#visa-knwthrough').change(function(e){
+        knwThrough = e.target.value;
+    });
+    $('#visa-usebefore').click(function(e){
+        if(e.target.checked){
+            useBefore = 1;
+        }else{
+            useBefore = 0;
+        }
+    });
+    $('#visa-receiveinfo').click(function(e){
+        if(e.target.checked){
+            receiveInfo = 1;
+        }else{
+            receiveInfo = 0;
+        }
+    });
+
     $('#visa-numapply').change(function(e){
+        /*visa.push(fullName);*/
+        /*visa.push(email);
+        visa.push(mobile);
+        visa.push(nation);
+        visa.push(processTime);
+        visa.push(visaType);
+        visa.push(useBefore);
+        visa.push(receiveInfo);
+        visa.push(payMethod);
+        visa.push(knwThrough);*/
+        visa = [fullName, email, mobile, nation, processTime, visaType, useBefore, receiveInfo, payMethod, knwThrough];
+
         var href = $('#change_num_appply').attr('href');
-        $('#change_num_appply').attr('href', href + e.target.value);
+        $('#change_num_appply').attr('href', href + e.target.value + '&visa=' + visa);
         var href = $('#change_num_appply').attr('href');
+        console.log(href);
         $('#change_num_appply').click();
-        $(this).val = e.target.value;
+            console.log(visa);
+
     });
 JS;
 $this->registerJs($js);
+//$this->registerJsFile('@web/js/activeform.js');
 ?>

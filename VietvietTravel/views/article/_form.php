@@ -106,6 +106,11 @@ array_push($tour, $type);
                                     console.log(e);
                                     console.log(data);
                                 }',
+            'fileuploaddestroy' => 'function(e, data){
+                                    var name = data.url.substr(data.url.lastIndexOf("=") + 1, data.url.length);
+                                    var smallimg = document.getElementById("article-smallimg");
+                                    smallimg.value = "";
+                                }',
         ],
     ]);
     ?>

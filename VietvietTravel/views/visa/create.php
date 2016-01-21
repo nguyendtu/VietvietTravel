@@ -34,14 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p class="note"><em>* indicates a required field</em></p>
                     </div>
                     <div class="modal-body">
-                        <?php Pjax::begin(); ?>
 
+                        <?php Pjax::begin() ?>
                             <?= $this->render('_form', [
                                 'model' => $model,
                                 'visaDetails' => $visaDetails,
                             ]) ?>
+                        <?php Pjax::end() ?>
 
-                        <?php Pjax::end(); ?>
                     </div>
                 </div>
             </div>

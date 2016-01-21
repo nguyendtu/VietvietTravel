@@ -229,7 +229,7 @@ ul#nav_search .active a{
 }
 .doc{
 	opacity: 0;
-	background: url("assets/images/doc.png") no-repeat center center;
+	background: url("images/doc.png") no-repeat center center;
 	position: absolute;
 	top: 50px;
 	height: 50px;
@@ -239,7 +239,7 @@ ul#nav_search .active a{
 .thumbnail{
 	background-color: rgb(242, 242, 242);
 	position: relative;
-	margin-bottom: 50px;
+	margin-bottom: 15px;
 }
 .thumbnail .caption > h4{
 	color: rgb(0, 70, 0);
@@ -675,4 +675,42 @@ ul#nav_search .active a{
 	height: 400px;
 	background: #000;
 	overflow: hidden;
+}
+.support-icon-right {
+	background: #F0F3EF;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	z-index: 9;
+	overflow: hidden;
+	width: 250px;
+	color: #fff!important;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.support-icon-right h3 {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 13px!important;
+	font-family: Arial;
+	color: #fff!important;
+	margin: 0!important;
+	background-color: #5CB85C;
+	cursor: pointer;
+}
+
+.support-icon-right i {
+	background-color: #D9534F;
+	padding: 15px 15px 12px 15px;
+}
+.online-support {
+	display: none;
+}
+.template-download.fade.in td:first-child{
+	width: 173.333px;
+	max-height: 50px;
 }

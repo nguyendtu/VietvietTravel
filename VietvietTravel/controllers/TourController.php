@@ -134,6 +134,7 @@ class TourController extends Controller
         $small = new FileUpload();
         $large = new FileUpload();
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

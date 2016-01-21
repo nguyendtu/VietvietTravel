@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\FileUpload;
 use Yii;
 use app\models\Infocompany;
 use app\models\InfocompanySearch;
@@ -117,11 +118,16 @@ class InfocompanyController extends Controller
     {
         $model = $this->findModel($id);
 
+        $small = new FileUpload();
+        $video = new FileUpload();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'small' => $small,
+                'video' => $video,
             ]);
         }
     }

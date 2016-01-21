@@ -36,13 +36,13 @@ $this->title = $info->name;
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
     <!--Start of Zopim Live Chat Script-->
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
             d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
             _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
             $.src="//v2.zopim.com/?3cbqwXxHmokwre1bDdhoxRPmqagz5ZFu";z.t=+new Date;$.
                 type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-    </script>
+    </script>-->
     <!--End of Zopim Live Chat Script-->
 </head>
 <body>
@@ -268,13 +268,13 @@ $this->title = $info->name;
 <footer class="footer">
     <div class="container">
         <ul id="menu-bottom">
-            <li><a href="#">Home</a></li><!--
+            <li><a href="<?php echo \yii\helpers\Url::to(['site/index']) ?>">Home</a></li><!--
             --><li><a href="#">Customized Tour</a></li><!--
-            --><li><a href="#">Hotel Reservation</a></li><!--
-            --><li><a href="#">Flight Booking</a></li><!--
-            --><li><a href="#">Train Booking</a></li><!--
-            --><li><a href="#">Visa Requirements</a></li><!--
-            --><li><a href="#">Car Rental</a></li>
+            --><li><a href="<?php echo \yii\helpers\Url::to(['hotel/show']) ?>">Hotel Reservation</a></li><!--
+            --><li><a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => 19]) ?>">Flight Booking</a></li><!--
+            --><li><a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => 13]) ?>">Train Booking</a></li><!--
+            --><li><a href="<?php echo \yii\helpers\Url::to(['visa/create']) ?>">Visa Requirements</a></li><!--
+            --><li><a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => 14]) ?>">Car Rental</a></li>
         </ul>
         <ul class="countries-tour">
             <?php  ?>
@@ -293,7 +293,6 @@ $this->title = $info->name;
                 </ul>
             </li><!--
             -->
-
             <?php ?>
             <li class="country">
                 <h4 class="country-caption">VIETNAM TOURS</h4>
@@ -355,9 +354,10 @@ $this->title = $info->name;
         <div class="follow">
             <p><strong>Follow us:</strong></p>
             <span><a href="<?php echo $info->facebook ?>"><img src="images/facebook.png" alt="facebook icon"></a></span>
-            <span><a href="#"><img src="images/twitter.png" alt="twitter icon"></a></span>
-            <span><a href="#"><img src="images/google.png" alt="google icon"></a></span>
-            <span><a href="#"><img src="images/youtube.png" alt="youtube icon"></a></span>
+            <span><a href="<?php echo $info->skype ?>"><img src="images/skype.png" alt="skype icon"></a></span>
+            <span><a href="<?php echo $info->zalo ?>"><img src="images/zalo.png" alt="zalo icon"></a></span>
+            <span><a href="<?php echo $info->yahoo ?>"><img src="images/yahoo.png" alt="yahoo icon"></a></span>
+            <span><a href="<?php echo $info->viber ?>"><img src="images/viber.png" alt="viber icon"></a></span>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -376,42 +376,71 @@ $this->title = $info->name;
             </div>
         </div>
     </div>
+    <div class="support-icon-right">
+        <h3><i class="fa fa-hand-o-right"></i> Chat Live Facebook</h3>
+        <div class="online-support">
+            <div
+                class="fb-page"
+                data-href="https://www.facebook.com/Nguyen-Tu-146333415744425/?skip_nax_wizard=true"
+                data-tabs="messages"
+                data-height="300"
+                data-width="250"
+                data-small-header="true"
+                data-adapt-container-width="false"
+                data-hide-cover="true"
+                data-show-facepile="false">
+            </div>
+        </div>
+    </div>
 </footer>
 
 <?php $this->endBody() ?>
 <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
 <script>
-    var tour = document.getElementById("tour-style");
-    tour.onchange = function(e){
-        var url = "index.php?r=tourtype/get-tour&tourtype="+ e.target.value;
-        $.get(url, function(data){
-            data = $.parseJSON(data);
-            var detination = document.getElementById("tour-detination");
-            detination.innerHTML = "";
-            for(var i = 0; i < data.length; i++){
-                var option = document.createElement("option");
-                option.value = data[i].id;
-                option.innerHTML = data[i].name;
+    $(document).ready(function(){
+        var tour = document.getElementById("tour-style");
+        tour.onchange = function(e){
+            var url = "index.php?r=tourtype/get-tour&tourtype="+ e.target.value;
+            $.get(url, function(data){
+                data = $.parseJSON(data);
+                var detination = document.getElementById("tour-detination");
+                detination.innerHTML = "";
+                for(var i = 0; i < data.length; i++){
+                    var option = document.createElement("option");
+                    option.value = data[i].id;
+                    option.innerHTML = data[i].name;
 
-                detination.appendChild(option);
+                    detination.appendChild(option);
+                }
+            })
+        };
+        tinymce.init({
+            selector: '#mytextarea',
+            height: '300',
+        });
+        if (Galleria) {
+            console.log('abc');
+            Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+            if($('.galerria')){
+                Galleria.run('.galleria', {
+                    autoplay: 3000,
+                    transition: 'fade',
+                    imageCrop: true
+                });
             }
-        })
-    };
-    tinymce.init({
-        selector: '#mytextarea',
-        height: '300',
-    });
-    if (Galleria) {
-        console.log('abc');
-        Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
-        if($('.galerria')){
-            Galleria.run('.galleria', {
-                autoplay: 3000,
-                transition: 'fade',
-                imageCrop: true
-            });
         }
-    }
+        $('.online-support').hide();
+        $('.support-icon-right h3').click(function(e){
+            e.stopPropagation();
+            $('.online-support').slideToggle();
+        });
+        $('.online-support').click(function(e){
+            e.stopPropagation();
+        });
+        $(document).click(function(){
+            $('.online-support').slideUp();
+        });
+    });
 </script>
 </body>
 </html>

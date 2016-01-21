@@ -1,7 +1,8 @@
 <?php
 use yii\helpers\Html;
-
+use kartik\date\DatePicker;
 ?>
+
 <!-- visa detail info -->
 <?= Html::a('change num apply', ['visa/create', 'num' => ''], ['id' => 'change_num_appply', 'class' => 'sr-only']) ?>
 <?php $i = 1; foreach($visaDetails as $visaDetail){ ?>
@@ -19,15 +20,51 @@ use yii\helpers\Html;
 
         <?= $form->field($visaDetail, '[' .$i . ']idpassport')->textInput() ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']birthday')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']birthday')->widget(DatePicker::className(),[
+            'name' => 'depdate',
+            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+            'value' => date('d-m-Y'),
+            'options' => ['placeholder' => date('d-m-Y')],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'dd-M-yyyy'
+            ]
+        ]) ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']expire')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']expire')->widget(DatePicker::className(),[
+            'name' => 'depdate',
+            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+            'value' => date('d-m-Y'),
+            'options' => ['placeholder' => date('d-m-Y')],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'dd-M-yyyy'
+            ]
+        ]) ?>
 
         <?= $form->field($visaDetail, '[' .$i . ']flightdetail')->textInput() ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']arrivaldate')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']arrivaldate')->widget(DatePicker::className(),[
+            'name' => 'depdate',
+            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+            'value' => date('d-m-Y'),
+            'options' => ['placeholder' => date('d-m-Y')],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'dd-M-yyyy'
+            ]
+        ]) ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']exitdate')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']exitdate')->widget(DatePicker::className(),[
+            'name' => 'depdate',
+            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+            'value' => date('d-m-Y'),
+            'options' => ['placeholder' => date('d-m-Y')],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'dd-M-yyyy'
+            ]
+        ]) ?>
 
         <?= $form->field($visaDetail, '[' .$i . ']portarrival')->textInput() ?>
 
