@@ -214,7 +214,7 @@ class HotelController extends Controller
             $model = $model->andWhere(['id_location' => $hotelArea]);
         }
         if($hotelNumber){
-            $model = $model->andWhere(['phone' => $hotelNumber]);
+            $model = $model->andWhere(['star' => $hotelNumber]);
         }
 
         //$model = $model->all();

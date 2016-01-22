@@ -131,7 +131,15 @@ class VisaController extends Controller
 
                     }
                 }
-                return $this->redirect(['create',
+                Yii::$app->mailer->compose('@app/views/mail/mail-layout', [
+                        'model' => $model,
+                        'visaDetails' => $visaDetails,
+                    ])
+                    ->setFrom($model->email)
+                    ->setTo('duytu2005@gmail.com')
+                    ->setSubject('Book tour')
+                    ->send();
+                return $this->render('success',[
                     'model' => $model,
                     'visaDetails' => $visaDetails,
                     'article' => $article,

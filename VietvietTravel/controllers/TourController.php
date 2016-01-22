@@ -197,7 +197,7 @@ class TourController extends Controller
         $this->layout = "main";
         $model = $this->findModel($id);
         $tourtype = Tourtype::findOne($model->id_tourtype);
-        $related = $tourtype->tours;
+        $related = $tourtype->getTours()->orderBy(['regdate' => SORT_DESC])->limit(4)->all();
 
         return $this->render('show-detail', [
             'model' => $model,
@@ -208,19 +208,30 @@ class TourController extends Controller
     /**
      * search tour
      */
-    public function actionSearch($tourName = "", $tourStyle = "", $tourDetination = "", $tourLen = ""){
-        //$sql = "SELECT * FROM tour WHERE code LIKE ISNULL(" . $tourName . ")  AND id_tourtype LIKE ISNULL(" . $tourDetination . ")  AND length LIKE ISNULL(" . $tourLen . ")";
+    public function actionSearch($tourName = "", $tourStyle = "", $tourDetination = "", $tourLen = "", $hot = ""){
         $this->layout = "main";
         $model = Tour::find();
-
-        if($tourName){
-            $model = $model->where(['or', 'code='. $tourName.'', 'name='. $tourName.'']);
-        }
-        if($tourDetination){
-            $model = $model->andWhere(['id_tourtype' => $tourDetination]);
-        }
-        if($tourLen){
-            $model = $model->andWhere(['length' => $tourLen]);
+        if($tourStyle){
+            if($tourStyle == 'bicycle')
+                $model->where(['id_tourtype' => [1, 2, 3, 4]]);
+            else{
+                $model->where(['id_tourtype' => [5, 6, 7, 8, 9, 10, 11]]);
+            }
+        }else {
+            if (!$hot) {
+                if ($tourName) {
+                    $model = $model->where(['or', ['like', 'code', $tourName], ['like', 'name', $tourName]]);
+                    //$model = $model->where(['or', 'code='. $tourName.'', 'name='. $tourName.'']);
+                }
+                if ($tourDetination) {
+                    $model = $model->andWhere(['id_tourtype' => $tourDetination]);
+                }
+                if ($tourLen) {
+                    $model = $model->andWhere(['length' => $tourLen]);
+                }
+            } else {
+                $model = $model->where(['hot' => $hot]);
+            }
         }
 
         //$model = $model->all();

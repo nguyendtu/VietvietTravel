@@ -77,7 +77,7 @@ $this->title = 'VietViet Travel';
                 </div>
             </div>
             <div class="footer-tour">
-                <p><a href="#">View all featured cruises</a></p>
+                <p><a href="<?= \yii\helpers\Url::to(['tour/search', 'tourStyle' => 'bicycle']) ?>">View all bicycle tour</a></p>
                 <span class="glyphicon glyphicon-arrow-right"></span>
             </div>
         </div>
@@ -132,7 +132,7 @@ $this->title = 'VietViet Travel';
                 <?php } ?>
             </div>
             <div class="footer-tour">
-                <p><a href="#">View all best selling tours</a></p>
+                <p><a href="<?= \yii\helpers\Url::to(['tour/search', 'tourStyle' => 'travel']) ?>">View all best selling tours</a></p>
                 <span class="glyphicon glyphicon-arrow-right"></span>
             </div>
         </div>

@@ -11,6 +11,20 @@ use yii\helpers\Html;
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=<?= Yii::$app->charset ?>" />
     <title><?= Html::encode($this->title) ?></title>
+    <style>
+        table{
+            border: 1px solid rgb(222, 222, 222);
+            border-collapse: collapse;
+            border-spacing: 0 20px;
+        }
+        table tr th{
+            text-align: left;
+            padding: 15px 10px;
+        }
+        table tr:nth-child(odd){
+            background: rgb(242, 242, 242);
+        }
+    </style>
     <?php $this->head() ?>
 </head>
 <body>

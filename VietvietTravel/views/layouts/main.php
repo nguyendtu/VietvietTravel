@@ -125,7 +125,7 @@ $this->title = $info->name;
                  ['label' => 'Hotels in SaPa', 'url' => ['hotel/show', 'sa-pa']],
             ],
             ],
-            ['label' => 'Vietnam visa on Arrival', 'url' => ['visa/create']],
+            ['label' => 'Vietnam Visa on Arrival', 'url' => ['visa/create']],
             ['label' => 'TOUR DIARY', 'url' => ['/article/tour']],
             [
             'label' => 'TRAVEL SERVICES',
@@ -217,7 +217,15 @@ $this->title = $info->name;
                             </div>
                             <div class="form-group">
                                 <label for="hotel-number" class="sr-only">Hotel number</label>
-                                <input type="text" name="hotelNumber" id="hotel-number" class="form-control" placeholder="Enter hotel number....">
+                                <select name="hotelNumber" id="hotel-number" class="form-control">
+                                    <option value="">Enter hotel number....</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
                             </div>
                             <button class="btn btn-primary btn-block">Search</button>
                         <?php ActiveForm::end(); ?>

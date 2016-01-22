@@ -27,8 +27,8 @@ $tour = $model;
                 <p><?php echo $tour->briefinfo ?></p>
                 <button class="btn btn-primary">
                     <a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => $tour->id])?>">
-                        <span class="glyphicon glyphicon-share-alt"></span>
-                        READ MORE
+                        <span class="glyphicon glyphicon-share-alt text-info"></span>
+                        <span class="text-info">READ MORE</span>
                     </a>
                 </button>
             </div>

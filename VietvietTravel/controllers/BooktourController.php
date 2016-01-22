@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Infocompany;
 use Yii;
 use app\models\Booktour;
 use app\models\BooktourSearch;
@@ -77,6 +78,8 @@ class BooktourController extends Controller
         ]);
     }
 
+
+
     /**
      * Displays a single Booktour model.
      * @param integer $id
@@ -118,7 +121,15 @@ class BooktourController extends Controller
         if($model->load(Yii::$app->request->post())){
             $model->fullname = $_POST['genderName'] . " " . $model->fullname;
             if ($model->save()) {
-                return $this->redirect(['tour/show-detail', 'id' => $model['id_tour']]);
+                $info = Infocompany::find()->where(['id' => 1])->one();
+                Yii::$app->mailer->compose('@app/views/mail/mail-layout', ['model' => $model])
+                    ->setFrom($model->email)
+                    ->setTo('duytu2005@gmail.com')
+                    ->setSubject('Book tour')
+                    ->send();
+                return $this->render('@app/views/booktour/success', [
+                    'model' => $model,
+                ]);
             }
         }
         else {
