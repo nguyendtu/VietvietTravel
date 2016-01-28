@@ -69,6 +69,66 @@ use kartik\date\DatePicker;
         <?= $form->field($visaDetail, '[' .$i . ']portarrival')->textInput() ?>
 
         <?= $form->field($visaDetail, '[' .$i . ']purposevisit')->textInput() ?>
+
+        <input type="text" name="test" id="test">
     </div>
     <?php $i++; } ?>
 <!-- end visa detail info -->
+<?php
+    $js = <<<JS
+    var selector = "";
+    function validate(selector, message){
+        $(selector).change(function(e){
+            if(e.target.value.length == 0){
+                $(this).parent().parent().removeClass("has-success");
+                $(this).parent().parent().addClass("has-error");
+                $(this).parent().parent().find('.help-block').html(message);
+            }else{
+                $(this).parent().parent().removeClass("has-error");
+                $(this).parent().parent().addClass("has-success");
+                $(this).parent().parent().find('.help-block').html("");
+            }
+        }).blur(function(e){
+            if(e.target.value.length == 0){
+                $(this).parent().parent().removeClass("has-success");
+                $(this).parent().parent().addClass("has-error");
+                $(this).parent().parent().find('.help-block').html(message);
+            }else{
+                $(this).parent().parent().removeClass("has-error");
+                $(this).parent().parent().addClass("has-success");
+                $(this).parent().parent().find('.help-block').html("");
+            }
+        });
+    }
+    for(var i = 1; i <= $("#visa-numapply").val(); i++){
+        selector = "#visadetail-" + i + "-fullname";
+        validate(selector, "Passport's fullname cannot be blank.");
+        selector = "#visadetail-" + i + "-nation";
+        validate(selector, "Present nationality cannot be blank.");
+        selector = "#visadetail-" + i + "-idpassport";
+        validate(selector, "Passport number cannot be blank.");
+
+        selector = "#visadetail-" + i + "-birthday-kvdate";
+        validate(selector, "Date of birth cannot be blank.");
+
+        selector = "#visadetail-" + i + "-expire-kvdate";
+        validate(selector, "Date of exprire cannot be blank.");
+
+        selector = "#visadetail-" + i + "-flightdetail";
+        //validate(selector, "");
+
+        selector = "#visadetail-" + i + "-arrivaldate-kvdate";
+        //validate(selector, "");
+
+        selector = "#visadetail-" + i + "-exitdate-kvdate";
+        //validate(selector, "");
+
+        selector = "#visadetail-" + i + "-portarrival";
+        //validate(selector, "");
+
+        selector = "#visadetail-" + i + "-purposevisit";
+        //validate(selector, "");
+    }
+JS;
+$this->registerJs($js);
+?>

@@ -96,17 +96,10 @@ class VisaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($num = 1, $visa = [])
+    public function actionCreate($num = 1)
     {
         $this->layout = "main";
         $model = new Visa();
-        //$model->load(\Yii::$app->request->post());
-        /*echo "<pre>";
-        print_r($model);
-        echo "</pre>";
-        print_r($_POST);
-        print_r($_GET);
-        exit;*/
         $article = Article::find()->where(['type' => 103])->one();
 
         $visaDetails = [];
@@ -146,7 +139,7 @@ class VisaController extends Controller
                 ]);
             }
         } else if(Yii::$app->request->isAjax){
-            $visa = explode(",", $visa);
+            /*$visa = explode(",", $visa);
             $model->fullname = $visa[0];
             $model->email = $visa[1];
             $model->mobile = $visa[2];
@@ -156,7 +149,7 @@ class VisaController extends Controller
             $model->usebefore = $visa[6];
             $model->receiveinfo = $visa[7];
             $model->paymethod = $visa[8];
-            $model->knwthrough = $visa[9];
+            $model->knwthrough = $visa[9];*/
             return $this->renderAjax('create', [
                 'model' => $model,
                 'article' => $article,

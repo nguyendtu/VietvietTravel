@@ -35,12 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <div class="modal-body">
 
-                        <?php Pjax::begin() ?>
                             <?= $this->render('_form', [
                                 'model' => $model,
                                 'visaDetails' => $visaDetails,
                             ]) ?>
-                        <?php Pjax::end() ?>
 
                     </div>
                 </div>
