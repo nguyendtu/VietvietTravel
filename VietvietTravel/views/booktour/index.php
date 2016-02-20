@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\BooktourSearch */
@@ -19,32 +20,60 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Booktour', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php Pjax::begin() ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'id_tour',
+            // 'id',
+            [
+                'attribute' => 'id_tour',
+                'value' => 'tour.name',
+                'header' => 'Tour name',
+            ],
             'fullname',
             'email:email',
             'phone',
             // 'nation',
-            // 'nadults',
+            'nadults',
             // 'listname',
             // 'child',
             // 'childinfo:ntext',
             // 'depdate',
             // 'idea:ntext',
+            [
+                'attribute' => 'idea',
+                'value' => 'idea',
+                'header' => 'Idea',
+                'format' => 'ntext',
+            ],
             // 'visa',
             // 'usebefore',
             // 'reciveinfo',
             // 'paymethod',
             // 'knwthrough',
+            'depdate',
+            // 'status',
+            [
+                'attribute' => 'status',
+                'contentOptions' => function($model){
+                    return $model->status? [
+                        'style' => ['color' => 'green'],
+                    ] : [
+                        'style' => ['color' => 'red'],
+                    ];
+                },
+                'content' => function($model, $key, $index, $column){
+                    $url = \yii\helpers\Url::to(['booktour/update-status', 'id' => $model->id]);
+                    return $model->status? "<a href='$url' style='color: green'>Complete</a>" : "<a href='$url' style='color: red'>Unfinished</a>";
+                },
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php Pjax::end() ?>
 </div>

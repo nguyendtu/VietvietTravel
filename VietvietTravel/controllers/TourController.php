@@ -59,7 +59,7 @@ class TourController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['create', 'update', 'delete', 'upload'],
+                        'actions' => ['create', 'update', 'delete', 'upload', 'recycle-bin', 'delete-multi-tour'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -78,7 +78,12 @@ class TourController extends Controller
     {
         $searchModel = new TourSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        /*if(Yii::$app->request->isAjax){
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }*/
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -155,9 +160,15 @@ class TourController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $target = $this->findModel($id);
+        if($target->status == 1){
+            Yii::$app->db->createCommand()->update('tour', ['status' => 0], ['id' => $target->id])->execute();
+        }else{
+            $target->delete();
+        }
+        //$this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'TourSearch[status]' => 1]);
     }
 
     /*
@@ -258,6 +269,42 @@ class TourController extends Controller
             'provider' => $provider,
             'sort' => $sortTour,
         ]);
+    }
+
+    /**
+     * Move rows to recycle bin
+     * change status 1 => 0;
+     */
+    public function actionRecycleBin(){
+        $tour_id = [];
+        $keys = $_POST['keys'];
+        foreach($keys as $key => $value){
+            array_push($tour_id, $value);
+        }
+
+        $connection = Yii::$app->db;
+        $connection->createCommand()->update('tour', ['status' => 0], ['id' => $tour_id])->execute();
+
+        echo '1';
+    }
+
+    /**
+     * delete multiple tour
+     * using ajax.
+     *
+     */
+    public function actionDeleteMultiTour(){
+        $tour_id = [];
+        $keys = $_POST['keys'];
+        if(!empty($keys)){
+            foreach($keys as $key => $value){
+                array_push($tour_id, $value);
+            }
+        }
+        $connection = Yii::$app->db;
+        $connection->createCommand()->delete('tour', ['id' => $tour_id])->execute();
+
+        echo '1';
     }
 
     /**

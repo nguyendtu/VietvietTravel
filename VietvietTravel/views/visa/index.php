@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\VisaSearch */
@@ -18,19 +19,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <!--<p>
         <?/*= Html::a('Create Visa', ['create'], ['class' => 'btn btn-success']) */?>
     </p>-->
-
+    <?php Pjax::begin() ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'fullname',
             'email:email',
             'mobile',
-            'nation',
-            // 'numapply',
+            // 'nation',
+            'numapply',
             // 'visatype',
             // 'processtime',
             // 'message:ntext',
@@ -38,11 +39,18 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'receiveinfo',
             // 'knwthrough',
             // 'paymethod',
-            // 'regdate',
+            'regdate',
             // 'status',
+            [
+                'attribute' => 'status',
+                'content' => function($model){
+                    $url = \yii\helpers\Url::to(['visa/update-status', 'id' => $model->id]);
+                    return $model->status? "<a href='$url' style='color: green'>Complete</a>" : "<a href='$url' style='color: red'>Unfinished</a>";
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-
+    <?php Pjax::end(); ?>
 </div>

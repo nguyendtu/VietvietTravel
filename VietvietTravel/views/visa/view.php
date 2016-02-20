@@ -61,7 +61,7 @@ $provider = new \yii\data\ActiveDataProvider([
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'id_visa',
             'fullname',
             'nation',
@@ -78,4 +78,5 @@ $provider = new \yii\data\ActiveDataProvider([
         ],
     ]); ?>
 
+    <a href="<?= \yii\helpers\Url::to(['visa/export', 'id' => $model->id])?>" class="btn btn-primary">Export Excel</a>
 </div>

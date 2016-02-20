@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Infocompany;
+use app\models\Visa;
 use Yii;
 use app\models\Booktour;
 use app\models\BooktourSearch;
@@ -18,6 +19,8 @@ use app\models\User;
  */
 class BooktourController extends Controller
 {
+    public $layout = "admin";
+
     public function behaviors()
     {
         return [
@@ -44,7 +47,7 @@ class BooktourController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['index', 'create', 'update', 'view'],
+                        'actions' => ['index', 'create', 'update', 'view', 'update-status'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -87,8 +90,20 @@ class BooktourController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $visaRelation = Visa::find()->where(['fullname' => $model->fullname])
+                                    ->andWhere(['email' => $model->email])
+                                    ->andWhere(['regdate' => $model->depdate]);
+        $provider = new \yii\data\ActiveDataProvider([
+            'query' => $visaRelation,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model'     => $model,
+            'provider'  => $provider,
         ]);
     }
 
@@ -156,6 +171,31 @@ class BooktourController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Updates status an existing Booktour model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdateStatus($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status){
+            $model->status = 0;
+        }else{
+            $model->status = 1;
+        }
+        $model->save();
+
+        $searchModel = new BooktourSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

@@ -49,7 +49,7 @@ class Tourtype extends \yii\db\ActiveRecord
         ];
     }
 
-    /*
+    /**
      * relation to tour table
      */
     public function getTours(){

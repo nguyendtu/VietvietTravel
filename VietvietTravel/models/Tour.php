@@ -39,8 +39,8 @@ class Tour extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'code', 'length', 'smallimg', 'largeimg'], 'required'],
-            [['id_tourtype', 'length', 'hot', 'status'], 'integer'],
+            [['name', 'code', 'length', 'smallimg', 'largeimg', 'keyword'], 'required'],
+            [['length', 'hot', 'status', 'id_tourtype'], 'integer'],
             [['briefinfo', 'detailinfo'], 'string'],
             [['regdate', 'editdate'], 'safe'],
             [['name', 'startfrom', 'price', 'smallimg', 'largeimg'], 'string', 'max' => 255],
@@ -69,11 +69,17 @@ class Tour extends \yii\db\ActiveRecord
             'editdate' => 'Editdate',
             'hot' => 'Hot',
             'status' => 'Status',
+            'keyword' => 'Keyword',
         ];
     }
 
     /* relation to tourtype table */
     public function getTourtype(){
         return $this->hasOne(Tourtype::className(), ['id' => 'id_tourtype']);
+    }
+
+    /* relation to booktour table */
+    public function getBooktours(){
+        return $this->hasMany(Booktour::className(), ['id_tour' => 'id']);
     }
 }

@@ -4,7 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
-    'homeUrl' => ['infocompany/index'],
+    'homeUrl' => ['infocompany/update', 'id' => 1],
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
@@ -65,6 +65,9 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+    ];
+    $config['modules']['gridview'] = [
+        'class' => '\kartik\grid\Module',
     ];
 }
 

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Tourtype;
 use app\models\TourtypeSearch;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,6 +15,7 @@ use yii\filters\VerbFilter;
  */
 class TourtypeController extends Controller
 {
+    public $layout = 'admin';
     public function behaviors()
     {
         return [
@@ -32,12 +34,35 @@ class TourtypeController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new TourtypeSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $model = Tourtype::find()->groupBy('parent')->all();
 
+        $tree = "<ul>";
+        foreach ($model as $tourType) {
+            foreach ($tourType as $key => $value) {
+                if ($key == 'parent'){
+                    $tree .= "<li data-jstree='{\"opened\": true}' value='" . $value . "'>" . $value;
+                    $child = \app\models\Tourtype::find()->where(['parent' => $tourType->parent])->all();
+                    if(count($child)){
+                        $ul = $this->ul($child);
+                        $tree .= $ul;
+                    }
+
+                    $tree .= "</li>";
+                }
+            }
+        }
+        $tree .= "</ul>";
+
+        $tourType = new Tourtype();
+
+        if ($tourType->load(Yii::$app->request->post()) && $tourType->save()) {
+            return $this->redirect(['index']);
+        }
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            //'searchModel' => $searchModel,
+            //'dataProvider' => $dataProvider,
+            'model' => $tourType,
+            'tree' => $tree,
         ]);
     }
 
@@ -100,6 +125,7 @@ class TourtypeController extends Controller
     {
         $this->findModel($id)->delete();
 
+        //return $this->redirect(['view', 'id' => $model->id]);
         return $this->redirect(['index']);
     }
 
@@ -128,5 +154,35 @@ class TourtypeController extends Controller
         }
     }
 
+    private function ul($model)
+    {
+        $parent = "<ul>";
+        foreach ($model as $tourType) {
+            foreach ($tourType as $key => $value) {
+                //$id = 0;
 
+                if($key == 'id'){
+                    $id = $value;
+                    $url = Url::to(['tourtype/delete', 'id' => $id]);
+                }
+                if ($key == 'name'){
+                    $parent .= "<li value='" . $value . "'>" . $value;
+                    $parent .= "<div class='action sr-only'>
+    <a href='$url' data-confirm='Are you sure you want to delete this item?' data-method='post' class='text-danger'>
+        <span class='glyphicon glyphicon-trash'></span>
+</a>
+</div>";
+                    $child = \app\models\Tourtype::find()->where(['parent' => $value])->all();
+                    if(count($child)){
+                        $ul = ul($child);
+                        $parent .= $ul;
+                    }
+                    $parent .= "</li>";
+                }
+            }
+        }
+        $parent .= "</ul>";
+
+        return $parent;
+    }
 }

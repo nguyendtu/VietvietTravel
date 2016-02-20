@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use dosamigos\fileupload\FileUploadUI;
 use kartik\date\DatePicker;
 
@@ -12,7 +12,7 @@ use kartik\date\DatePicker;
 
 <div class="tour-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['layout'  => 'horizontal']); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -63,11 +63,16 @@ use kartik\date\DatePicker;
             <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
 
             <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
+
+            <?= $form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
         </div>
     </div>
     <div class="form-group">
         <div class="margin-top-2">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <label for="" class="label-control col-sm-3"></label>
+            <div class="col-sm-6">
+                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            </div>
         </div>
     </div>
 

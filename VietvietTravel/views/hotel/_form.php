@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use dosamigos\fileupload\FileUploadUI;
 use kartik\date\DatePicker;
 
@@ -12,41 +12,37 @@ use kartik\date\DatePicker;
 
 <div class="hotel-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
     <div class="row">
-        <div class="col-md-6 col-xs-12">
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'id_location')->dropDownList(
-                \yii\helpers\ArrayHelper::map($location->find()->all(), 'id', 'name'), ['prompt' => '-- Choose Location --']) ?>
-            <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'editdate')->widget(DatePicker::className(),[
-                'name' => 'regdate',
-                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                'value' => date('d-m-Y'),
-                'options' => ['placeholder' => date('d-m-Y')],
-                'pluginOptions' => [
-                    'autoclose' => true,
-                    'format' => 'dd-M-yyyy'
-                ]
-            ]) ?>
-            <?= $form->field($model, 'hot')->checkbox() ?>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <?= $form->field($model, 'star')->textInput() ?>
-            <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'regdate')->widget(DatePicker::className(),[
-                'name' => 'regdate',
-                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                'value' => date('d-m-Y'),
-                'options' => ['placeholder' => date('d-m-Y')],
-                'pluginOptions' => [
-                    'autoclose' => true,
-                    'format' => 'dd-M-yyyy'
-                ]
-            ]) ?>
-            <?= $form->field($model, 'status')->textInput() ?>
-            <?= $form->field($model, 'phone')->textInput() ?>
-        </div>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'id_location')->dropDownList(
+            \yii\helpers\ArrayHelper::map($location->find()->all(), 'id', 'name'), ['prompt' => '-- Choose Location --']) ?>
+        <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'editdate')->widget(DatePicker::className(),[
+            'name' => 'regdate',
+            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+            'value' => date('d-m-Y'),
+            'options' => ['placeholder' => date('d-m-Y')],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'dd-M-yyyy'
+            ]
+        ]) ?>
+        <?= $form->field($model, 'hot')->checkbox() ?>
+        <?= $form->field($model, 'star')->textInput() ?>
+        <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'regdate')->widget(DatePicker::className(),[
+            'name' => 'regdate',
+            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+            'value' => date('d-m-Y'),
+            'options' => ['placeholder' => date('d-m-Y')],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'dd-M-yyyy'
+            ]
+        ]) ?>
+        <?= $form->field($model, 'status')->textInput() ?>
+        <?= $form->field($model, 'phone')->textInput() ?>
         <div class="col-xs-12">
             <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
@@ -57,6 +53,7 @@ use kartik\date\DatePicker;
                     <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
 
                     <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
+                    <?= $form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
         </div>
@@ -64,7 +61,10 @@ use kartik\date\DatePicker;
 
     <div class="form-group">
         <div class="margin-top-2">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <label for="" class="label-control col-sm-3"></label>
+            <div class="col-sm-6">
+                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            </div>
         </div>
     </div>
 

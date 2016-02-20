@@ -75,7 +75,7 @@
 		public function actionLogin(){
 			$this->layout = "admin-login";
 	        if (!\Yii::$app->user->isGuest) {
-	            return $this->redirect(['infocompany/view', 'id' => 1]);
+	            return $this->redirect(['infocompany/update', 'id' => 1]);
 	        }
 
 	        $model = new LoginForm();

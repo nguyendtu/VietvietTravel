@@ -18,6 +18,7 @@ use app\models\User;
  */
 class ContactController extends Controller
 {
+
     public function behaviors()
     {
         return [
@@ -48,7 +49,7 @@ class ContactController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['delete'],
+                        'actions' => ['index', 'delete'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN
@@ -65,6 +66,7 @@ class ContactController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = "admin";
         $searchModel = new ContactSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

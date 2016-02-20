@@ -38,7 +38,7 @@ class Hotel extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'id_location', 'address', 'price', 'briefinfo', 'phone'], 'required'],
+            [['name', 'id_location', 'address', 'price', 'briefinfo', 'phone', 'keyword'], 'required'],
             [['star', 'id_location', 'status', 'hot', 'phone'], 'integer'],
             [['briefinfo', 'detailinfo'], 'string'],
             [['regdate', 'editdate'], 'safe'],

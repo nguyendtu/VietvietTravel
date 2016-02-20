@@ -42,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'editdate',
             'status',
             'hot',
+            'keyword',
         ],
     ]) ?>
 

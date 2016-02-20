@@ -18,8 +18,8 @@ class HotelSearch extends Hotel
     public function rules()
     {
         return [
-            [['id', 'star', 'id_location', 'status', 'hot'], 'integer'],
-            [['name', 'address', 'price', 'briefinfo', 'detailinfo', 'smallimg', 'largeimg', 'regdate', 'editdate'], 'safe'],
+            [['id', 'star', 'status', 'hot'], 'integer'],
+            [['name', 'id_location', 'address', 'price', 'briefinfo', 'detailinfo', 'smallimg', 'largeimg', 'regdate', 'editdate'], 'safe'],
         ];
     }
 
@@ -55,10 +55,11 @@ class HotelSearch extends Hotel
             return $dataProvider;
         }
 
+        $query->joinWith('location');
+
         $query->andFilterWhere([
             'id' => $this->id,
             'star' => $this->star,
-            'id_location' => $this->id_location,
             'regdate' => $this->regdate,
             'editdate' => $this->editdate,
             'status' => $this->status,
@@ -71,7 +72,8 @@ class HotelSearch extends Hotel
             ->andFilterWhere(['like', 'briefinfo', $this->briefinfo])
             ->andFilterWhere(['like', 'detailinfo', $this->detailinfo])
             ->andFilterWhere(['like', 'smallimg', $this->smallimg])
-            ->andFilterWhere(['like', 'largeimg', $this->largeimg]);
+            ->andFilterWhere(['like', 'largeimg', $this->largeimg])
+            ->andFilterWhere(['like', 'location.name', $this->id_location]);
 
         return $dataProvider;
     }

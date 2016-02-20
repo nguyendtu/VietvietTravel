@@ -18,8 +18,8 @@ class TourSearch extends Tour
     public function rules()
     {
         return [
-            [['id', 'id_tourtype', 'length', 'hot', 'status'], 'integer'],
-            [['name', 'code', 'startfrom', 'price', 'briefinfo', 'detailinfo', 'smallimg', 'largeimg', 'regdate', 'editdate'], 'safe'],
+            [['id', 'length', 'hot', 'status'], 'integer'],
+            [['name', 'keyword', 'id_tourtype', 'code', 'startfrom', 'price', 'briefinfo', 'detailinfo', 'smallimg', 'largeimg', 'regdate', 'editdate'], 'safe'],
         ];
     }
 
@@ -55,9 +55,14 @@ class TourSearch extends Tour
             return $dataProvider;
         }
 
+        if(!isset($this->status)){
+            $this->status  = 1;
+        }
+
+        $query->joinWith("tourtype");
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_tourtype' => $this->id_tourtype,
             'length' => $this->length,
             'regdate' => $this->regdate,
             'editdate' => $this->editdate,
@@ -65,8 +70,10 @@ class TourSearch extends Tour
             'status' => $this->status,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'tour.name', $this->name])
             ->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['like', 'tourtype.name', $this->id_tourtype])
+            ->andFilterWhere(['like', 'keyword', $this->keyword])
             ->andFilterWhere(['like', 'startfrom', $this->startfrom])
             ->andFilterWhere(['like', 'price', $this->price])
             ->andFilterWhere(['like', 'briefinfo', $this->briefinfo])

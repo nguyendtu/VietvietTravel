@@ -285,23 +285,6 @@ $this->title = $info->name;
             --><li><a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => 14]) ?>">Car Rental</a></li>
         </ul>
         <ul class="countries-tour">
-            <?php  ?>
-            <li class="country">
-                <h4 class="country-caption">VIETNAM TOURS</h4>
-                <ul class="list-tour">
-                    <li><a href="#">Vietnam Tour Packages</a></li>
-                    <li><a href="#">Vietnam Muslim Tours</a></li>
-                    <li><a href="#">Vietnam Adventure Tours</a></li>
-                    <li><a href="#">Vietnam Halong Cruises</a></li>
-                    <li><a href="#">Mekong River Cruises</a></li>
-                    <li><a href="#">Mekong Delta Tours</a></li>
-                    <li><a href="#">Vietnam Trek, Kayak, Cycle</a></li>
-                    <li><a href="#">Vietnam Beach Breaks</a></li>
-                    <li><a href="#">Vietnam Day Trips</a></li>
-                </ul>
-            </li><!--
-            -->
-            <?php ?>
             <li class="country">
                 <h4 class="country-caption">VIETNAM TOURS</h4>
                 <ul class="list-tour">

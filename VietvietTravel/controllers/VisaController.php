@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\Booktour;
 use app\models\Visadetail;
+use arturoliveira\ExcelView;
 use Yii;
 use app\models\Visa;
 use app\models\VisaSearch;
@@ -45,7 +47,7 @@ class VisaController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['index', 'view'],
+                        'actions' => ['index', 'view', 'update-status'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -53,7 +55,7 @@ class VisaController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['update', 'delete', 'upload', 'upload'],
+                        'actions' => ['update', 'delete', 'upload', 'upload', 'export'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -62,6 +64,40 @@ class VisaController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function actionExport($id) {
+        $model = Booktour::find()->where(['id' => $id])->one();
+        $visaRelation = Visa::find()->where(['fullname' => $model->fullname])
+            ->andWhere(['email' => $model->email])
+            ->andWhere(['regdate' => $model->depdate]);
+        $provider = new \yii\data\ActiveDataProvider([
+            'query' => $visaRelation,
+        ]);
+        /*$searchModel = new VisaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);*/
+        ExcelView::widget([
+            'dataProvider' => $provider,
+            //'filterModel' => $searchModel,
+            'fullExportType'=> 'xlsx', //can change to html,xls,csv and so on
+            'filename' => 'Visa',
+            'fullExportConfig' => [
+                'xlsx' => [
+                    'filename' => 'Visa',
+                ],
+            ],
+            'grid_mode' => 'export',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'fullname',
+                'email',
+                'mobile',
+                'numapply',
+                'regdate',
+                'status'
+            ],
+
+        ]);
     }
 
     /**
@@ -139,17 +175,6 @@ class VisaController extends Controller
                 ]);
             }
         } else if(Yii::$app->request->isAjax){
-            /*$visa = explode(",", $visa);
-            $model->fullname = $visa[0];
-            $model->email = $visa[1];
-            $model->mobile = $visa[2];
-            $model->nation = $visa[3];
-            $model->processtime = $visa[4];
-            $model->visatype = $visa[5];
-            $model->usebefore = $visa[6];
-            $model->receiveinfo = $visa[7];
-            $model->paymethod = $visa[8];
-            $model->knwthrough = $visa[9];*/
             return $this->renderAjax('create', [
                 'model' => $model,
                 'article' => $article,
@@ -182,6 +207,31 @@ class VisaController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Updates status an existing Booktour model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdateStatus($id)
+    {
+        $model = $this->findModel($id);
+        if($model->status){
+            $model->status = 0;
+        }else{
+            $model->status = 1;
+        }
+        $model->save();
+
+        $searchModel = new VisaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

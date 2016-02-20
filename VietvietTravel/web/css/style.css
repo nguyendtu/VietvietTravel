@@ -525,17 +525,21 @@ ul#nav_search .active a{
 }
 .smallUpload{
 	position: relative;
-	top: -750px;
+	top: -770px;
 	height: 150px;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	width: 70%;
+	margin-left: 299px;
 }
 .largeUpload{
 	position: relative;
-	top: -675px;
+	top: -710px;
 	height: 150px;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	width: 70%;
+	margin-left: 299px;
 }
 .image-slide-upload{
 	position: relative;
@@ -578,6 +582,11 @@ ul#nav_search .active a{
 		bottom: -50px;
 		right: 25px;
 	}*/
+	.navbar-brand img{
+		position: absolute;
+		top: -0;
+		width: 30%;
+	}
 }
 
 @media screen and (min-width: 768px){
@@ -636,7 +645,7 @@ ul#nav_search .active a{
 	}
 	.navbar-brand{
 		height: 50px;
-		width: auto;
+		width: 200px;
 		text-align: left;
 	}
 	.navbar-nav li{
@@ -645,9 +654,10 @@ ul#nav_search .active a{
 		margin-left: -5px;
 	}
 	.navbar-brand img{
-		width: 75%;
+		width: 60%;
 		position: relative;
 		top: -18px;
+		left: 0;
 	}
 	.bottom-bar .col-md-6{
 		width: 50%;
@@ -716,4 +726,25 @@ ul#nav_search .active a{
 }
 .text-info{
 	color: #fff;
+}
+.tour-head-control{
+	text-align: right;
+}
+.tour-head-control li{
+	display: inline-block;
+	margin-left: 25px;
+	text-align: left;
+}
+.action:parent{
+	position: relative;
+	width: 99%;
+}
+.action{
+	position: absolute;
+	right: 10px;
+	/*margin-top: -25px;*/
+	top: 0;
+}
+.jstree-default .jstree-clicked{
+	background-color: #dcf9f9;
 }

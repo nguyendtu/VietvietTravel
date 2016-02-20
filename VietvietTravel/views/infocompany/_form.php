@@ -1,7 +1,7 @@
 <?php
-
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use dosamigos\fileupload\FileUploadUI;
 
 /* @var $this yii\web\View */
@@ -11,7 +11,7 @@ use dosamigos\fileupload\FileUploadUI;
 
 <div class="infocompany-form">
 
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data'], 'layout' => 'horizontal']); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -42,22 +42,25 @@ use dosamigos\fileupload\FileUploadUI;
 
     <?= $form->field($model, 'viber')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'map')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'map')->textarea(['maxlength' => false]) ?>
 
-    <?= $form->field($model, 'videoMp4')->fileInput(['accept' => 'video/*']) ?>
+    <div id="view-map" style="margin-left: 299px;"><?= $model->map ?></div>
 
     <?= $form->field($model, 'video')->textInput(['maxlength' => true]) ?>
 
         <div class="margin-top-1">
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <label class="control-label col-sm-3" for=""></label>
+        <div class="col-sm-6">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     </div>
         </div>
     <?php ActiveForm::end(); ?>
     </div>
 </div>
 
-<div class="smallUpload" style="top: -1144px">
+<div class="smallUpload" style="top: -1370px; width: 70%; margin: auto 299px;">
     <?= FileUploadUI::widget([
         'model' => $small,
         'attribute' => 'fileUpload',
@@ -93,7 +96,7 @@ use dosamigos\fileupload\FileUploadUI;
     ?>
 </div>
 
-    <div class="largeUpload" style="top: -60px">
+    <div class="largeUpload" style="top: -60px; width: 70%; margin: auto 299px;">
         <?= FileUploadUI::widget([
             'model' => $video,
             'attribute' => 'fileUpload',
@@ -121,8 +124,8 @@ use dosamigos\fileupload\FileUploadUI;
                                 }',
                 'fileuploaddestroy' => 'function(e, data){
                                     var name = data.url.substr(data.url.lastIndexOf("=") + 1, data.url.length);
-                                    var smallimg = document.getElementById("infocompany-logo");
-                                    smallimg.value = "";
+                                    var video = document.getElementById("infocompany-video");
+                                    video.value = "";
                                 }',
             ],
         ]);
@@ -278,7 +281,11 @@ var td2 = document.createElement("td");
 $('#video-form .files').append(tr);
 btn.click = function(e){
     console.log(e.target);
-}
+};
+
+$('#infocompany-map').change(function(){
+    $('#view-map').html($(this).val());
+})
 JS;
 $this->registerJs($js);
 ?>

@@ -76,4 +76,11 @@ class Booktour extends \yii\db\ActiveRecord
             'knwthrough' => 'You know us through',
         ];
     }
+
+    /**
+     * relation to tour table
+     */
+    public function getTour(){
+        return $this->hasOne(Tour::className(), ['id' => 'id_tour']);
+    }
 }

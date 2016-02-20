@@ -48,4 +48,24 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <h3>List visa relation</h3>
+
+    <?= \yii\grid\GridView::widget([
+       'dataProvider' => $provider,
+        'columns' => [
+            [
+                'class' => 'yii\grid\SerialColumn',
+            ],
+            'fullname',
+            'email:email',
+            'mobile',
+            'numapply',
+            'regdate:date',
+            'status',
+            [
+                'class' => 'yii\grid\ActionColumn',
+            ],
+        ]
+    ]) ?>
+
 </div>
