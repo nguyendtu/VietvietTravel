@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::button('Delete Article', ['class' => 'btn btn-danger', 'id' => 'delete_article']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,7 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+                'headerOptions' => [
+                    'class' => 'sr-only',
+                ],
+            ],
             // 'id',
             [
                 'attribute' => 'smallimg',
@@ -66,3 +72,32 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
+<?php
+$js = <<<JS
+$(document).ready(function(){
+    var keys;
+    function deleteArticle(){
+        $.post('index.php?r=article/delete-multi-article', {keys: keys}, function(data, status){
+            if(status){
+                for(var iKey = 0; iKey < keys.length; iKey++){
+                    $("#w0").find("[ data-key=" + keys[iKey] + "]").attr("class", "sr-only");
+                }
+            }else{
+                alert("error");
+            }
+        });
+    }
+
+    $('[name="selection[]"]').click(function(){
+        keys = $('#w0').yiiGridView('getSelectedRows');
+    });
+
+    $('#delete_article').click(function(){
+        alert('abc');
+        deleteArticle();
+    });
+});
+JS;
+
+$this->registerJs($js);
+?>

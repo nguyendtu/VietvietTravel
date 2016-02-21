@@ -141,7 +141,6 @@ $(document).ready(function(){
     }
     $('[name="selection[]"]').click(function(){
         keys = $('#w1').yiiGridView('getSelectedRows');
-        console.log(keys);
     });
     $('#status').change(function(){
         $('[name="TourSearch[status]"]').val(event.target.value).change();

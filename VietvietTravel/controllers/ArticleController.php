@@ -49,7 +49,7 @@ class ArticleController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['create', 'update', 'view', 'index'],
+                        'actions' => ['create', 'update', 'view', 'index', 'delete-multi-article'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -242,6 +242,29 @@ class ArticleController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * delete multiple article
+     * using ajax.
+     *
+     */
+    public function actionDeleteMultiArticle(){
+        $id = [];
+        $keys = $_POST['keys'];
+        echo "<pre>";
+        print_r($keys);
+        echo "</pre>";
+        exit;
+        if(!empty($keys)){
+            foreach($keys as $key => $value){
+                array_push($id, $value);
+            }
+        }
+        $connection = Yii::$app->db;
+        $connection->createCommand()->delete('article', ['id' => $id])->execute();
+
+        echo '1';
     }
 
     /**
