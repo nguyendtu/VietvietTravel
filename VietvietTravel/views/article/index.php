@@ -52,7 +52,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'editdate',
             // 'id_user',
             // 'hot',
-            'status',
+            [
+                'attribute' => 'status',
+                'value' => 'status',
+                'filter' => [
+                    '1' => 'Active',
+                    '0' => 'Deactive',
+                ]
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
