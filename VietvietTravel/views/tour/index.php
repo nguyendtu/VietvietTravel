@@ -60,6 +60,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'id_tourtype',
                 'value' => 'tourtype.name',
+                'filter' => \yii\helpers\ArrayHelper::map(
+                    \app\models\Tourtype::find()->all(), 'id', 'name'
+                ),
+                'options' => [
+                    'width' => '200px'
+                ]
             ],
             'length',
             'startfrom',

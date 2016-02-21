@@ -25,17 +25,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
+            [
+                'attribute' => 'smallimg',
+                'content' => function($model){
+                    return "<img src='images/". $model->smallimg ."'></img>";
+                },
+                'format' => 'image',
+                'options' => [
+                    'width' => '100px',
+                ]
+            ],
             'title',
-            'type',
+            [
+                'attribute' => 'type',
+                'value' => 'tourtype.name',
+                'options' => [
+                    'width' => '200px',
+                ],
+                'filter' => \yii\helpers\ArrayHelper::map(\app\models\Tourtype::find()->all(), 'id', 'name'),
+            ],
             'briefinfo:ntext',
-            'smallimg',
+
             // 'detailinfo:ntext',
             // 'regdate',
             // 'editdate',
             // 'id_user',
             // 'hot',
-            // 'status',
+            'status',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

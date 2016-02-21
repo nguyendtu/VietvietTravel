@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h3 class="text-primary thumb-caption text-center">CREATE NEW TOURTYPE</h3>
             <?= $this->render('_form', [
                 'model' => $model,
+                'small' => $small,
             ]) ?>
         </div>
         <div class="col-md-5">

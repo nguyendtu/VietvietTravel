@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'id_tour',
                 'value' => 'tour.name',
-                'header' => 'Tour name',
+                'label' => 'Tour name',
             ],
             'fullname',
             'email:email',
@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'idea',
                 'value' => 'idea',
-                'header' => 'Idea',
+                'label' => 'Idea',
                 'format' => 'ntext',
             ],
             // 'visa',
@@ -58,17 +58,17 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'status',
             [
                 'attribute' => 'status',
-                'contentOptions' => function($model){
-                    return $model->status? [
-                        'style' => ['color' => 'green'],
-                    ] : [
-                        'style' => ['color' => 'red'],
-                    ];
-                },
                 'content' => function($model, $key, $index, $column){
                     $url = \yii\helpers\Url::to(['booktour/update-status', 'id' => $model->id]);
                     return $model->status? "<a href='$url' style='color: green'>Complete</a>" : "<a href='$url' style='color: red'>Unfinished</a>";
                 },
+                'filter' => [
+                    'Complete' => 'Complete',
+                    'Unfinished' => 'Unfinished',
+                ],
+                'options' => [
+                    'width' => '100px',
+                ],
             ],
 
 

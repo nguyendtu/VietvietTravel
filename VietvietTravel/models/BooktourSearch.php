@@ -19,7 +19,7 @@ class BooktourSearch extends Booktour
     {
         return [
             [['id', 'id_tour', 'nadults', 'child', 'visa', 'usebefore', 'reciveinfo'], 'integer'],
-            [['fullname', 'email', 'phone', 'nation', 'listname', 'childinfo', 'depdate', 'idea', 'paymethod', 'knwthrough'], 'safe'],
+            [['fullname', 'status', 'email', 'phone', 'nation', 'listname', 'childinfo', 'depdate', 'idea', 'paymethod', 'knwthrough'], 'safe'],
         ];
     }
 
@@ -55,6 +55,12 @@ class BooktourSearch extends Booktour
             return $dataProvider;
         }
 
+        if(isset($_GET['BooktourSearch']['status']) && $_GET['BooktourSearch']['status'] == 'Complete'){
+            $this->status = 1;
+        }else{
+            $this->status = 0;
+        }
+
         $query->andFilterWhere([
             'id' => $this->id,
             'id_tour' => $this->id_tour,
@@ -74,7 +80,8 @@ class BooktourSearch extends Booktour
             ->andFilterWhere(['like', 'childinfo', $this->childinfo])
             ->andFilterWhere(['like', 'idea', $this->idea])
             ->andFilterWhere(['like', 'paymethod', $this->paymethod])
-            ->andFilterWhere(['like', 'knwthrough', $this->knwthrough]);
+            ->andFilterWhere(['like', 'knwthrough', $this->knwthrough])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

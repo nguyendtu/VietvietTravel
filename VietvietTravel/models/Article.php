@@ -62,4 +62,11 @@ class Article extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
+    /**
+     * relation to tourtype table
+     */
+    public function getTourtype(){
+        return $this->hasOne(Tourtype::className(), ['id' => 'type']);
+    }
 }

@@ -55,4 +55,11 @@ class Tourtype extends \yii\db\ActiveRecord
     public function getTours(){
         return $this->hasMany(Tour::className(), ['id_tourtype' => 'id']);
     }
+
+    /**
+     * relation to article table
+     */
+    public function getArticles(){
+        return $this->hasMany(Article::className(), ['type' => 'id']);
+    }
 }

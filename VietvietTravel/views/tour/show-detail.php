@@ -8,13 +8,13 @@ $tourtype = $model->tourtype;
 
 <div class="main-content">
     <div class="thumb">
-        <h3 class="thumb-caption"><?php echo $model->name ?></h3>
+        <h3 class="thumb-caption"><?php if(isset($model->name)) echo $model->name ?></h3>
         <div class="thumb-content">
             <div class="header">
                 <div class="row">
                     <div class="col-md-5">
                         <a href="">
-                            <img src="images/<?php echo $model->smallimg ?>" alt="..">
+                            <img src="images/<?php if(isset($model->smallimg)) echo $model->smallimg ?>" alt="..">
                         </a>
                     </div>
                     <div class="col-md-7">
@@ -23,11 +23,11 @@ $tourtype = $model->tourtype;
                             <ul>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Tour Code: <?php echo $model->code ?></p>
+                                    <p>Tour Code: <?php if(isset($model->code)) echo $model->code ?></p>
                                 </li>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Tour Length: <?php echo $model->length ?></p>
+                                    <p>Tour Length: <?php if(isset($model->length)) echo $model->length ?></p>
                                 </li>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
@@ -35,7 +35,7 @@ $tourtype = $model->tourtype;
                                 </li>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Start From: <a href=""><?php echo $model->startfrom ?></a></p>
+                                    <p>Start From: <a href=""><?php if(isset($model->startfrom)) echo $model->startfrom ?></a></p>
                                 </li><!--
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>

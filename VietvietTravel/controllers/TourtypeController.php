@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\FileUpload;
 use Yii;
 use app\models\Tourtype;
 use app\models\TourtypeSearch;
@@ -54,6 +55,7 @@ class TourtypeController extends Controller
         $tree .= "</ul>";
 
         $tourType = new Tourtype();
+        $small = new FileUpload();
 
         if ($tourType->load(Yii::$app->request->post()) && $tourType->save()) {
             return $this->redirect(['index']);
@@ -62,6 +64,7 @@ class TourtypeController extends Controller
             //'searchModel' => $searchModel,
             //'dataProvider' => $dataProvider,
             'model' => $tourType,
+            'small' => $small,
             'tree' => $tree,
         ]);
     }
@@ -86,12 +89,14 @@ class TourtypeController extends Controller
     public function actionCreate()
     {
         $model = new Tourtype();
+        $small = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'small' => $small,
             ]);
         }
     }
@@ -166,7 +171,7 @@ class TourtypeController extends Controller
                     $url = Url::to(['tourtype/delete', 'id' => $id]);
                 }
                 if ($key == 'name'){
-                    $parent .= "<li value='" . $value . "'>" . $value;
+                    $parent .= "<li value='" . $value . "'>" . $value . ' ( ' . Yii::$app->db->createCommand('select count(id) from tour where id_tourtype = ' . $id)->queryAll()[0]['count(id)'] . ' )';
                     $parent .= "<div class='action sr-only'>
     <a href='$url' data-confirm='Are you sure you want to delete this item?' data-method='post' class='text-danger'>
         <span class='glyphicon glyphicon-trash'></span>
@@ -174,7 +179,7 @@ class TourtypeController extends Controller
 </div>";
                     $child = \app\models\Tourtype::find()->where(['parent' => $value])->all();
                     if(count($child)){
-                        $ul = ul($child);
+                        $ul = $this->ul($child);
                         $parent .= $ul;
                     }
                     $parent .= "</li>";

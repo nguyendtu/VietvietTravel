@@ -1,40 +1,23 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use kartik\date\DatePicker;
 use dosamigos\fileupload\FileUploadUI;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Article */
 /* @var $form yii\widgets\ActiveForm */
-$tour = $tourtype->find()->all();
-$type = new \app\models\Tourtype();
-$type->id = "100";
-$type->name = "Travel services";
-array_push($tour, $type);
-$type = new \app\models\Tourtype();
-$type->id = "101";
-$type->name = "Travel articles";
-array_push($tour, $type);
-$type = new \app\models\Tourtype();
-$type->id = "102";
-$type->name = "Abou us";
-array_push($tour, $type);
-$type = new \app\models\Tourtype();
-$type->id = "103";
-$type->name = "Vietnam visa on arrival";
-array_push($tour, $type);
 ?>
 
 <div class="article-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'type')->dropDownList(
-        \yii\helpers\ArrayHelper::map($tour, 'id', 'name'), ['prompt' => '-- Choose a tourtype --']
+        \yii\helpers\ArrayHelper::map(\app\models\Tourtype::find()->all(), 'id', 'name'), ['prompt' => '-- Choose a tourtype --']
     ) ?>
 
     <?= $form->field($model, 'regdate')->widget(DatePicker::className(),[
@@ -59,13 +42,12 @@ array_push($tour, $type);
         ]
     ]) ?>
 
-    <?= $form->field($model, 'id_user')->textInput() ?>
-
     <?= $form->field($model, 'hot')->checkbox() ?>
 
     <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <div class="margin-top-1">
+    <?= $form->field($model, 'id_user')->textInput() ?>
     <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>

@@ -83,6 +83,7 @@ class ContactController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = "admin";
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

@@ -67,10 +67,8 @@ class VisaController extends Controller
     }
 
     public function actionExport($id) {
-        $model = Booktour::find()->where(['id' => $id])->one();
-        $visaRelation = Visa::find()->where(['fullname' => $model->fullname])
-            ->andWhere(['email' => $model->email])
-            ->andWhere(['regdate' => $model->depdate]);
+        $model = Visa::find()->where(['id' => $id])->one();
+        $visaRelation = Visadetail::find()->where(['id_visa' => $model->id]);
         $provider = new \yii\data\ActiveDataProvider([
             'query' => $visaRelation,
         ]);
@@ -89,12 +87,18 @@ class VisaController extends Controller
             'grid_mode' => 'export',
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
+                'id',
+                'id_visa',
                 'fullname',
-                'email',
-                'mobile',
-                'numapply',
-                'regdate',
-                'status'
+                'nation',
+                'idpassport',
+                'birthday',
+                'expire',
+                'flightdetail',
+                'arrivaldate',
+                'exitdate',
+                'portarrival',
+                'purposevisit',
             ],
 
         ]);
