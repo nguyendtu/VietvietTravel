@@ -27,9 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <li>
             <p>Status</p>
             <select name="Status" id="status" class="form-control">
-                <option value="" <?php if(!isset($_GET['TourSearch']['status'])) echo "'selected'=selected"; ?>>All</option>
-                <option value="1" <?php if(isset($_GET['To urSearch']['status']) && $_GET['TourSearch']['status'] == 1) echo "'selected'=selected"; ?>>Active</option>
-                <option value="0" <?php if(isset($_GET['TourSearch']['status']) && $_GET['TourSearch']['status'] == 0) echo "'selected'=selected"; ?>>Deactive</option>
+                <option value=" ">All</option>
+                <option value="1" selected="selected">Active</option>
+                <option value="0">Deactive</option>
             </select>
         </li>
     </ul>
@@ -105,7 +105,7 @@ $url = yii\helpers\Url::to(['tour/index']);
 if(isset($_GET['TourSearch']['status'])){
     $status = $_GET['TourSearch']['status'];
 }else{
-    $status = "";
+    $status = null;
 }
 $js = <<<JS
 $(document).ready(function(){
@@ -133,10 +133,13 @@ $(document).ready(function(){
             }
         });
     }
-    var options = $('#status').find('option');
-    for(var i = 0; i < options.length; i++){
-        if(options[i].value == '$status'){
-            options[i].setAttribute("selected", "selected");
+
+    if(typeof '$status' != null){
+        var options = $('#status').find('option');
+        for(var i = 0; i < options.length; i++){
+            if(options[i].value == '$status'){
+                options[i].setAttribute("selected", "selected");
+            }
         }
     }
     $('[name="selection[]"]').click(function(){

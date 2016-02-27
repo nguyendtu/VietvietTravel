@@ -192,6 +192,8 @@ class BooktourController extends Controller
         $searchModel = new BooktourSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        //return $this->goBack();
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

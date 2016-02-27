@@ -25,7 +25,7 @@ $this->title = 'VietViet Travel';
                 <!--= =============================== =========================-->
                 <div class="row">
                     <?php foreach($tourHotCruises as $tour){ ?>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-6 col-md-6 lg-tour">
                         <div class="thumbnail">
                             <div class="hover-tour">
                                 <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>"><img src="images/<?php echo $tour->smallimg ?>" alt="..."></a>
@@ -34,11 +34,11 @@ $this->title = 'VietViet Travel';
                             </div>
                             <div class="caption">
                                 <h4><?php echo $tour->name ?></h4>
-                                <p><?php echo $tour->briefinfo ?></p>
+                                <p class="text-justify"><?php echo $tour->briefinfo ?></p>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="tour-price">
-                                            <h4>Price from</h4>
+                                            <h5>Price from</h5>
                                             <p class="price">$<?php echo $tour->price ?></p>
                                             <p>per cabin</p>
                                         </div>
@@ -49,7 +49,7 @@ $this->title = 'VietViet Travel';
                                                 <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">Details</a>
                                             </li>
                                             <li class="enquire" data-toggle="modal" data-target="#book_tour">
-                                                <span class="glyphicon glyphicon-share-alt"></span>
+                                                <span class="glyphicon glyphicon-circle-arrow-right"></span>
                                                 ENQUIRE NOW
                                             </li>
                                         </ul>
@@ -105,7 +105,7 @@ $this->title = 'VietViet Travel';
                             <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">
                                 <img src="images/<?php echo $tour->smallimg ?>" alt="...">
                                 <div class="tour-price price-top price-width">
-                                    <h4>Price from</h4>
+                                    <h5>Price from</h5>
                                     <p class="price">$<?php echo $tour->price ?></p>
                                     <p>per cabin</p>
                                 </div>
@@ -113,7 +113,7 @@ $this->title = 'VietViet Travel';
                             <p class="doc"></p>
                             <p class="info"><em>Read more...</em></p>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 sm-tour">
                             <div class="caption">
                                 <h4><?php echo $tour->name ?></h4>
                                 <p><?php echo $tour->briefinfo ?></p>
@@ -122,7 +122,7 @@ $this->title = 'VietViet Travel';
                                         <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">Details</a>
                                     </li>
                                     <li class="enquire">
-                                        <span class="glyphicon glyphicon-share-alt"></span> <a class="enquire" href="#">ENQUIRE NOW</a>
+                                        <span class="glyphicon glyphicon-circle-arrow-right"></span> <a class="enquire" href="#">ENQUIRE NOW</a>
                                     </li>
                                 </ul>
                             </div>

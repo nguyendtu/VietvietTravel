@@ -6,6 +6,7 @@ use app\models\FileUpload;
 use Yii;
 use app\models\Tourtype;
 use app\models\TourtypeSearch;
+use yii\db\Query;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -35,7 +36,10 @@ class TourtypeController extends Controller
      */
     public function actionIndex()
     {
-        $model = Tourtype::find()->groupBy('parent')->all();
+        $model = Tourtype::find()->where(['not in', 'parent', (new Query())->select('name')->from('tourtype')])->groupBy('parent')->all();
+
+
+        //$model = Yii::$app->db->createCommand('select parent from tourtype where tourtype.parent <> tourtype.name')->queryAll();
 
         $tree = "<ul>";
         foreach ($model as $tourType) {
@@ -177,6 +181,7 @@ class TourtypeController extends Controller
         <span class='glyphicon glyphicon-trash'></span>
 </a>
 </div>";
+
                     $child = \app\models\Tourtype::find()->where(['parent' => $value])->all();
                     if(count($child)){
                         $ul = $this->ul($child);

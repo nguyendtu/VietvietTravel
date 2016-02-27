@@ -107,7 +107,7 @@ use dosamigos\fileupload\FileUploadUI;
                 'accept' => 'video/*',
             ],
             'clientOptions' => [
-                'maxFileSize' => 2000000
+                'maxFileSize' => 20000000000000000000000000000000000
             ],
             'clientEvents' => [
                 'fileuploaddone' => 'function(e, data) {

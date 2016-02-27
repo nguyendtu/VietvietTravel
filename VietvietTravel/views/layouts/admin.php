@@ -54,46 +54,82 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name]),
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-default',
-        ],
-        'innerContainerOptions' => ['class'=>'container-fluid'],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'dropDownCaret' => '',
-        'items' => [
-            ['label' => 'Info Company', 'url' => ['/infocompany/view', 'id' => 1]],
-            ['label' => 'TOUR', 'url' => ['/tour/index', 'TourSearch[status]' => 1]],
-            ['label' => 'TOUR TYPE', 'url' => ['/tourtype/index']],
-            ['label' => 'HOTEL', 'url' => ['/hotel/index', 'HotelSearch[status]' => 1]],
-            ['label' => 'Location', 'url' => ['/location/index']],
-            ['label' => 'Book tour', 'url' => ['/booktour/index']],
-            ['label' => 'Vietnam visa on Arrival', 'url' => ['/visa/info']],
-            ['label' => 'Visa', 'url' => ['/visa/index']],
-            ['label' => 'Article', 'url' => ['/article/index']],
-            ['label' => 'Contact', 'url' => ['/contact/index']],
-            Yii::$app->user->identity->permit == 'A' ?
-                ['label' => 'Account', 'url' => ['/users/index']] : "",
-            Yii::$app->user->isGuest ?
-                ['label' => 'Login', 'url' => ['/admin/login']] :
-                ['label' => 'Logout ('. Yii::$app->user->identity->fullname .')',
-                    'url' => ['/admin/logout'],
-                    'linkOptions' => ['data-method' => 'post']],
-         ],
-    ]);
-    NavBar::end();
-    ?>
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>        
+    <div class="container-fluid site-admin">
+        <div class="row">
+            <div class="col-md-2">
+                <div id="admin-controls">
+                <?php
+                    NavBar::begin([
+                        'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name]),
+                        'brandUrl' => Yii::$app->homeUrl,
+                        'options' => [
+                            'class' => 'navbar navbar-default nav-admin',
+                        ]
+                    ]);
+                    echo Nav::widget([
+                        'options' => ['class' => 'nav navbar-nav nav-tabs list'],
+                        'dropDownCaret' => '',
+                        'items' => [
+                            ['label' => 'Info Company', 'url' => ['/infocompany/view', 'id' => 1]],
+                            ['label' => 'TOUR', 'url' => ['/tour/index']],
+                            ['label' => 'TOUR TYPE', 'url' => ['/tourtype/index']],
+                            ['label' => 'HOTEL', 'url' => ['/hotel/index']],
+                            ['label' => 'Location', 'url' => ['/location/index']],
+                            ['label' => 'Book tour', 'url' => ['/booktour/index']],
+                            ['label' => 'Vietnam visa on Arrival', 'url' => ['/visa/info']],
+                            ['label' => 'Visa', 'url' => ['/visa/index']],
+                            ['label' => 'Article', 'url' => ['/article/index']],
+                            ['label' => 'Contact', 'url' => ['/contact/index']],
+                            Yii::$app->user->identity->permit == 'A' ?
+                                ['label' => 'Account', 'url' => ['/users/index']] : "",
+                            Yii::$app->user->isGuest ?
+                                ['label' => 'Login', 'url' => ['/admin/login']] :
+                                ['label' => 'Logout ('. Yii::$app->user->identity->fullname .')',
+                                    'url' => ['/admin/logout'],
+                                    'linkOptions' => ['data-method' => 'post']],
+                        ],
+                    ]);
+                ?>
+                <!--<div class="navbar-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a class="btn btn-success" href="<?/*= \yii\helpers\Url::to(['site/index']) */?>">
+                                <span class="glyphicon glyphicon-home"></span>
+                                View Site
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <?php /*if(Yii::$app->user->isGuest){ */?>
+                                <a class="btn btn-primary" href="<?/*= \yii\helpers\Url::to(['admin/login']) */?>">
+                                    <span class="glyphicon glyphicon-log-in"></span>
+                                    Login
+                                </a>
+                            <?php /*}else{ */?>
+                                <a class="btn btn-danger" href="<?/*= \yii\helpers\Url::to(['admin/logout']) */?>">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    Logout
+                                </a>
+                            <?php /*} */?>
+                        </div>
+                    </div>
+                </div>-->
+                <?php
+                    NavBar::end();
+                ?>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <h2 class="manage-title">Manage <?= $this->title ?></h2>
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ]) ?>
+                <?= $content ?>
+            </div>
+        </div>
     </div>
+    <?php
+    ?>
+
 </div>
 <?php $this->endBody() ?>
 <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>

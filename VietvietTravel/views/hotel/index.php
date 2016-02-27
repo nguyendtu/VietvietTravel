@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <li>
             <p>Status</p>
             <select name="Status" id="status" class="form-control">
-                <option value="">All</option>
+                <option value=" ">All</option>
                 <option value="1">Active</option>
                 <option value="0">Deactive</option>
             </select>
@@ -85,7 +85,7 @@ $url = yii\helpers\Url::to(['hotel/index']);
 if(isset($_GET['HotelSearch']['status'])){
     $status = $_GET['HotelSearch']['status'];
 }else{
-    $status = "";
+    $status = null;
 }
 $js = <<<JS
 $(document).ready(function(){
@@ -112,10 +112,13 @@ $(document).ready(function(){
             }
         });
     }
-    var options = $('#status').find('option');
-    for(var i = 0; i < options.length; i++){
-        if(options[i].value == '$status'){
-            options[i].setAttribute("selected", "selected");
+
+    if(typeof '$status' != null){
+        var options = $('#status').find('option');
+        for(var i = 0; i < options.length; i++){
+            if(options[i].value == '$status'){
+                options[i].setAttribute("selected", "selected");
+            }
         }
     }
     $('[name="selection[]"]').click(function(){

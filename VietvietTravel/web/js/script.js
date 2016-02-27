@@ -63,4 +63,14 @@ $(document).ready(function(){
 			}
 		};
 	}
+
+	$(window).scroll(function(){
+		if(document.body.scrollTop > 50 || document.documentElement.scrollTop > 50){
+			$('.go-top').addClass("show");
+			$('.go-top').removeClass("hide");
+		}else{
+			$('.go-top').addClass("hide");
+			$('.go-top').removeClass("show");
+		}
+	});
 });
