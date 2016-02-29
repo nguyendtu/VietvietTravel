@@ -36,16 +36,16 @@ $this->title = 'VietViet Travel';
                                 <h4><?php echo $tour->name ?></h4>
                                 <p class="text-justify"><?php echo $tour->briefinfo ?></p>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-sm-6 col-xs-6">
                                         <div class="tour-price">
                                             <h5>Price from</h5>
                                             <p class="price">$<?php echo $tour->price ?></p>
                                             <p>per cabin</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-6">
                                         <ul class="infomation">
-                                            <li class="details">
+                                            <li class="details text-bold">
                                                 <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">Details</a>
                                             </li>
                                             <li class="enquire" data-toggle="modal" data-target="#book_tour">
@@ -118,7 +118,7 @@ $this->title = 'VietViet Travel';
                                 <h4><?php echo $tour->name ?></h4>
                                 <p><?php echo $tour->briefinfo ?></p>
                                 <ul class="infomation inline text-right">
-                                    <li class="details">
+                                    <li class="details text-bold">
                                         <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">Details</a>
                                     </li>
                                     <li class="enquire">

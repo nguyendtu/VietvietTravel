@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/nivo-slider.css',
         'themes/default/default.css',
+        'galleria/themes/classic/galleria.classic.css',
         'css/style.css',
     ];
     public $js = [
@@ -30,6 +31,7 @@ class AppAsset extends AssetBundle
         'js/jquery.nivo.slider.js',
         'js/slider.js',
         'js/galleria.min.js',
+        'galleria/themes/classic/galleria.classic.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

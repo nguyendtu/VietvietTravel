@@ -6,7 +6,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="article-index">
-    <div class="main-content">
+    <div class="main-content thumb">
         <h3 class="thumb-caption"><?= Html::encode($this->title) ?></h3>
 
         <div>

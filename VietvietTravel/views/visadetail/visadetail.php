@@ -70,7 +70,6 @@ use kartik\date\DatePicker;
 
         <?= $form->field($visaDetail, '[' .$i . ']purposevisit')->textInput() ?>
 
-        <input type="text" name="test" id="test">
     </div>
     <?php $i++; } ?>
 <!-- end visa detail info -->

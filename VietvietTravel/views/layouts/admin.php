@@ -56,7 +56,7 @@ AppAsset::register($this);
 <div class="wrap">
     <div class="container-fluid site-admin">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-sm-2 col-xs-12">
                 <div id="admin-controls">
                 <?php
                     NavBar::begin([
@@ -76,7 +76,6 @@ AppAsset::register($this);
                             ['label' => 'HOTEL', 'url' => ['/hotel/index']],
                             ['label' => 'Location', 'url' => ['/location/index']],
                             ['label' => 'Book tour', 'url' => ['/booktour/index']],
-                            ['label' => 'Vietnam visa on Arrival', 'url' => ['/visa/info']],
                             ['label' => 'Visa', 'url' => ['/visa/index']],
                             ['label' => 'Article', 'url' => ['/article/index']],
                             ['label' => 'Contact', 'url' => ['/contact/index']],
@@ -118,7 +117,7 @@ AppAsset::register($this);
                 ?>
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-sm-10 col-xs-12">
                 <h2 class="manage-title">Manage <?= $this->title ?></h2>
                 <?= Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

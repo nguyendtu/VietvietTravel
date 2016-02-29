@@ -47,6 +47,7 @@ $tourtype = $model->tourtype;
                                 BOOK THIS TOUR
                             </button>
                         </div>
+                        <div class="fb-like" data-href="http://localhost/VietvietTravel/VietvietTravel/web/index.php?r=tour%2Fshow-detail&id=<?php echo $model->id ?>" data-width="100" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                     </div>
                 </div>
                 <p><?php echo $model->detailinfo ?></p>
@@ -58,19 +59,8 @@ $tourtype = $model->tourtype;
                     <img src="images/<?php echo $slides[$i] ?>" />
                 <?php } ?>
             </div>
-            <!--<div id="wrapper">
-                <div class="slider-wrapper theme-default">
-                    <div id="tour_slider" class="nivoSlider">
-                        <?php /*$slides = explode(' ', $model->largeimg);
-                        for($i = 0; $i < sizeOf($slides); $i++){
-                            */?>
-                            <img src="images/<?php /*echo $slides[$i] */?>" data-thumb="images/<?php /*echo $slides[$i] */?>" alt="" />
-                        <?php /*} */?>
-                    </div>
-                </div>
-            </div>-->
             <hr>
-            <div class="fb-like" data-href="http://localhost/VietvietTravel/VietvietTravel/web/index.php?r=tour%2Fshow-detail&id=<?php echo $model->id ?>" data-width="100" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+
             <div class="fb-comments" data-href="http://localhost/VietvietTravel/VietvietTravel/web/index.php?r=tour%2Fshow-detail&id=<?php echo $model->id ?>" data-width="100%" data-numposts="5"></div>
             <div class="related-tour">
                 <h4>Related Tours</h4>

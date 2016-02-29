@@ -93,17 +93,6 @@ JS;
 
     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'regdate')->widget(DatePicker::className(),[
-        'name' => 'depdate',
-        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => date('d-m-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-    ]) ?>
-
     <?= $form->field($model, 'status')->textInput() ?>
 
     <h4>Additional Information</h4>
@@ -142,7 +131,10 @@ JS;
     ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary', 'id' => 'visaSubmit']) ?>
+        <label for="" class="label-control col-sm-2"></label>
+        <div class="col-sm-7">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary', 'id' => 'visaSubmit']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -29,7 +29,7 @@ $tour = $model;
                         <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]); ?>">Details</a>
                     </li>
                     <li class="enquire" data-toggle="modal" data-target="#book_tour">
-                        <span class="glyphicon glyphicon-share-alt"></span>
+                        <span class="glyphicon glyphicon-circle-arrow-right"></span>
                         ENQUIRE NOW
                     </li>
                 </ul>

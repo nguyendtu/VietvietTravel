@@ -55,7 +55,10 @@ use dosamigos\fileupload\FileUploadUI;
     <?= $form->field($model, 'status')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <label for="" class="label-control col-sm-3"></label>
+        <div class="col-sm-9">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        </div>
     </div>
     </div>
     <?php ActiveForm::end(); ?>

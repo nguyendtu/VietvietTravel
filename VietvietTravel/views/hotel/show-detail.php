@@ -20,29 +20,28 @@
                             <h4>HOTEL INFORMATION</h4>
                             <ul>
                                 <li class="star-yellow">
-                                    <span class="glyphicon glyphicon-share-alt"></span>
+                                    <span class="glyphicon glyphicon-menu-right"></span>
                                     Star:
                                     <?php for($i = 0; $i < $model->star; $i++){ ?>
                                         <span class="glyphicon glyphicon-star"></span>
                                     <?php } ?>
                                 </li>
                                 <li>
-                                    <span class="glyphicon glyphicon-share-alt"></span>
+                                    <span class="glyphicon glyphicon-menu-right"></span>
                                     <p>Address: <?php echo $model->address ?></p>
                                 </li>
                                 <li>
-                                    <span class="glyphicon glyphicon-share-alt"></span>
+                                    <span class="glyphicon glyphicon-menu-right"></span>
                                     <p>Location: <?php echo $location->name ?></p>
                                 </li>
-                                <li>
-                                    <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Customers' Reviews: 0 review</p>
-                                </li>
                             </ul>
-                            <button class="btn btn-primary">
-                                <span class="glyphicon glyphicon-share-alt"></span>
-                                <?php echo $model->phone ?>
-                            </button>
+                            <div class="phone">
+                                <p>Please call to book</p>
+                                <h4 class="text-danger">
+                                    <span class="glyphicon glyphicon-phone-alt"></span>
+                                    <?php echo $model->phone ?>
+                                </h4>
+                            </div>
                         </div>
                     </div>
                 </div>

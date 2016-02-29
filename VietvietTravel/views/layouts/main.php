@@ -53,31 +53,37 @@ $this->title = $info->name;
     <?php $this->beginBody(); ?>
 
     <div class="wrap">
-        <div class="container site">
+        <div class="container site site-border-top">
             <div class="top">
-                <div class="logo">
-                    <a href="<?= \yii\helpers\Url::to(['site/index']) ?>">
-                        <?= Html::img('@web/images/'. $info->logo, ['alt'=>Yii::$app->name, 'class' => 'logo-size']) ?>
-                    </a>
-                </div>
-                <div class="right-pannel">
-                    <ul class="nav-top">
-                        <li>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Hotline: <?php echo $info->tel; ?>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="logo">
+                            <a href="<?= \yii\helpers\Url::to(['site/index']) ?>">
+                                <?= Html::img('@web/images/'. $info->logo, ['alt'=>Yii::$app->name, 'class' => 'logo-size']) ?>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email: <?php echo $info->email; ?>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="?r=contact/create">
-                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact us
-                            </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <div class="right-pannel">
+                            <ul class="nav-top list-inline">
+                                <li>
+                                    <a href="#">
+                                        <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span> Hotline: <?php echo $info->tel; ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email: <?php echo $info->email; ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="?r=contact/create">
+                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact us
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             <?php
@@ -352,9 +358,9 @@ $this->title = $info->name;
                 height: '300',
             });
             if (Galleria) {
-                console.log('abc');
                 Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
-                if($('.galerria')){
+                if($('.galerria').length != 0){
+                    alert('galleria');
                     Galleria.run('.galleria', {
                         autoplay: 3000,
                         transition: 'fade',
