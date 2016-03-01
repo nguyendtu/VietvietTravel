@@ -36,11 +36,11 @@ $tourtype = $model->tourtype;
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
                                     <p>Start From: <a href=""><?php if(isset($model->startfrom)) echo $model->startfrom ?></a></p>
-                                </li><!--
+                                </li>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Review: <a href=""><?php /*echo */?></a></p>
-                                </li>-->
+                                    <p>Keyword: <?= $model->keyword ?></p>
+                                </li>
                             </ul>
                             <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#book_tour">
                                 <span class="glyphicon glyphicon-share-alt"></span>

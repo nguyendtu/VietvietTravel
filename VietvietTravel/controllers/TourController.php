@@ -238,7 +238,13 @@ class TourController extends Controller
                     $model = $model->andWhere(['id_tourtype' => $tourDetination]);
                 }
                 if ($tourLen) {
-                    $model = $model->andWhere(['length' => $tourLen]);
+                    if(strpos($tourLen, '-')){
+                        $tourLen = explode("-", $tourLen);
+                        $model = $model->andWhere(['>=', 'length', $tourLen[0]]);
+                        $model = $model->andWhere(['<=', 'length', $tourLen[1]]);
+                    }else {
+                        $model = $model->andWhere(['length' => $tourLen]);
+                    }
                 }
             } else {
                 $model = $model->where(['hot' => $hot]);

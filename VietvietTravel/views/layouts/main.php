@@ -192,7 +192,14 @@ $this->title = $info->name;
                             </div>
                             <div class="form-group">
                                 <label for="tour-len" class="sr-only">Tour length</label>
-                                <input type="text" id="tour-len" name="tourLen" class="form-control" placeholder="Length of tour...">
+                                <select id="tour-len" name="tourLen" id="" class="form-control">
+                                    <option value="">Length of tour...</option>
+                                    <option value="1">1 Day</option>
+                                    <option value="2-5">2 - 5 Days</option>
+                                    <option value="6-9">6 - 9 Days</option>
+                                    <option value="10-15">10 - 15 Days</option>
+                                    <option value="16">16++ Days</option>
+                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block text-bold">SEARCH</button>
                             <?php ActiveForm::end(); ?>

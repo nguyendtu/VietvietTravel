@@ -73,14 +73,9 @@ $(document).ready(function(){
 			$('.go-top').removeClass("show");
 		}
 	});
-
-	$('#w1').click(function(e){
-		var p = e.target;
-		alert(p.parent());
-		/*
-		 if(p.parent().attr('class' == 'dropdown-menu')){
-		 p.parent().addClass('active');
-		 alert('add class');
-		 }*/
-	})
 });
+window.onload=function () {
+	var dropDown = $('.dropdown').find('.active').parents('.dropdown');
+	console.log(dropDown);
+	dropDown.addClass('active');
+};
