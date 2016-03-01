@@ -617,6 +617,15 @@ ul#nav_search .active a{
 		width: 100%;
 		position: static;
 	}
+	.site-admin{
+		margin-left: 15px;
+	}
+	.container > .navbar-collapse{
+		margin: 0;
+	}
+	.navbar-nav{
+		margin: 0;
+	}
 }
 
 @media screen and (min-width: 768px){
@@ -670,6 +679,9 @@ ul#nav_search .active a{
 		width: 100%;
 		position: static;
 	}
+	.site-admin{
+		margin-left: 15px;
+	}
 	/*.pagination{
 		position: absolute;
 		bottom: -50px;
@@ -717,6 +729,9 @@ ul#nav_search .active a{
 	#admin-controls{
 		width: 200px;
 		position: fixed;
+	}
+	.site-admin{
+		margin-left: 0;
 	}
 	/*.pagination{
 		position: absolute;
@@ -952,4 +967,11 @@ ul#nav_search .active a{
 }
 .navbar-nav li a{
 	padding: 10px;
+}
+.infocompany-view td{
+	word-break: break-all;
+}
+.tourtype-index{
+	width: 100%;
+	overflow: hidden;
 }

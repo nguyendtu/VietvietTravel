@@ -56,8 +56,8 @@ use dosamigos\fileupload\FileUploadUI;
         </div>
     </div>
         </div>
-    <?php ActiveForm::end(); ?>
     </div>
+    <?php ActiveForm::end(); ?>
 </div>
 
 <div class="smallUpload" style="top: -1370px; width: 70%; margin: auto 299px;">
