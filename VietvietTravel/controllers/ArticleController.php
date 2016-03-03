@@ -40,7 +40,7 @@ class ArticleController extends Controller
                 //'only' => [],
                 'rules' => [
                     [
-                        'actions' => ['tour', 'detail', 'about-us', 'visa', 'set-model'],
+                        'actions' => ['tour', 'detail', 'about-us', 'set-model'],
                         'allow' => true,
                         'roles' => [
                             '?',
@@ -205,7 +205,7 @@ class ArticleController extends Controller
     /**
      * show article visa
      */
-    public function actionVisa(){
+    /*public function actionVisa(){
         $this->layout = "main";
 
         $visa = new Visa();
@@ -229,7 +229,7 @@ class ArticleController extends Controller
             'visa' => $visa,
             'visaDetails' => $visaDetails,
         ]);
-    }
+    }*/
 
     /**
      * Deletes an existing Article model.

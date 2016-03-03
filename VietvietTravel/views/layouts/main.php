@@ -128,7 +128,7 @@ $this->title = $info->name;
                             ['label' => 'Hotels in SaPa', 'url' => ['hotel/show', 'sa-pa']],
                         ],
                     ],
-                    ['label' => 'VIETNAM VISA ON ARRIVAL', 'url' => ['visa/create']],
+                    ['label' => 'VIETNAM VISA ON ARRIVAL', 'url' => ['/visa/create']],
                     ['label' => 'TOUR DIARY', 'url' => ['/article/tour']],
                     [
                         'label' => 'TRAVEL SERVICES',
@@ -148,7 +148,7 @@ $this->title = $info->name;
             <div class="slider-wrapper theme-default">
                 <div id="slider" class="nivoSlider">
                     <?php foreach($slides as $slide){ ?>
-                        <img src="<?php echo $slide['link'] ?>" data-thumb="<?php echo $slide['link'] ?>" alt="" />
+                        <?= Html::img('@web/'. $slide['link']) ?>
                     <?php } ?>
                 </div>
                 <div id="htmlcaption" class="nivo-html-caption">
@@ -242,8 +242,8 @@ $this->title = $info->name;
                     </div>
                     <div class="video-box sidebar">
                         <video controls>
-                            <source src="images/<?php echo $info->video ?>" type="video/mp4">
-                            <source src="images/<?php echo $info->video ?>" type="video/ogg">
+                            <source src="../images/<?php echo $info->video ?>" type="video/mp4">
+                            <source src="../images/<?php echo $info->video ?>" type="video/ogg">
                         </video>
                         <?php $aboutUs = Article::find()->where(['type' => 102])->one() ?>
                         <h4><?= $aboutUs->title?></h4>
@@ -258,7 +258,11 @@ $this->title = $info->name;
                             <h4 class="title">Our Services</h4>
                             <ul class="list-services">
                                 <?php foreach($articleService as $row){ ?>
-                                    <li class="item"><a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => $row->id])?>"><img src="images/<?php echo $row->smallimg ?>" alt="service"></a></li>
+                                    <li class="item">
+                                        <a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => $row->id])?>">
+                                            <?= \yii\helpers\Html::img('@web/images/'. $row->smallimg, ['alt' => 'service']) ?>
+                                        </a>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>
@@ -364,17 +368,7 @@ $this->title = $info->name;
                 selector: '#mytextarea',
                 height: '300',
             });
-            if (Galleria) {
-                Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
-                if($('.galerria').length != 0){
-                    alert('galleria');
-                    Galleria.run('.galleria', {
-                        autoplay: 3000,
-                        transition: 'fade',
-                        imageCrop: true
-                    });
-                }
-            }
+
             $('.online-support').hide();
             $('.support-icon-right h3').click(function(e){
                 e.stopPropagation();

@@ -14,7 +14,8 @@ $this->title = 'VietViet Travel';
                     <div class="slider-wrapper theme-default">
                         <div id="slider_tour_featured" class="nivoSlider small_slider">
                             <?php foreach($slideCruises as $slide){ ?>
-                                <img src="images/<?php echo $slide['image'] ?>" data-thumb="images/<?php echo $slide['image'] ?>" alt="" />
+
+                                <?= \yii\helpers\Html::img('@web/images/'. $slide['image'], ['data-thumb'=>"@web/" . $slide['image'], "alt"=>""]) ?>
                             <?php } ?>
                         </div>
                         <div id="htmlcaption" class="nivo-html-caption">
@@ -28,7 +29,9 @@ $this->title = 'VietViet Travel';
                     <div class="col-sm-6 col-md-6 lg-tour">
                         <div class="thumbnail">
                             <div class="hover-tour">
-                                <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>"><img src="images/<?php echo $tour->smallimg ?>" alt="..."></a>
+                                <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">
+                                    <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg) ?>
+                                </a>
                                 <p class="doc"></p>
                                 <p class="info"><em>Read more...</em></p>
                             </div>
@@ -89,7 +92,7 @@ $this->title = 'VietViet Travel';
                     <div class="slider-wrapper theme-default">
                         <div id="slider_tour_interested" class="nivoSlider small_slider">
                             <?php foreach($slideLately as $slide){ ?>
-                                <img src="images/<?php echo $slide['image'] ?>" data-thumb="images/<?php echo $slide['image'] ?>" alt="" />
+                                <?= \yii\helpers\Html::img('@web/images/'. $slide['image'], ['data-thumb'=>"@web/" . $slide['image'], "alt"=>""]) ?>
                             <?php } ?>
                         </div>
                         <div id="htmlcaption" class="nivo-html-caption">
@@ -103,7 +106,7 @@ $this->title = 'VietViet Travel';
                     <div class="row">
                         <div class="col-md-5 hover-tour">
                             <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">
-                                <img src="images/<?php echo $tour->smallimg ?>" alt="...">
+                                <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg) ?>
                                 <div class="tour-price price-top price-width">
                                     <h5>Price from</h5>
                                     <p class="price">$<?php echo $tour->price ?></p>

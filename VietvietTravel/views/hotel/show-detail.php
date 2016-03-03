@@ -12,7 +12,8 @@
                 <div class="row">
                     <div class="col-md-5">
                         <a href="">
-                            <img src="images/<?php echo $model->smallimg ?>" alt="<?php echo $model->name ?>">
+
+                            <?= \yii\helpers\Html::img('@web/images/'. $model->smallimg, ['alt' => 'hotel']) ?>
                         </a>
                     </div>
                     <div class="col-md-7">
@@ -51,7 +52,7 @@
                 <?php $slides = explode(' ', $model->largeimg);
                 for($i = 0; $i < sizeOf($slides) - 1; $i++){
                     ?>
-                    <img src="images/<?php echo $slides[$i] ?>" />
+                    <?= \yii\helpers\Html::img('@web/images/'. $slides[$i]) ?>
                 <?php } ?>
             </div>
             <!--<div id="wrapper">
@@ -80,7 +81,7 @@
                         <div class="row">
                             <div class="col-md-5 col-sm-5 col-xs-5">
                                 <a href="">
-                                    <img src="images/<?php echo $hotel->smallimg ?>" alt="hotel">
+                                    <?= \yii\helpers\Html::img('@web/images/'. $hotel->smallimg, ['alt' => 'hotel']) ?>
                                 </a>
                             </div>
                             <div class="col-md-6 col-sm-7 col-xs-7">
@@ -101,4 +102,17 @@
     </div>
 </div>
 
+<?php
+$js = <<<JS
+if (Galleria) {
+                Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+                    Galleria.run('.galleria', {
+                        autoplay: 3000,
+                        transition: 'fade',
+                        imageCrop: true
+                    });
 
+            }
+JS;
+$this->registerJs($js);
+?>

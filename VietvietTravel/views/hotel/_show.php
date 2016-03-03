@@ -6,7 +6,9 @@ $hotel = $model;
     <div class="col-sm-6 col-xs-12">
         <div class="thumbnail">
             <div class="hover-tour">
-                <a href="<?php echo \yii\helpers\Url::to(['hotel/show-detail', 'id' => $hotel->id]); ?>"><img src="images/<?php echo $hotel->smallimg ?>" alt="hotel"></a>
+                <a href="<?php echo \yii\helpers\Url::to(['hotel/show-detail', 'id' => $hotel->id]); ?>">
+                    <?= \yii\helpers\Html::img('@web/images/'. $hotel->smallimg, ['alt' => 'hotel']) ?>
+                </a>
                 <p class="doc"></p>
                 <p class="info"><em>Read more...</em></p>
             </div>

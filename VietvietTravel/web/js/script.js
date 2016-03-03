@@ -74,8 +74,8 @@ $(document).ready(function(){
 		}
 	});
 });
+
 window.onload=function () {
 	var dropDown = $('.dropdown').find('.active').parents('.dropdown');
-	console.log(dropDown);
 	dropDown.addClass('active');
 };

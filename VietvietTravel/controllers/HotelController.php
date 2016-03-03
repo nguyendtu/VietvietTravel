@@ -198,7 +198,7 @@ class HotelController extends Controller
         $this->layout = "main";
         $model = $this->findModel($id);
         $location = Location::findOne($model->id_location);
-        $related = $location->hotels;
+        $related = $location->getHotels()->limit(4)->all();
         return $this->render('show-detail', [
             'model' => $model,
             'related' => $related,

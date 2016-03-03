@@ -14,33 +14,45 @@ $tourtype = $model->tourtype;
                 <div class="row">
                     <div class="col-md-5">
                         <a href="">
-                            <img src="images/<?php if(isset($model->smallimg)) echo $model->smallimg ?>" alt="..">
+                            <?php if (isset($model->smallimg)) { ?>
+                            <?= \yii\helpers\Html::img('@web/images/'. $model->smallimg) ?>
+                            <?php } ?>
                         </a>
                     </div>
                     <div class="col-md-7">
                         <div class="caption info-detail">
                             <h4>TOUR INFORMATION</h4>
                             <ul>
+                                <?php if(isset($model->code)){ ?>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Tour Code: <?php if(isset($model->code)) echo $model->code ?></p>
+                                    <p>Tour Code: <?= $model->code ?></p>
                                 </li>
+                                <?php } ?>
+                                <?php if(isset($model->length)){ ?>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Tour Length: <?php if(isset($model->length)) echo $model->length ?></p>
+                                    <p>Tour Length: <?= $model->length ?></p>
                                 </li>
+                                <?php } ?>
+                                <?php if(isset($tourtype->name)){ ?>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
                                     <p>Tour Type: <a href="<?php echo \yii\helpers\Url::to(['tour/show', 'Day Tour']); ?>"><?php echo $tourtype->name ?></a></p>
                                 </li>
+                                <?php } ?>
+                                <?php if(isset($model->startfrom)) { ?>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Start From: <a href=""><?php if(isset($model->startfrom)) echo $model->startfrom ?></a></p>
+                                    <p>Start From: <a href=""><?= $model->startfrom?></a></p>
                                 </li>
+                                <?php } ?>
+                                <?php if(isset($model->keyword)){ ?>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Keyword: <?= $model->keyword ?></p>
+                                    <p>Keyword:  <?= $model->keyword ?></p>
                                 </li>
+                                <?php } ?>
                             </ul>
                             <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#book_tour">
                                 <span class="glyphicon glyphicon-share-alt"></span>
@@ -54,10 +66,11 @@ $tourtype = $model->tourtype;
             </div>
             <div class="galleria">
                 <?php $slides = explode(' ', $model->largeimg);
+                if($slides){
                 for($i = 0; $i < sizeOf($slides) - 1; $i++){
                     ?>
-                    <img src="images/<?php echo $slides[$i] ?>" />
-                <?php } ?>
+                    <?= \yii\helpers\Html::img('@web/images/'. $slides[$i]) ?>
+                <?php }} ?>
             </div>
             <hr>
 
@@ -72,7 +85,8 @@ $tourtype = $model->tourtype;
                                 <div class="row">
                                     <div class="col-md-5 hover-tour">
                                         <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]); ?>">
-                                            <img src="images/<?php echo $tour->smallimg ?>" alt="Tour">
+
+                                            <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg, ['alt' => 'Tour']) ?>
                                             <div class="tour-price price-top price-width">
                                                 <h4>Price from</h4>
                                                 <p class="price">$<?php echo $tour->price ?></p>
@@ -137,3 +151,17 @@ $tourtype = $model->tourtype;
     </div>
 </div>
 
+<?php
+$js = <<<JS
+if (Galleria) {
+                Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+                    Galleria.run('.galleria', {
+                        autoplay: 3000,
+                        transition: 'fade',
+                        imageCrop: true
+                    });
+
+            }
+JS;
+$this->registerJs($js);
+?>

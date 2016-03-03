@@ -11,7 +11,7 @@ $tour = $model;
     <div class="row">
         <div class="col-md-5 hover-tour">
             <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]); ?>">
-                <img src="images/<?php echo $tour->smallimg ?>" alt="Tour">
+                <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg, ['alt' => 'tour']) ?>
                 <!--<div class="tour-price price-top price-width">
                     <h4>Price from</h4>
                     <p class="price">$<?php /*echo $tour->price */?></p>

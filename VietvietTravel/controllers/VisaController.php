@@ -47,7 +47,7 @@ class VisaController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['index', 'view', 'update-status'],
+                        'actions' => ['index', 'view', 'update-status', 'export'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -55,7 +55,7 @@ class VisaController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['update', 'delete', 'upload', 'upload', 'export'],
+                        'actions' => ['update', 'delete', 'upload', 'upload'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -64,44 +64,6 @@ class VisaController extends Controller
                 ],
             ],
         ];
-    }
-
-    public function actionExport($id) {
-        $model = Visa::find()->where(['id' => $id])->one();
-        $visaRelation = Visadetail::find()->where(['id_visa' => $model->id]);
-        $provider = new \yii\data\ActiveDataProvider([
-            'query' => $visaRelation,
-        ]);
-        /*$searchModel = new VisaSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);*/
-        ExcelView::widget([
-            'dataProvider' => $provider,
-            //'filterModel' => $searchModel,
-            'fullExportType'=> 'xlsx', //can change to html,xls,csv and so on
-            'filename' => 'Visa',
-            'fullExportConfig' => [
-                'xlsx' => [
-                    'filename' => 'Visa',
-                ],
-            ],
-            'grid_mode' => 'export',
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-                'id',
-                'id_visa',
-                'fullname',
-                'nation',
-                'idpassport',
-                'birthday',
-                'expire',
-                'flightdetail',
-                'arrivaldate',
-                'exitdate',
-                'portarrival',
-                'purposevisit',
-            ],
-
-        ]);
     }
 
     /**
@@ -264,6 +226,44 @@ class VisaController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionExport($id) {
+        $model = Visa::find()->where(['id' => $id])->one();
+        $visaRelation = Visadetail::find()->where(['id_visa' => $model->id]);
+        $provider = new \yii\data\ActiveDataProvider([
+            'query' => $visaRelation,
+        ]);
+        /*$searchModel = new VisaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);*/
+        ExcelView::widget([
+            'dataProvider' => $provider,
+            //'filterModel' => $searchModel,
+            'fullExportType'=> 'xlsx', //can change to html,xls,csv and so on
+            'filename' => 'Visa',
+            'fullExportConfig' => [
+                'xlsx' => [
+                    'filename' => 'Visa',
+                ],
+            ],
+            'grid_mode' => 'export',
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'id',
+                'id_visa',
+                'fullname',
+                'nation',
+                'idpassport',
+                'birthday',
+                'expire',
+                'flightdetail',
+                'arrivaldate',
+                'exitdate',
+                'portarrival',
+                'purposevisit',
+            ],
+
+        ]);
     }
 
     /**

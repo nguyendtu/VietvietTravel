@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php if(isset($model->description)){ ?>
             <div class="header">
                 <p><?php echo $model->description ?></p>
-                <p class="right"><a href="#"><em>Read more</em></a></p>
+                <!--<p class="right"><a href="#"><em>Read more</em></a></p>-->
             </div>
             <?php } ?>
             <div class="sort">
