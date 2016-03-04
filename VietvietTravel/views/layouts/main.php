@@ -128,7 +128,7 @@ $this->title = $info->name;
                             ['label' => 'Hotels in SaPa', 'url' => ['hotel/show', 'sa-pa']],
                         ],
                     ],
-                    ['label' => 'VIETNAM VISA ON ARRIVAL', 'url' => ['/visa/create']],
+                    ['label' => 'VIETNAM VISA ON ARRIVAL', 'url' => ['visa/create']],
                     ['label' => 'TOUR DIARY', 'url' => ['/article/tour']],
                     [
                         'label' => 'TRAVEL SERVICES',

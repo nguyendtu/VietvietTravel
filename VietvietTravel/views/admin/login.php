@@ -9,9 +9,10 @@ use yii\bootstrap\ActiveForm;
 
 /*$this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;*/
+$company = \app\models\Infocompany::find()->where(['id' => 1])->one();
 ?>
 <div class="admin">
-    <img src="images/logo.png" alt="logo" class="logo-size">
+    <?= \yii\helpers\Html::img('@web/images/' . $company->logo, ['alt' => 'logo', 'class' => 'logo-size']) ?>
 
     <div class="admin-login">
 

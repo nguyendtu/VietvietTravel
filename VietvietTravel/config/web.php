@@ -58,11 +58,14 @@ $config = [
             // Disable r= routes
             'enablePrettyUrl' => true,
             'rules' => array(
-                //'<controller:[\w-]+>s' => '<controller>/index',
+                '<controller:[\w-]+>s' => '<controller>/create',
+                '<controller:[\w-]+>s/index' => '<controller>/index',
+                '<controller:[\w-]+>s/<id:\d+>' => '<controller>/view',
+                '<controller:[\w-]+>s/export' => '<controller>/export',
+                //'<controller:[\w-]+>s>/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-
             ),
         ],
     ],

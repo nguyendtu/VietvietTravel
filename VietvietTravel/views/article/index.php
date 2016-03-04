@@ -35,7 +35,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'smallimg',
                 'content' => function($model){
-                    return "<img src='images/". $model->smallimg ."'></img>";
+                    $img = \yii\helpers\Html::img('@web/images/'. $model->smallimg);
+                    return $img;
                 },
                 'format' => 'image',
                 'options' => [

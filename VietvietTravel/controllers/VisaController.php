@@ -47,7 +47,7 @@ class VisaController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['index', 'view', 'update-status', 'export'],
+                        'actions' => ['index', 'view', 'update-status', 'export', 'upload', 'update'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -55,7 +55,7 @@ class VisaController extends Controller
                         ],
                     ],
                     [
-                        'actions' => ['update', 'delete', 'upload', 'upload'],
+                        'actions' => ['delete'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,

@@ -164,7 +164,7 @@ $js = <<<JS
     aInPreview.setAttribute('download', name);
     aInPreview.setAttribute('data-gallery', "");
     var img = document.createElement("img");
-    img.setAttribute('src', 'images/' + name);
+    img.setAttribute('src', '../../images/' + name);
     aInPreview.appendChild(img);
     spanPreview.appendChild(aInPreview);
     td1.appendChild(spanPreview);
@@ -237,7 +237,7 @@ $js = <<<JS
         aInPreview.setAttribute('download', name[index]);
         aInPreview.setAttribute('data-gallery', "");
         var img = document.createElement("img");
-        img.setAttribute('src', 'images/' + name[index]);
+        img.setAttribute('src', '../../images/' + name[index]);
         aInPreview.appendChild(img);
         spanPreview.appendChild(aInPreview);
         td1.appendChild(spanPreview);

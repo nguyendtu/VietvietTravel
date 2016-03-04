@@ -135,6 +135,7 @@ use dosamigos\fileupload\FileUploadUI;
 
 <?php
 $url = \yii\helpers\Url::to(['file-upload/delete']);
+
 $js = <<<JS
     var name = $('#infocompany-logo').attr('value');
     var tr = document.createElement("tr");
@@ -150,7 +151,7 @@ $js = <<<JS
     aInPreview.setAttribute('download', name);
     aInPreview.setAttribute('data-gallery', "");
     var img = document.createElement("img");
-    img.setAttribute('src', 'images/' + name);
+    img.setAttribute('src', '../../images/' + name);
     aInPreview.appendChild(img);
     spanPreview.appendChild(aInPreview);
     td1.appendChild(spanPreview);
