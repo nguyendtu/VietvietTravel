@@ -72,12 +72,12 @@ $this->title = $info->name;
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="mailto:<?= $info->email ?>">
                                         <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email: <?php echo $info->email; ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="?r=contact/create">
+                                    <a href="<?= \yii\helpers\Url::to(['contact/create']) ?>">
                                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact us
                                     </a>
                                 </li>

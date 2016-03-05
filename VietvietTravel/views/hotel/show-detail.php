@@ -55,47 +55,17 @@
                     <?= \yii\helpers\Html::img('@web/images/'. $slides[$i]) ?>
                 <?php } ?>
             </div>
-            <!--<div id="wrapper">
-                <div class="slider-wrapper theme-default">
-                    <div id="hotel_slider" class="nivoSlider">
-                        <?php /*$slides = explode(' ', $model->largeimg);
-                            for($i = 0; $i < sizeOf($slides) - 1; $i++){
-                        */?>
-                        <img src="images/<?php /*echo $slides[$i] */?>" data-thumb="images/<?php /*echo $slides[$i] */?>" alt="" />
-                        <?php /*} */?>
-                    </div>
-                    <div id="htmlcaption" class="nivo-html-caption">
-                        <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
-                    </div>
-                </div>
-            </div>-->
             <div class="hotel-info">
                 <?php echo $model->detailinfo ?>
             </div>
             <div class="related-hotel">
                 <div class="row">
-                    <?php foreach($related as $hotel){
-                        if($hotel->id != $model->id){
+                    <?php echo \yii\widgets\ListView::widget([
+                    'dataProvider' => $related,
+                    'summary' => '',
+                    'itemView' => '_show',
+                    ]);
                     ?>
-                    <div class="col-md-6 col-sm-12 col-xs-12">
-                        <div class="row">
-                            <div class="col-md-5 col-sm-5 col-xs-5">
-                                <a href="">
-                                    <?= \yii\helpers\Html::img('@web/images/'. $hotel->smallimg, ['alt' => 'hotel']) ?>
-                                </a>
-                            </div>
-                            <div class="col-md-6 col-sm-7 col-xs-7">
-                                <h4><a href="<?php echo yii\helpers\Url::to(['hotel/show-detail', 'id' => $hotel->id])?>"><?php echo $hotel->name ?></a></h4>
-                                <ul class="star-yellow hotel-star">
-                                    <?php for($i = 0; $i < $hotel->star; $i++){ ?>
-                                        <li><span class="glyphicon glyphicon-star"></span></li>
-                                    <?php } ?>
-                                </ul>
-                                <p>Address: <?php echo $hotel->address ?> </p>
-                            </div>
-                        </div>
-                    </div>
-                    <?php }} ?>
                 </div>
             </div>
         </div>
