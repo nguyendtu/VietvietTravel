@@ -75,13 +75,12 @@
 <?php
 $js = <<<JS
 if (Galleria) {
-                Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
-                    Galleria.run('.galleria', {
-                        autoplay: 3000,
-                        transition: 'fade',
-                        imageCrop: true
-                    });
-
+                //Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+                Galleria.run('.galleria', {
+                    autoplay: 3000,
+                    transition: 'fade',
+                    imageCrop: true
+                });
             }
 JS;
 $this->registerJs($js);
