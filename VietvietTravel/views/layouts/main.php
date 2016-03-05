@@ -298,7 +298,6 @@ $this->title = $info->name;
         <div class="container site">
             <ul id="menu-bottom">
                 <li><a href="<?php echo \yii\helpers\Url::to(['site/index']) ?>">Home</a></li><!--
-            --><li><a href="#">Customized Tour</a></li><!--
             --><li><a href="<?php echo \yii\helpers\Url::to(['hotel/show']) ?>">Hotel Reservation</a></li><!--
             --><li><a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => 19]) ?>">Flight Booking</a></li><!--
             --><li><a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => 13]) ?>">Train Booking</a></li><!--
@@ -316,11 +315,11 @@ $this->title = $info->name;
                 </div>
                 <div class="follow">
                     <p><strong>Follow us:</strong></p>
-                    <span><a href="<?php echo $info->facebook ?>"><img src="images/facebook.png" alt="facebook icon"></a></span>
-                    <span><a href="<?php echo $info->skype ?>"><img src="images/skype.png" alt="skype icon"></a></span>
-                    <span><a href="<?php echo $info->zalo ?>"><img src="images/zalo.png" alt="zalo icon"></a></span>
-                    <span><a href="<?php echo $info->yahoo ?>"><img src="images/yahoo.png" alt="yahoo icon"></a></span>
-                    <span><a href="<?php echo $info->viber ?>"><img src="images/viber.png" alt="viber icon"></a></span>
+                    <span><a href="<?php echo $info->facebook ?>"><?= \yii\helpers\Html::img('@web/images/facebook.png') ?></a></span>
+                    <span><a href="<?php echo $info->skype ?>"><?= \yii\helpers\Html::img('@web/images/skype.png') ?></a></span>
+                    <span><a href="<?php echo $info->zalo ?>"><?= \yii\helpers\Html::img('@web/images/zalo.png') ?></a></span>
+                    <span><a href="<?php echo $info->yahoo ?>"><?= \yii\helpers\Html::img('@web/images/yahoo.png') ?></a></span>
+                    <span><a href="<?php echo $info->viber ?>"><?= \yii\helpers\Html::img('@web/images/viber.png') ?></a></span>
                 </div>
             </div>
         </div>
