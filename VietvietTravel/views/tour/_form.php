@@ -39,18 +39,17 @@ use kartik\date\DatePicker;
         ]
     ]) ?>
 
-    <?= $form->field($model, 'editdate')->widget(DatePicker::className(), [
-        'name' => 'editdate',
-        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+    <?= $form->field($model, 'editdate', ['options' =>['class' => 'sr-only']])->textInput([
         'value' => date('d-m-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
+        'placeholder' => date('d-m-Y'),
+        'class' => 'sr-only'
     ]) ?>
 
-    <?= $form->field($model, 'hot')->checkbox() ?>
+    <?= $form->field($model, 'hot')->dropDownList([
+        '0' => 'Không hot',
+        '1' => 'Vị trí trên',
+        '2' => 'Vị trí dưới',
+    ], ['prompt' => '---Chọn vị trí---']) ?>
 
     <?= $form->field($model, 'status')->textInput() ?>
 

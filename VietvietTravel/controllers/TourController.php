@@ -174,10 +174,11 @@ class TourController extends Controller
     /*
      * show tour
      */
-    public function actionShow(){
+    public function actionShow($type){
         $this->layout = "main";
-        $param = Yii::$app->getRequest()->getQueryParam('1');
-        $model = Tourtype::find()->where(['name' => $param])->one();
+        //$param = Yii::$app->getRequest()->getQueryParam('1');
+        $type = str_replace('-', ' ', $type);
+        $model = Tourtype::find()->where(['name' => $type])->one();
 
         $provider = new ActiveDataProvider([
             'query' => $model->getTours(),

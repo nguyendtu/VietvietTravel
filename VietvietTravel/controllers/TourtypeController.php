@@ -44,15 +44,17 @@ class TourtypeController extends Controller
         $tree = "<ul>";
         foreach ($model as $tourType) {
             foreach ($tourType as $key => $value) {
-                if ($key == 'parent'){
-                    $tree .= "<li data-jstree='{\"opened\": true}' value='" . $value . "'>" . $value;
-                    $child = \app\models\Tourtype::find()->where(['parent' => $tourType->parent])->all();
-                    if(count($child)){
-                        $ul = $this->ul($child);
-                        $tree .= $ul;
-                    }
+                if($value != 'article') {
+                    if ($key == 'parent') {
+                        $tree .= "<li data-jstree='{\"opened\": true}' value='" . $value . "'>" . $value;
+                        $child = \app\models\Tourtype::find()->where(['parent' => $tourType->parent])->all();
+                        if (count($child)) {
+                            $ul = $this->ul($child);
+                            $tree .= $ul;
+                        }
 
-                    $tree .= "</li>";
+                        $tree .= "</li>";
+                    }
                 }
             }
         }
@@ -114,12 +116,14 @@ class TourtypeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $small = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'small' => $small,
             ]);
         }
     }
@@ -172,14 +176,22 @@ class TourtypeController extends Controller
 
                 if($key == 'id'){
                     $id = $value;
-                    $url = Url::to(['tourtype/delete', 'id' => $id]);
+                    $view = Url::to(['tourtype/view', 'id' => $id]);
+                    $update = Url::to(['tourtype/update', 'id' => $id]);
+                    $delete = Url::to(['tourtype/delete', 'id' => $id]);
                 }
                 if ($key == 'name'){
                     $parent .= "<li value='" . $value . "'>" . $value . ' ( ' . Yii::$app->db->createCommand('select count(id) from tour where id_tourtype = ' . $id)->queryAll()[0]['count(id)'] . ' )';
                     $parent .= "<div class='action sr-only'>
-    <a href='$url' data-confirm='Are you sure you want to delete this item?' data-method='post' class='text-danger'>
+    <a href='$view' data-method='post' class='text-success'>
+        <span class='glyphicon glyphicon-eye-open'></span>
+    </a>
+    <a href='$update' data-method='post' class='text-success'>
+        <span class='glyphicon glyphicon-pencil'></span>
+    </a>
+    <a href='$delete' data-confirm='Are you sure you want to delete this item?' data-method='post' class='text-danger'>
         <span class='glyphicon glyphicon-trash'></span>
-</a>
+    </a>
 </div>";
 
                     $child = \app\models\Tourtype::find()->where(['parent' => $value])->all();

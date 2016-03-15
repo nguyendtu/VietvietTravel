@@ -25,7 +25,9 @@ $this->title = 'VietViet Travel';
                 </div>
                 <!--= =============================== =========================-->
                 <div class="row">
-                    <?php foreach($tourHotCruises as $tour){ ?>
+                    <?php
+                        foreach($tourHotCruises as $tour){
+                    ?>
                     <div class="col-sm-6 col-md-6 lg-tour">
                         <div class="thumbnail">
                             <div class="hover-tour">

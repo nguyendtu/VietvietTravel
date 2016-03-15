@@ -50,11 +50,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ],
             // 'id',
+            [
+                'attribute' => 'smallimg',
+                'format' => 'image',
+                'value' => function($model){
+                    return '@web/images/' . $model->smallimg;
+                }
+            ],
             'name',
             'star',
             [
                 'attribute' => 'id_location',
                 'value' => 'location.name',
+                'filter' => \yii\helpers\ArrayHelper::map(
+                    \app\models\Location::find()->all(), 'name', 'name'
+                ),
+                'options' => [
+                    'width' => '200px'
+                ]
             ],
             'address',
             // 'price',
@@ -72,8 +85,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterOptions' => ['class' => 'sr-only'],
                 'contentOptions' => ['class' => 'sr-only'],
             ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        $url ='/hotel/show-detail/' . $model->id;
 
-            ['class' => 'yii\grid\ActionColumn'],
+                        return $url;
+                    }elseif ($action === 'update') {
+                        $url ='/hotel/update/' . $model->id;
+
+                        return $url;
+                    }else{
+                        $url ='/hotel/delete/' . $model->id;
+
+                        return $url;
+                    }
+                }
+            ],
         ],
     ]); ?>
 

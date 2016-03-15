@@ -35,9 +35,9 @@ class SiteController extends Controller
         // slide small 2
         $slideLately = Slide::find()->where(['position' => 3])->all();
         // tour hot cruises
-        $tourHotCruises = Tour::find()->where(['id_tourtype' => 6, 'hot' => 1])->limit(2)->all();
+        $tourHotCruises = Tour::find()->where(['hot' => 1])->all();
         // tour hot lately
-        $tourHotLately = Tour::find()->where(['hot' => 1])->limit(5)->all();
+        $tourHotLately = Tour::find()->where(['hot' => 2])->all();
         return $this->render('index', [
             'slideCruises' => $slideCruises,
             'slideLately' => $slideLately,

@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>-->
     <?php Pjax::begin(); ?>
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-6">
             <h3 class="text-primary thumb-caption text-center">CREATE NEW TOURTYPE</h3>
             <?= $this->render('_form', [
                 'model' => $model,

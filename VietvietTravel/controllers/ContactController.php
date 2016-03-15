@@ -123,6 +123,7 @@ class ContactController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = "admin";
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

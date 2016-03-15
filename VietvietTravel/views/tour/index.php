@@ -15,6 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tour-index">
     <a id="filter-status" href="" class="sr-only"></a>
 
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Tour', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
     <ul class="tour-head-control">
         <li>
             <p>Tasks</p>
@@ -34,13 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </li>
     </ul>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Tour', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php Pjax::begin() ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -55,6 +54,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 // you may configure additional properties here
             ],
             //'id',
+            [
+                'attribute' => 'smallimg',
+                'format' => 'image',
+                'value' => function($model){
+                    return '@web/images/' . $model->smallimg;
+                }
+            ],
             'name',
             'code',
             [
@@ -94,8 +100,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'sr-only'
                 ]
             ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        $url ='/tour/show-detail/' . $model->id;
 
-            ['class' => 'yii\grid\ActionColumn'],
+                        return $url;
+                    }elseif ($action === 'update') {
+                        $url ='/tour/update/' . $model->id;
+
+                        return $url;
+                    }else{
+                        $url ='/tour/delete/' . $model->id;
+
+                        return $url;
+                    }
+                }
+            ],
         ],
     ]); ?>
     <?php Pjax::end() ?>

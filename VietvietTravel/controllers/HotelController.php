@@ -163,10 +163,10 @@ class HotelController extends Controller
     }
 
     /* show info from hotel*/
-    public function actionShow(){
+    public function actionShow($type){
         $this->layout = "main";
-        $param = Yii::$app->getRequest()->getQueryParam('1');
-        $arr = explode("-", $param);
+        //$param = Yii::$app->getRequest()->getQueryParam('1');
+        $arr = explode("-", $type);
         $model = Location::find()->where(['name' => join(" ", $arr)])->one();
         $provider = new ActiveDataProvider([
             'query' => $model->getHotels(),

@@ -18,7 +18,11 @@ use dosamigos\fileupload\FileUploadUI;
     <div class="margin-top-1">
     <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'position')->textInput() ?>
+    <?= $form->field($model, 'position')->dropDownList([
+        '1' => 'Slide large',
+        '2' => 'Slide small 1',
+        '3' => 'Slide small 2',
+    ], ['prompt' => '---Choose position---']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

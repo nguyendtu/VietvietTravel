@@ -71,6 +71,7 @@ AppAsset::register($this);
                         'dropDownCaret' => '',
                         'items' => [
                             ['label' => 'Info Company', 'url' => ['/infocompany/view', 'id' => 1]],
+                            ['label' => 'SLIDE', 'url' => ['/slide/index']],
                             ['label' => 'TOUR', 'url' => ['/tour/index']],
                             ['label' => 'TOUR TYPE', 'url' => ['/tourtype/index']],
                             ['label' => 'HOTEL', 'url' => ['/hotel/index']],

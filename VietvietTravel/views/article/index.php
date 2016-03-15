@@ -61,7 +61,9 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'hot',
             [
                 'attribute' => 'status',
-                'value' => 'status',
+                'value' => function($model){
+                    return $model->status? "Active" : "Deactive";
+                },
                 'filter' => [
                     '1' => 'Active',
                     '0' => 'Deactive',
