@@ -3,22 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a2a239f7-9ab0-4c5d-a5d3-001cca2b7aa6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/config/web.php" afterPath="$PROJECT_DIR$/VietvietTravel/config/web.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/controllers/ContactController.php" afterPath="$PROJECT_DIR$/VietvietTravel/controllers/ContactController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/controllers/HotelController.php" afterPath="$PROJECT_DIR$/VietvietTravel/controllers/HotelController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/controllers/SiteController.php" afterPath="$PROJECT_DIR$/VietvietTravel/controllers/SiteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/controllers/TourController.php" afterPath="$PROJECT_DIR$/VietvietTravel/controllers/TourController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/controllers/TourtypeController.php" afterPath="$PROJECT_DIR$/VietvietTravel/controllers/TourtypeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/article/index.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/article/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/hotel/index.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/hotel/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/layouts/admin.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/layouts/admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/layouts/main.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/layouts/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/site/index.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/site/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/slide/_form.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/slide/_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/tour/_form.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/tour/_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/controllers/SlideController.php" afterPath="$PROJECT_DIR$/VietvietTravel/controllers/SlideController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/slide/index.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/slide/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/slide/update.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/slide/update.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/tour/index.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/tour/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/tourtype/index.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/tourtype/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VietvietTravel/views/tourtype/update.php" afterPath="$PROJECT_DIR$/VietvietTravel/views/tourtype/update.php" />
     </list>
     <ignored path="VietvietTravel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,127 +31,78 @@
       <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VietvietTravel/views/layouts/admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.461538">
+            <state vertical-scroll-proportion="0.0">
               <caret line="73" column="49" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HotelController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VietvietTravel/controllers/HotelController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.538462">
-              <caret line="309" column="0" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VietvietTravel/views/hotel/index.php">
+        <entry file="file://$PROJECT_DIR$/VietvietTravel/views/slide/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-14.0">
-              <caret line="94" column="52" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
-              <folding>
-                <marker date="1458075307293" expanded="true" signature="3553:5179" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="3598:3967" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="3684:3959" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="3708:3898" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="3771:3884" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="3902:3949" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="3994:4370" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4087:4362" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4111:4301" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4174:4287" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4305:4352" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4404:4647" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4504:4641" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4551:4631" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4694:4784" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="4821:4971" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="5008:5175" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="5057:5098" placeholder="{...}" />
-                <marker date="1458075307293" expanded="true" signature="5102:5140" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VietvietTravel/views/article/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.423077">
-              <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
-              <folding>
-                <marker date="1458075408446" expanded="true" signature="2336:2974" placeholder="{...}" />
-                <marker date="1458075408446" expanded="true" signature="2380:2760" placeholder="{...}" />
-                <marker date="1458075408446" expanded="true" signature="2477:2752" placeholder="{...}" />
-                <marker date="1458075408446" expanded="true" signature="2501:2691" placeholder="{...}" />
-                <marker date="1458075408446" expanded="true" signature="2564:2677" placeholder="{...}" />
-                <marker date="1458075408446" expanded="true" signature="2695:2742" placeholder="{...}" />
-                <marker date="1458075408446" expanded="true" signature="2808:2871" placeholder="{...}" />
-                <marker date="1458075408446" expanded="true" signature="2916:2970" placeholder="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContactController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/VietvietTravel/controllers/ContactController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25176057">
-              <caret line="125" column="32" selection-start-line="125" selection-start-column="32" selection-end-line="125" selection-end-column="32" />
+              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SlideController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VietvietTravel/controllers/SlideController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.653846">
+              <caret line="111" column="40" selection-start-line="111" selection-start-column="40" selection-end-line="111" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="update.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VietvietTravel/views/slide/update.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.769231">
+              <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/VietvietTravel/views/tour/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.307693">
-              <caret line="119" column="14" selection-start-line="102" selection-start-column="12" selection-end-line="119" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.89788735">
+              <caret line="124" column="17" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
               <folding>
-                <marker date="1458075303772" expanded="true" signature="4018:5611" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4063:4432" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4148:4424" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4172:4363" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4235:4348" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4367:4414" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4458:4832" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4549:4824" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4573:4763" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4636:4749" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4767:4814" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4866:5109" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="4966:5103" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="5013:5093" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="5156:5219" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="5256:5404" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="5441:5607" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="5490:5531" placeholder="{...}" />
-                <marker date="1458075303772" expanded="true" signature="5535:5572" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4361:5954" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4406:4775" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4491:4767" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4515:4706" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4578:4691" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4710:4757" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4801:5175" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4892:5167" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4916:5106" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="4979:5092" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5110:5157" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5209:5452" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5309:5446" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5356:5436" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5499:5562" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5599:5747" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5784:5950" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5833:5874" placeholder="{...}" />
+                <marker date="1458190345004" expanded="true" signature="5878:5915" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TourController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VietvietTravel/controllers/TourController.php">
+      <file leaf-file-name="BaseHtml.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VietvietTravel/vendor/yiisoft/yii2/helpers/BaseHtml.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.423077">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VietvietTravel/config/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.807693">
-              <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
+            <state vertical-scroll-proportion="-15.038462">
+              <caret line="381" column="55" selection-start-line="381" selection-start-column="55" selection-end-line="381" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -185,9 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/Desktop/index.html" />
-        <option value="$PROJECT_DIR$/VietvietTravel/web/css/jstree.style.css" />
-        <option value="$PROJECT_DIR$/VietvietTravel/composer.json" />
         <option value="$PROJECT_DIR$/VietvietTravel/models/BooktourSearch.php" />
         <option value="$PROJECT_DIR$/VietvietTravel/views/tourtype/create.php" />
         <option value="$PROJECT_DIR$/VietvietTravel/views/booktour/index.php" />
@@ -232,10 +168,13 @@
         <option value="$PROJECT_DIR$/VietvietTravel/controllers/TourtypeController.php" />
         <option value="$PROJECT_DIR$/VietvietTravel/config/web.php" />
         <option value="$PROJECT_DIR$/VietvietTravel/views/tour/_form.php" />
-        <option value="$PROJECT_DIR$/VietvietTravel/views/tour/index.php" />
         <option value="$PROJECT_DIR$/VietvietTravel/views/hotel/index.php" />
         <option value="$PROJECT_DIR$/VietvietTravel/views/article/index.php" />
         <option value="$PROJECT_DIR$/VietvietTravel/controllers/ContactController.php" />
+        <option value="$PROJECT_DIR$/VietvietTravel/views/slide/index.php" />
+        <option value="$PROJECT_DIR$/VietvietTravel/controllers/SlideController.php" />
+        <option value="$PROJECT_DIR$/VietvietTravel/views/slide/update.php" />
+        <option value="$PROJECT_DIR$/VietvietTravel/views/tour/index.php" />
       </list>
     </option>
   </component>
@@ -279,7 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -371,7 +309,125 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="slide" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="contact" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yiisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yiisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VietvietTravel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vendor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yiisoft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="yii2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -431,6 +487,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -515,7 +572,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35325265" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22390318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -565,34 +622,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/VietvietTravel/assets/AppAsset.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.307692">
-          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/visadetail/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029929578">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/visa/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="93" column="67" selection-start-line="93" selection-start-column="67" selection-end-line="93" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/visadetail/visadetail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VietvietTravel/views/infocompany/view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.029929578">
@@ -700,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="876" column="6" selection-start-line="876" selection-start-column="4" selection-end-line="876" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -708,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="73" selection-start-line="16" selection-start-column="73" selection-end-line="16" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -744,10 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="77" column="16" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="16" />
-          <folding>
-            <marker date="1457154718881" expanded="true" signature="3075:3355" placeholder="{...}" />
-            <marker date="1457154718881" expanded="true" signature="3208:3339" placeholder="{&quot;autoplay&quot;: 3000...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -755,12 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.6923077">
           <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
-          <folding>
-            <element signature="e#7#28#0#PHP" expanded="false" />
-            <marker date="1457057577506" expanded="true" signature="8479:8509" placeholder="{...}" />
-            <marker date="1457057577506" expanded="true" signature="8705:11265" placeholder="{...}" />
-            <marker date="1457057577506" expanded="true" signature="8732:11259" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -768,7 +785,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -776,7 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36619717">
           <caret line="86" column="7" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -784,7 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.346154">
           <caret line="35" column="32" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -792,7 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.5384617">
           <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -800,7 +813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2693662">
           <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -808,7 +820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -816,7 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5809859">
           <caret line="33" column="71" selection-start-line="33" selection-start-column="71" selection-end-line="33" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -824,7 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.230769">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -832,7 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.692307">
           <caret line="30" column="28" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,7 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.769231">
           <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -848,7 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.769231">
           <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -856,35 +862,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4324853">
           <caret line="125" column="34" selection-start-line="125" selection-start-column="34" selection-end-line="125" selection-end-column="34" />
-          <folding>
-            <marker date="1458065332513" expanded="true" signature="5451:5498" placeholder="select count... tour" />
-            <marker date="1458065332513" expanded="true" signature="5602:6052" placeholder="..." />
-            <marker date="1458065332513" expanded="true" signature="5663:5731" placeholder="..." />
-            <marker date="1458065332513" expanded="true" signature="5794:5860" placeholder="..." />
-            <marker date="1458065332513" expanded="true" signature="5980:6045" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VietvietTravel/config/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693">
+        <state vertical-scroll-proportion="0.0">
           <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/slide/_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47887325">
-          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VietvietTravel/views/layouts/admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538">
+        <state vertical-scroll-proportion="0.0">
           <caret line="73" column="49" selection-start-line="73" selection-start-column="49" selection-end-line="73" selection-end-column="49" />
           <folding />
         </state>
@@ -894,13 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.94014084">
           <caret line="164" column="9" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
-          <folding>
-            <marker date="1458074371027" expanded="true" signature="1801:1835" placeholder="..." />
-            <marker date="1458074371027" expanded="true" signature="1939:1977" placeholder="..." />
-            <marker date="1458074371027" expanded="true" signature="8071:8101" placeholder="{...}" />
-            <marker date="1458074371027" expanded="true" signature="8296:10855" placeholder="{...}" />
-            <marker date="1458074371027" expanded="true" signature="8323:10849" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -908,7 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.94014084">
           <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -916,13 +899,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.94014084">
           <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VietvietTravel/controllers/TourController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077">
+        <state vertical-scroll-proportion="0.0">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
@@ -930,7 +912,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VietvietTravel/controllers/HotelController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.538462">
+        <state vertical-scroll-proportion="0.0">
           <caret line="309" column="0" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
           <folding />
         </state>
@@ -940,41 +922,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.79049295">
           <caret line="75" column="27" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/tour/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.307693">
-          <caret line="119" column="14" selection-start-line="102" selection-start-column="12" selection-end-line="119" selection-end-column="14" />
-          <folding>
-            <marker date="1458075303772" expanded="true" signature="4018:5611" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4063:4432" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4148:4424" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4172:4363" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4235:4348" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4367:4414" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4458:4832" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4549:4824" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4573:4763" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4636:4749" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4767:4814" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4866:5109" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="4966:5103" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="5013:5093" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="5156:5219" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="5256:5404" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="5441:5607" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="5490:5531" placeholder="{...}" />
-            <marker date="1458075303772" expanded="true" signature="5535:5572" placeholder="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VietvietTravel/views/hotel/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="94" column="52" selection-start-line="94" selection-start-column="52" selection-end-line="94" selection-end-column="52" />
           <folding>
             <marker date="1458075307293" expanded="true" signature="3553:5179" placeholder="{...}" />
@@ -1002,7 +955,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VietvietTravel/views/article/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077">
+        <state vertical-scroll-proportion="0.0">
           <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
           <folding>
             <marker date="1458075408446" expanded="true" signature="2336:2974" placeholder="{...}" />
@@ -1019,9 +972,77 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VietvietTravel/controllers/ContactController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25176057">
-          <caret line="125" column="32" selection-start-line="125" selection-start-column="32" selection-end-line="125" selection-end-column="32" />
+        <state vertical-scroll-proportion="-9.230769">
+          <caret line="130" column="16" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/slide/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.0">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/slide/_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.961538">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VietvietTravel/controllers/SlideController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.653846">
+          <caret line="111" column="40" selection-start-line="111" selection-start-column="40" selection-end-line="111" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/slide/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.769231">
+          <caret line="18" column="14" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VietvietTravel/vendor/yiisoft/yii2/helpers/BaseHtml.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462">
+          <caret line="381" column="55" selection-start-line="381" selection-start-column="55" selection-end-line="381" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VietvietTravel/views/tour/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.89788735">
+          <caret line="124" column="17" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="17" />
+          <folding>
+            <marker date="1458190345004" expanded="true" signature="4361:5954" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4406:4775" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4491:4767" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4515:4706" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4578:4691" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4710:4757" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4801:5175" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4892:5167" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4916:5106" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="4979:5092" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5110:5157" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5209:5452" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5309:5446" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5356:5436" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5499:5562" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5599:5747" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5784:5950" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5833:5874" placeholder="{...}" />
+            <marker date="1458190345004" expanded="true" signature="5878:5915" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

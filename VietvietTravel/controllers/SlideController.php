@@ -102,12 +102,14 @@ class SlideController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $smallimg = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'smallimg' => $smallimg,
             ]);
         }
     }

@@ -25,8 +25,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'image',
+            // 'id',
+            [
+                'attribute' => 'image',
+                'format' => 'image',
+                'options' => [
+                    'width' => '200px',
+                    'height' => '200px',
+                ],
+                'value' => function($model){
+                    return '@web/images/' . $model->image;
+                }
+            ],
             'link',
             'position',
 

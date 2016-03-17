@@ -102,6 +102,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
+                /*'buttons' => [
+                    'view' => function ($url, $model, $key) {
+                        $url = '/tour/show-detail/' . $model->id;
+                        return Html::a(Html::tag('span', '', ['class' => 'glyphicon glyphicon-eye-open']), $url, ['target' => '_blank']);
+                    },
+                ],*/
                 'urlCreator' => function ($action, $model, $key, $index) {
                     if ($action === 'view') {
                         $url ='/tour/show-detail/' . $model->id;
