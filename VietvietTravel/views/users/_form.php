@@ -28,9 +28,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'regdate')->textInput() ?>
 
-    <?= $form->field($model, 'authKey')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'authKey', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'accessToken')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'accessToken', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

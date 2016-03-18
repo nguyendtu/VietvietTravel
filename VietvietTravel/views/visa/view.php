@@ -11,13 +11,6 @@ $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Visas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-$visaDetails = \app\models\Visadetail::find()->where(['id_visa' => $model->id]);
-$provider = new \yii\data\ActiveDataProvider([
-    'query' => $visaDetails,
-    'pagination' => [
-        'pageSize' => 20,
-    ],
-]);
 ?>
 <div class="visa-view">
 

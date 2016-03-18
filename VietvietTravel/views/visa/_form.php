@@ -7,25 +7,13 @@ use kartik\date\DatePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\Visa */
 /* @var $form yii\widgets\ActiveForm */
-if(isset($_GET['num'])) {
-    $num = $_GET['num'];
-    $js = <<<JS
-    var b = $('#visa-numapply').find($('option'));
-    for(var i = 0; i < b.length; i++){
-        if(b[i].value == $num){
-            b[i].selected = "selected";
-        }
-        console.log(b[i].value);
-    }
-JS;
-//    $this->registerJs($js);
-}
+
 ?>
 
 <div class="visa-form">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['visa/create'],
+        //'action' => ['visa/create'],
         //'enableClientValidation' => false,
         'options' => [
             'class' => 'form-horizontal',
@@ -88,6 +76,7 @@ JS;
     <?= $this->render('../visadetail/visadetail', [
         'visaDetails' => $visaDetails,
         'form' => $form,
+        'id' => $model->id,
     ]) ?>
     <?php Pjax::end() ?>
 

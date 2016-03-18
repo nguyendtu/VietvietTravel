@@ -59,6 +59,7 @@ $config = [
             'enablePrettyUrl' => true,
             'rules' => array(
                 '<controller:[\w-]+>s' => '<controller>/create',
+                '<controller:[\w-]+>s/update/<id:\d+>' => '<controller>/update',
                 '<controller:[\w-]+>s/index' => '<controller>/index',
                 '<controller:[\w-]+>s/<id:\d+>' => '<controller>/view',
                 '<controller:[\w-]+>s/export' => '<controller>/export',

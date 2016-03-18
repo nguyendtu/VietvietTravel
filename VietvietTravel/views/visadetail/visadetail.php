@@ -4,9 +4,13 @@ use kartik\date\DatePicker;
 ?>
 
 <!-- visa detail info -->
-<?= Html::a('change num apply', ['visa/create', 'num' => ''], ['id' => 'change_num_appply', 'class' => 'sr-only']) ?>
+<?php if(isset($id)) { ?>
+<?= Html::a('change num apply', ['visa/update', 'id' => $id, 'num' => ''], ['id' => 'change_num_appply', 'class' => 'sr-only']) ?>
+<?php } else{ ?>
+    <?= Html::a('change num apply', ['visa/create', 'num' => ''], ['id' => 'change_num_appply', 'class' => 'sr-only']) ?>
+<?php } ?>
 <?php $i = 1; foreach($visaDetails as $visaDetail){ ?>
-    <img src="images/person.png" alt="Person" style="width: 100px">
+    <img src="/images/person.png" alt="Person" style="width: 100px">
     <div class="visa-detail">
         <?= $form->field($visaDetail, '[' .$i . ']fullname', [
             'template' => "{label}\n<div class=\"col-md-2\"><select name='genderName' id='' class=\"form-control\">
@@ -16,9 +20,9 @@ use kartik\date\DatePicker;
 </select></div><div class=\"col-md-5\" >\n{input}\n</div><div class=\"col-md-3\">\n{hint}\n{error}</div>",
         ])->textInput(['maxlength' => true])->hint("*") ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']nation')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']nation')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']idpassport')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']idpassport')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($visaDetail, '[' .$i . ']birthday')->widget(DatePicker::className(),[
             'name' => 'depdate',
@@ -42,7 +46,7 @@ use kartik\date\DatePicker;
             ]
         ]) ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']flightdetail')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']flightdetail')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($visaDetail, '[' .$i . ']arrivaldate')->widget(DatePicker::className(),[
             'name' => 'depdate',
@@ -66,9 +70,9 @@ use kartik\date\DatePicker;
             ]
         ]) ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']portarrival')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']portarrival')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($visaDetail, '[' .$i . ']purposevisit')->textInput() ?>
+        <?= $form->field($visaDetail, '[' .$i . ']purposevisit')->textInput(['maxlength' => true]) ?>
 
     </div>
     <?php $i++; } ?>

@@ -88,8 +88,17 @@ class VisaController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $visaDetails = \app\models\Visadetail::find()->where(['id_visa' => $model->id]);
+        $provider = new \yii\data\ActiveDataProvider([
+            'query' => $visaDetails,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'provider' => $provider,
         ]);
     }
 
@@ -162,15 +171,45 @@ class VisaController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $num = 0)
     {
         $model = $this->findModel($id);
+        $visaDetails = \app\models\Visadetail::find()->where(['id_visa' => $model->id])->all();
 
+        //$visaDetails = [];
+
+        $numApply = $num != 0 ? $num : count($visaDetails);
+
+        for($i = count($visaDetails); $i < $numApply; $i++){
+            $visaDetails[] = new Visadetail();
+        }
+
+        /*$provider = new \yii\data\ActiveDataProvider([
+            'query' => $visaDetails,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);*/
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $visaId = $model->id;
+            if (isset($_POST['Visadetail'])) {
+                foreach ($_POST['Visadetail'] as $index => $arr) {
+                    foreach ($arr as $i => $val) {
+                        $visaDetails[$index - 1][$i] = $val;
+                    }
+                    $visaDetails[$index - 1]['id_visa'] = $visaId;
+                }
+                foreach ($visaDetails as $visaDetail) {
+                    if ($visaDetail->save()) {
+
+                    }
+                }
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'visaDetails' => $visaDetails,
             ]);
         }
     }

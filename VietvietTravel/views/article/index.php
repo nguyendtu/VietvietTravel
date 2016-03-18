@@ -61,6 +61,9 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'hot',
             [
                 'attribute' => 'status',
+                'options' => [
+                    'width' => '150px',
+                ],
                 'value' => function($model){
                     return $model->status? "Active" : "Deactive";
                 },
