@@ -64,11 +64,11 @@ $config = [
                 '<controller:[\w-]+>s/<id:\d+>' => '<controller>/view',
                 '<controller:[\w-]+>s/export' => '<controller>/export',
                 //'<controller:[\w-]+>s>/<action:\w+>' => '<controller>/<action>',
+                '<controller:article>/<action:[\w-]+>' => '<controller>/<action>',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<type:[\w-]+>' => '<controller>/show',
                 '<controller:\w+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-
-                '<controller:\w+>/<type:[\w-]+>' => '<controller>/show',
             ),
         ],
     ],

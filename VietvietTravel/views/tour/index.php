@@ -101,6 +101,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ],
             [
+                'attribute' => 'hot',
+                'value' => function($model){
+                    $hot = [
+                        '0' => 'Không hot',
+                        '1' => 'Vị trí trên',
+                        '2' => 'Vị trí dưới',
+                    ];
+
+                    return $hot[$model->hot];
+                }
+            ],
+            [
                 'class' => 'yii\grid\ActionColumn',
                 /*'buttons' => [
                     'view' => function ($url, $model, $key) {
