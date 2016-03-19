@@ -19,6 +19,10 @@ $slides = Slide::find()->where(['position' => '1'])->all();
 $article = Article::find()->where(['type' => '101'])->all();
 /* select article services */
 $articleService = Article::find()->where(['type' => "100"])->all();
+$services = [];
+for($i = 0; $i < count($articleService); $i++) {
+    $services[] = ['label' => $articleService[$i]->title, 'url' => ['article/detail', 'title' => $articleService[$i]->title]];
+}
 $this->title = $info->name;
 ?>
 
@@ -132,13 +136,7 @@ $this->title = $info->name;
                     ['label' => 'TOUR DIARY', 'url' => ['/article/tour']],
                     [
                         'label' => 'TRAVEL SERVICES',
-                        'items' => [
-                            ['label' => 'Booking Flight ticket', 'url' => ['article/detail', 'title' => 'Booking Flight ticket']],
-                            ['label' => 'Booking train ticket', 'url' => ['article/detail', 'title' => 'Booking train ticket']],
-                            ['label' => 'Car for rent', 'url' => ['article/detail', 'title' => 'Car for rent']],
-                            ['label' => 'Moto bike for rent', 'url' => ['article/detail', 'title' => 'Moto bike for rent']],
-                            ['label' => 'Bicycle for rent', 'url' => ['article/detail', 'title' => 'Bicycle for rent']],
-                        ],
+                        'items' => $services
                     ],
                 ],
             ]);
