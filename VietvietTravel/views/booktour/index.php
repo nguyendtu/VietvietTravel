@@ -24,6 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => [
+            'width' => '10%',
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -37,18 +40,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'phone',
             // 'nation',
-            'nadults',
+            [
+                'attribute' => 'nadults',
+                'options' => [
+                    'width' => '5%',
+                ],
+            ],
             // 'listname',
             // 'child',
             // 'childinfo:ntext',
             // 'depdate',
             // 'idea:ntext',
-            [
-                'attribute' => 'idea',
-                'value' => 'idea',
-                'label' => 'Idea',
-                'format' => 'ntext',
-            ],
             // 'visa',
             // 'usebefore',
             // 'reciveinfo',

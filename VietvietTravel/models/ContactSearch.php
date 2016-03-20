@@ -45,6 +45,11 @@ class ContactSearch extends Contact
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'regdate' => SORT_DESC,
+                ]
+            ]
         ]);
 
         $this->load($params);

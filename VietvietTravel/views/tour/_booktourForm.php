@@ -7,7 +7,7 @@ use kartik\date\DatePicker;
 <div class="booktour-form">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['booktour/book-tour'],
+        'action' => ['booktour/booktour'],
         'options' => [
             'class' => 'form-horizontal',
             'id' => 'book_tour',

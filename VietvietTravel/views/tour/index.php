@@ -44,6 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'options' => [
+            'width' => '10%'
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
@@ -53,16 +56,30 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
                 // you may configure additional properties here
             ],
-            //'id',
+            [
+                'attribute' => 'code',
+                'options' => [
+                    'width' => '5%',
+                ]
+            ],
             [
                 'attribute' => 'smallimg',
                 'format' => 'image',
+                'options' => [
+                    'width' => '100px',
+                    'height' => '100px',
+                ],
                 'value' => function($model){
                     return '@web/images/' . $model->smallimg;
                 }
             ],
-            'name',
-            'code',
+            [
+                'attribute' => 'name',
+                'format' => 'html',
+                'value' => function($model){
+                    return Html::a('' . $model->name, ['tour/show-detail/' . $model->id]);
+                }
+            ],
             [
                 'attribute' => 'id_tourtype',
                 'value' => 'tourtype.name',
@@ -73,7 +90,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'width' => '200px'
                 ]
             ],
-            'length',
+            [
+                'attribute' => 'length',
+                'options' => [
+                    'width' => '3%'
+                ],
+            ],
             'startfrom',
             'keyword',
             // 'price',
@@ -82,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'smallimg',
             // 'largeimg',
             // 'regdate',
-            'editdate',
+            // 'editdate',
             // 'hot',
             // 'status',
             [

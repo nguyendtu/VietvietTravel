@@ -40,15 +40,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'format' => 'image',
                 'options' => [
-                    'width' => '100px',
+                    'width' => '17%',
                 ]
             ],
-            'title',
+            [
+                'attribute' => 'title',
+                'content' => function($model){
+                    return Html::a(''. $model->title, ['/article/detail', 'title' => $model->title]);
+                },
+                'options' => [
+                    'width' => '20%',
+                ]
+            ],
             [
                 'attribute' => 'type',
                 'value' => 'tourtype.name',
                 'options' => [
-                    'width' => '200px',
+                    'width' => '15%',
                 ],
                 'filter' => \yii\helpers\ArrayHelper::map(\app\models\Tourtype::find()->all(), 'id', 'name'),
             ],
@@ -72,8 +80,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     '0' => 'Deactive',
                 ]
             ],
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'attribute' => 'hot',
+                'options' => [
+                    'width' => '7%',
+                ],
+                'value' => function($model){
+                    return $model->hot == 1 ? 'Hot' : '';
+                }
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'options' => [
+                    'width' => '7%',
+                ]
+            ],
         ],
     ]); ?>
 

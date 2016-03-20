@@ -22,6 +22,7 @@ use kartik\date\DatePicker;
         ],
 
     ]); ?>
+    <?= $form->field($model, 'id_tour', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true]) ?>
     <h4>Contact Information</h4>
     <?= $form->field($model, 'fullname', [
         'template' => "{label}\n<div class=\"col-md-2\"><select name='genderName' id='' class=\"form-control\">

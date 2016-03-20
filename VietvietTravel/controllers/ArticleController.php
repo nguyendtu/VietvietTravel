@@ -40,7 +40,7 @@ class ArticleController extends Controller
                 //'only' => [],
                 'rules' => [
                     [
-                        'actions' => ['tour', 'detail', 'about-us', 'set-model'],
+                        'actions' => ['tour', 'detail', 'aboutus', 'set-model'],
                         'allow' => true,
                         'roles' => [
                             '?',
@@ -165,11 +165,13 @@ class ArticleController extends Controller
     public function actionDetail($id = 0, $title = ""){
         $this->layout = "main";
 
-        if($id) {
+        if($id != 0) {
             $model = Article::find()->where(['id' => $id])->one();
         }else{
+            $title = implode(" ", explode("-", $title));
             $model = Article::find()->where(['title' => $title])->one();
         }
+
 
         return $this->render("detail", [
             'model' => $model,
@@ -179,7 +181,7 @@ class ArticleController extends Controller
     /**
      * show article about us
      */
-    public function actionAboutUs(){
+    public function actionAboutus(){
         $this->layout = "main";
 
         $model = Article::find()->where(['type' => 102])->one();

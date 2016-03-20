@@ -59,7 +59,7 @@ $tourtype = $model->tourtype;
                                 BOOK THIS TOUR
                             </button>
                         </div>
-                        <div class="fb-like" data-href="http://localhost/VietvietTravel/VietvietTravel/web/index.php?r=tour%2Fshow-detail&id=<?php echo $model->id ?>" data-width="100" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                        <div class="fb-like" data-href="http://viettravel.dev/tour/show-detail/<?php echo $model->id ?>" data-width="100" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                     </div>
                 </div>
                 <p><?php echo $model->detailinfo ?></p>

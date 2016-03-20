@@ -45,6 +45,11 @@ class BooktourSearch extends Booktour
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'depdate' => SORT_DESC,
+                ]
+            ]
         ]);
 
         $this->load($params);

@@ -41,7 +41,7 @@ class ContactController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['create', 'update', 'view'],
+                        'actions' => ['create', 'update', 'view', 'update-status'],
                         'allow' => true,
                         'roles' => [
                             User::ROLE_ADMIN,
@@ -133,6 +133,28 @@ class ContactController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionUpdateStatus($id)
+    {
+        $this->layout = "admin";
+        $model = $this->findModel($id);
+        if($model->status){
+            $model->status = 0;
+        }else{
+            $model->status = 1;
+        }
+        $model->save();
+
+        $searchModel = new ContactSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        //return $this->goBack();
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

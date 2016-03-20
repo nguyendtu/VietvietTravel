@@ -63,8 +63,15 @@ $config = [
                 '<controller:[\w-]+>s/index' => '<controller>/index',
                 '<controller:[\w-]+>s/<id:\d+>' => '<controller>/view',
                 '<controller:[\w-]+>s/export' => '<controller>/export',
+                '<controller:[\w-]+>s/update-status/<id:\d+>' => '<controller>/update-status',
+
                 //'<controller:[\w-]+>s>/<action:\w+>' => '<controller>/<action>',
-                '<controller:article>/<action:[\w-]+>' => '<controller>/<action>',
+                '<controller:booktour>/<action:[\w-]+>' => '<controller>/<action>',
+                '<controller:article>/<action:[\w]+>' => '<controller>/<action>',
+                '<controller:article>/<title:[\w-]+>' => '<controller>/detail',
+                '<controller:contact>/<action:\w+>' => '<controller>/<action>',
+                '<controller:contact>/<id:\d+>' => '<controller>/<action>',
+
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<type:[\w-]+>' => '<controller>/show',
                 '<controller:\w+>/<action:[\w-]+>/<id:\d+>' => '<controller>/<action>',

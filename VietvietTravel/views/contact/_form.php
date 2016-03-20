@@ -12,6 +12,7 @@ use kartik\date\DatePicker;
 <div class="contact-form">
 
     <?php $form = ActiveForm::begin([
+        'action' => '/contact/create',
         'options' => [
             'class' => 'form-horizontal',
             'id' => 'book_tour',
@@ -67,18 +68,9 @@ use kartik\date\DatePicker;
         "Others" => "Others",
     ]) ?>
 
-    <?= $form->field($model, 'regdate')->widget(DatePicker::className(), [
-        'name' => 'regdate',
-        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => date('d-m-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-    ]) ?>
+    <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status', ['options' => ['class' => 'sr-only']])->textInput(['value' => 0]) ?>
 
     <div class="form-group">
         <div class="row">

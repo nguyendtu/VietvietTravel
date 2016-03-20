@@ -16,12 +16,12 @@ $info = Infocompany::find()->one();
 /* select slide */
 $slides = Slide::find()->where(['position' => '1'])->all();
 /* select article*/
-$article = Article::find()->where(['type' => '101'])->all();
+$article = Article::find()->where(['hot' => '1'])->all();
 /* select article services */
 $articleService = Article::find()->where(['type' => "100"])->all();
 $services = [];
 for($i = 0; $i < count($articleService); $i++) {
-    $services[] = ['label' => $articleService[$i]->title, 'url' => ['article/detail', 'title' => $articleService[$i]->title]];
+    $services[] = ['label' => $articleService[$i]->title, 'url' => ['article/' . implode('-', explode(' ', $articleService[$i]->title))]];
 }
 $this->title = $info->name;
 ?>
@@ -97,7 +97,7 @@ $this->title = $info->name;
                 'dropDownCaret' => '',
                 'items' => [
                     ['label' => 'HOME', 'url' => ['/site/index']],
-                    ['label' => 'ABOUT US', 'url' => ['/article/about-us']],
+                    ['label' => 'ABOUT US', 'url' => ['/article/aboutus']],
                     [
                         'label' => 'BICYCLE TOUR',
                         'items' => [

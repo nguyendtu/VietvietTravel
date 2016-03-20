@@ -47,12 +47,15 @@ use dosamigos\fileupload\FileUploadUI;
     <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <div class="margin-top-1">
-    <?= $form->field($model, 'id_user')->textInput() ?>
+    <?= $form->field($model, 'id_user', ['options' => ['class' => 'sr-only']])->textInput() ?>
     <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList([
+        '1' => 'Active',
+        '0' => 'DeActive',
+    ]) ?>
 
     <div class="form-group">
         <label for="" class="label-control col-sm-3"></label>
@@ -65,7 +68,7 @@ use dosamigos\fileupload\FileUploadUI;
 
 </div>
 
-<div class="smallUpload">
+<div class="smallUpload" style="top: -755px;">
     <?= FileUploadUI::widget([
         'model' => $small,
         'attribute' => 'fileUpload',

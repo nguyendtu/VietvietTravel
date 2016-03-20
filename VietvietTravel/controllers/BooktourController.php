@@ -38,7 +38,7 @@ class BooktourController extends Controller
                 //'only' => [],
                 'rules' => [
                     [
-                        'actions' => ['book-tour'],
+                        'actions' => ['booktour'],
                         'allow' => true,
                         'roles' => [
                             '?',
@@ -130,7 +130,7 @@ class BooktourController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionBookTour()
+    public function actionBooktour()
     {
         $model = new Booktour();
         if($model->load(Yii::$app->request->post())){

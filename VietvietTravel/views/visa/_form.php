@@ -82,7 +82,7 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status', ['options' => ['class' => 'sr-only']])->textInput(['value' => 0]) ?>
 
     <h4>Additional Information</h4>
 

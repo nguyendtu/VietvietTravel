@@ -22,7 +22,7 @@ $tour = $model;
         </div>
         <div class="col-md-7">
             <div class="caption">
-                <h4><?php echo $tour->name ?></h4>
+                <h4><a href="<?= \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>"><?php echo $tour->name ?></a></h4>
                 <p><?php echo $tour->briefinfo ?></p>
                 <ul class="tour-info inline text-right">
                     <li class="details">
