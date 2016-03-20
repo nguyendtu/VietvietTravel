@@ -24,13 +24,16 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList([
+        '1' => 'Active',
+        '0' => 'DeActive',
+    ]) ?>
 
-    <?= $form->field($model, 'regdate')->textInput() ?>
+    <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
 
-    <?= $form->field($model, 'authKey', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'authKey', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true, 'value' => 'authKey']) ?>
 
-    <?= $form->field($model, 'accessToken', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'accessToken', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true, 'value' => 'accessToken']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

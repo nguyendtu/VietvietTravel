@@ -28,22 +28,8 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'regdate')->widget(DatePicker::className(), [
-        'name' => 'regdate',
-        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => date('d-m-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-    ]) ?>
-
-    <?= $form->field($model, 'editdate', ['options' =>['class' => 'sr-only']])->textInput([
-        'value' => date('d-m-Y'),
-        'placeholder' => date('d-m-Y'),
-        'class' => 'sr-only'
-    ]) ?>
+    <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
+    <?= $form->field($model, 'editdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
 
     <?= $form->field($model, 'hot')->dropDownList([
         '0' => 'Không hot',
@@ -51,7 +37,10 @@ use kartik\date\DatePicker;
         '2' => 'Vị trí dưới',
     ], ['prompt' => '---Chọn vị trí---']) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList([
+        '1' => 'Active',
+        '0' => 'DeActive',
+    ]) ?>
 
     <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
@@ -143,6 +132,8 @@ use kartik\date\DatePicker;
                                 }',
             'fileuploaddestroy' => 'function(e, data){
                                     var name = data.url.substr(data.url.lastIndexOf("=") + 1, data.url.length);
+                                    name = name.split("/");
+                                    name = name[name.length - 1];
                                     var largeimg = document.getElementById("tour-largeimg");
                                     largeimg.value = largeimg.value.replace(name, "");
                                 }',
@@ -197,7 +188,7 @@ var td2 = document.createElement("td");
     var btn = document.createElement("button");
     btn.setAttribute("class", "btn btn-danger delete");
     btn.setAttribute("data-type", "POST");
-    btn.setAttribute("data-url", temp + "&name=" + name);
+    btn.setAttribute("data-url", temp + "/" + name);
 
     var iInBtn = document.createElement('i');
     iInBtn.setAttribute("class", "glyphicon glyphicon-trash");
@@ -271,7 +262,7 @@ $js = <<<JS
         var btn = document.createElement("button");
         btn.setAttribute("class", "btn btn-danger delete");
         btn.setAttribute("data-type", "POST");
-        btn.setAttribute("data-url", temp + "&name=" + name[index]);
+        btn.setAttribute("data-url", temp + "/" + name[index]);
 
         var iInBtn = document.createElement('i');
         iInBtn.setAttribute("class", "glyphicon glyphicon-trash");

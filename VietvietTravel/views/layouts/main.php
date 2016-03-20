@@ -95,6 +95,7 @@ $this->title = $info->name;
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav'],
                 'dropDownCaret' => '',
+                'activateParents' => true,
                 'items' => [
                     ['label' => 'HOME', 'url' => ['/site/index']],
                     ['label' => 'ABOUT US', 'url' => ['/article/aboutus']],

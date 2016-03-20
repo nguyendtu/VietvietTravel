@@ -50,7 +50,13 @@ $tourtype = $model->tourtype;
                                 <?php if(isset($model->keyword)){ ?>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Keyword:  <?= $model->keyword ?></p>
+                                    <p>Keyword:
+                                        <?php foreach(explode(",", $model->keyword) as $item){
+                                            echo Html::a($item, ['/tour/search?keyWord=' . trim($item)], ['display' => 'inline-block']);
+                                        } ?>
+
+                                    </p>
+
                                 </li>
                                 <?php } ?>
                             </ul>

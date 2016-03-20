@@ -254,10 +254,6 @@ class ArticleController extends Controller
     public function actionDeleteMultiArticle(){
         $id = [];
         $keys = $_POST['keys'];
-        echo "<pre>";
-        print_r($keys);
-        echo "</pre>";
-        exit;
         if(!empty($keys)){
             foreach($keys as $key => $value){
                 array_push($id, $value);

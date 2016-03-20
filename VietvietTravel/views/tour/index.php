@@ -173,7 +173,7 @@ $js = <<<JS
 $(document).ready(function(){
     var keys;
     function gotoRecycleBin(){
-        $.post('index.php?r=tour/recycle-bin', {keys: keys}, function(data, status){
+        $.post('/tour/recycle-bin', {keys: keys}, function(data, status){
             if(status){
                 for(var iKey = 0; iKey < keys.length; iKey++){
                     $("#w1").find("[ data-key=" + keys[iKey] + "]").attr("class", "sr-only");
@@ -185,7 +185,7 @@ $(document).ready(function(){
         });
     }
     function deleteTour(){
-        $.post('index.php?r=tour/delete-multi-tour', {keys: keys}, function(data, status){
+        $.post('/tour/delete-multi-tour', {keys: keys}, function(data, status){
             if(status){
                 for(var iKey = 0; iKey < keys.length; iKey++){
                     $("#w1").find("[ data-key=" + keys[iKey] + "]").attr("class", "sr-only");
@@ -195,17 +195,10 @@ $(document).ready(function(){
             }
         });
     }
-
-    if(typeof '$status' != null){
-        var options = $('#status').find('option');
-        for(var i = 0; i < options.length; i++){
-            if(options[i].value == '$status'){
-                options[i].setAttribute("selected", "selected");
-            }
-        }
-    }
-    $('[name="selection[]"]').click(function(){
+    $('.tour-index').on('click', '[name="selection[]"]', function(){
         keys = $('#w1').yiiGridView('getSelectedRows');
+        console.log(keys);
+        console.log("select");
     });
     $('#status').change(function(){
         $('[name="TourSearch[status]"]').val(event.target.value).change();

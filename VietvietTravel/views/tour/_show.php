@@ -28,14 +28,14 @@ $tour = $model;
                     <li class="details">
                         <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]); ?>">Details</a>
                     </li>
-                    <li class="enquire" data-toggle="modal" data-target="#book_tour">
+                    <li class="enquire" data-toggle="modal" data-target="#book_tour_<?= $tour->id?>">
                         <span class="glyphicon glyphicon-circle-arrow-right"></span>
                         ENQUIRE NOW
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="modal fade" id="book_tour" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal fade" id="book_tour_<?= $tour->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -45,7 +45,7 @@ $tour = $model;
                     </div>
                     <div class="modal-body">
                         <?php $booktour = new \app\models\Booktour(); ?>
-                        <?= $this->render("_booktourForm", ['booktour' => $booktour, 'model' => $model]) ?>
+                        <?= $this->render("_booktourForm", ['booktour' => $booktour, 'model' => $tour]) ?>
                     </div>
                 </div>
             </div>

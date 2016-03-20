@@ -12,6 +12,14 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="hotel-index">
 
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Hotel', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
     <ul class="tour-head-control">
         <li>
             <p>Tasks</p>
@@ -31,12 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </li>
     </ul>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Hotel', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -120,7 +122,7 @@ $js = <<<JS
 $(document).ready(function(){
     var keys;
     function gotoRecycleBin(){
-        $.post('index.php?r=hotel/recycle-bin', {keys: keys}, function(data, status){
+        $.post('/hotel/recycle-bin', {keys: keys}, function(data, status){
             if(status){
                 for(var iKey = 0; iKey < keys.length; iKey++){
                     $("#w0").find("[ data-key=" + keys[iKey] + "]").attr("class", "sr-only");
@@ -131,7 +133,7 @@ $(document).ready(function(){
         });
     }
     function deleteHotel(){
-        $.post('index.php?r=hotel/delete-multi-hotel', {keys: keys}, function(data, status){
+        $.post('/hotel/delete-multi-hotel', {keys: keys}, function(data, status){
             if(status){
                 for(var iKey = 0; iKey < keys.length; iKey++){
                     $("#w0").find("[ data-key=" + keys[iKey] + "]").attr("class", "sr-only");
@@ -142,18 +144,10 @@ $(document).ready(function(){
         });
     }
 
-    if(typeof '$status' != null){
-        var options = $('#status').find('option');
-        for(var i = 0; i < options.length; i++){
-            if(options[i].value == '$status'){
-                options[i].setAttribute("selected", "selected");
-            }
-        }
-    }
-    $('[name="selection[]"]').click(function(){
+    $('.hotel-index').on('click', '[name="selection[]"]', function(){
         keys = $('#w0').yiiGridView('getSelectedRows');
         console.log(keys);
-    });
+    })
     $('#status').change(function(){
         $('[name="HotelSearch[status]"]').val(event.target.value).change();
         $('#status').val($('[name="HotelSearch[status]"]').val());

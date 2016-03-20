@@ -70,16 +70,7 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'childinfo')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'depdate')->widget(DatePicker::className(),[
-        'name' => 'depdate',
-        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => date('d-m-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-    ]) ?>
+    <?= $form->field($booktour, 'depdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')])?>
 
     <?= $form->field($model, 'visa')->textInput() ?>
 
@@ -124,7 +115,7 @@ use kartik\date\DatePicker;
         "Others" => "Others",
     ]) ?>
 
-
+    <?= $form->field($model, 'status', ['options' => ['class' => 'sr-only']])->textInput(['value' => 0]) ?>
 
     <div class="form-group form-footer">
 

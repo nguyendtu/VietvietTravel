@@ -67,10 +67,17 @@ $config = [
 
                 //'<controller:[\w-]+>s>/<action:\w+>' => '<controller>/<action>',
                 '<controller:booktour>/<action:[\w-]+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:delete-multi-article>' => '<controller>/<action>',
                 '<controller:article>/<action:[\w]+>' => '<controller>/<action>',
                 '<controller:article>/<title:[\w-]+>' => '<controller>/detail',
                 '<controller:contact>/<action:\w+>' => '<controller>/<action>',
                 '<controller:contact>/<id:\d+>' => '<controller>/<action>',
+                '<controller:admin>/<action:\w+>' => '<controller>/<action>',
+                '<controller:file-upload>/<action:\w+>/<name:[\wd._]+>' => '<controller>/<action>',
+                '<controller:\w+>/<action:recycle-bin>' => '<controller>/<action>',
+                '<controller:\w+>/<action:delete-multi-tour>' => '<controller>/<action>',
+                '<controller:\w+>/<action:delete-multi-hotel>' => '<controller>/<action>',
+                '<controller:\w+>/<action:search>' => '<controller>/<action>',
 
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<type:[\w-]+>' => '<controller>/show',

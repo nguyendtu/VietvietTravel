@@ -284,9 +284,9 @@ class HotelController extends Controller
             foreach($keys as $key => $value){
                 array_push($tour_id, $value);
             }
+            $connection = Yii::$app->db;
+            $connection->createCommand()->delete('hotel', ['id' => $tour_id])->execute();
         }
-        $connection = Yii::$app->db;
-        $connection->createCommand()->delete('hotel', ['id' => $tour_id])->execute();
 
         echo '1';
     }

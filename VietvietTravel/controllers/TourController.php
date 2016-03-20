@@ -179,7 +179,6 @@ class TourController extends Controller
         //$param = Yii::$app->getRequest()->getQueryParam('1');
         $type = str_replace('-', ' ', $type);
         $model = Tourtype::find()->where(['name' => $type])->one();
-
         $provider = new ActiveDataProvider([
             'query' => $model->getTours(),
             'pagination' => [
@@ -220,7 +219,7 @@ class TourController extends Controller
     /**
      * search tour
      */
-    public function actionSearch($tourName = "", $tourStyle = "", $tourDetination = "", $tourLen = "", $hot = ""){
+    public function actionSearch($tourName = "", $tourStyle = "", $tourDetination = "", $tourLen = "", $hot = "", $keyWord=''){
         $this->layout = "main";
         $model = Tour::find();
         if($tourStyle){
@@ -246,6 +245,11 @@ class TourController extends Controller
                     }else {
                         $model = $model->andWhere(['length' => $tourLen]);
                     }
+                }
+                if ($keyWord) {
+                    //$keyWord = explode(",", $keyWord);
+                    $model = $model->andWhere(['like', 'keyword', $keyWord]);
+
                 }
             } else {
                 $model = $model->where(['hot' => $hot]);

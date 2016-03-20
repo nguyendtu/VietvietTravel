@@ -18,7 +18,7 @@ use kartik\date\DatePicker;
         ],
 
     ]); ?>
-    <?= $form->field($booktour, 'id_tour', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true, 'value' => "$model->id"]) ?>
+    <?= $form->field($booktour, 'id_tour', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true, 'value' => $model->id]) ?>
     <h4>Contact Information</h4>
     <?= $form->field($booktour, 'fullname', [
         'template' => "{label}\n<div class=\"col-md-2\"><select name='genderName' id='' class=\"form-control\">
@@ -66,16 +66,7 @@ use kartik\date\DatePicker;
 
     <?= $form->field($booktour, 'childinfo')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($booktour, 'depdate')->widget(DatePicker::className(),[
-        'name' => 'depdate',
-        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => date('d-m-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-    ]) ?>
+    <?= $form->field($booktour, 'depdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')])?>
 
     <?= $form->field($booktour, 'visa')->radioList(
         [ 0 => 'No', 1 => 'Yes',],
@@ -133,6 +124,7 @@ use kartik\date\DatePicker;
         "Others" => "Others",
     ]) ?>
 
+    <?= $form->field($model, 'status', ['options' => ['class' => 'sr-only']])->textInput(['value' => 0]) ?>
 
 
     <div class="form-group form-footer">

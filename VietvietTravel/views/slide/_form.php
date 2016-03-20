@@ -49,6 +49,9 @@ use dosamigos\fileupload\FileUploadUI;
                                     var largeimg = document.getElementById("slide-image");
                                     files = data.result.files;
                                     largeimg.value = files[0].name;
+
+                                    var link = document.getElementById("slide-link");
+                                    link.value = "images/" + files[0].name;
                                 }',
             'fileuploadfail' => 'function(e, data) {
                                     console.log(e);
@@ -110,7 +113,7 @@ var td2 = document.createElement("td");
     var btn = document.createElement("button");
     btn.setAttribute("class", "btn btn-danger delete");
     btn.setAttribute("data-type", "POST");
-    btn.setAttribute("data-url", temp + "&name=" + name);
+    btn.setAttribute("data-url", temp + "/" + name);
 
     var iInBtn = document.createElement('i');
     iInBtn.setAttribute("class", "glyphicon glyphicon-trash");

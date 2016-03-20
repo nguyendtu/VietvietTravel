@@ -29,7 +29,13 @@ use kartik\date\DatePicker;
             ]
         ]) ?>
         <?= $form->field($model, 'hot')->checkbox() ?>
-        <?= $form->field($model, 'star')->textInput() ?>
+        <?= $form->field($model, 'star')->dropDownList([
+            '1' => '1 Sao',
+            '2' => '2 Sao',
+            '3' => '3 Sao',
+            '4' => '4 Sao',
+            '5' => '5 Sao',
+        ], ['prompt' => '-- Chọn số sao']) ?>
         <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'regdate')->widget(DatePicker::className(),[
             'name' => 'regdate',
@@ -41,7 +47,10 @@ use kartik\date\DatePicker;
                 'format' => 'dd-M-yyyy'
             ]
         ]) ?>
-        <?= $form->field($model, 'status')->textInput() ?>
+        <?= $form->field($model, 'status')->dropDownList([
+            '1' => 'Active',
+            '0' => 'DeActive',
+        ]) ?>
         <?= $form->field($model, 'phone')->textInput() ?>
         <div class="col-xs-12">
             <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
@@ -137,6 +146,8 @@ use kartik\date\DatePicker;
                                 }',
             'fileuploaddestroy' => 'function(e, data){
                                     var name = data.url.substr(data.url.lastIndexOf("=") + 1, data.url.length);
+                                    name = name.split("/");
+                                    name = name[name.length - 1];
                                     var largeimg = document.getElementById("hotel-largeimg");
                                     for(var i = 0; i < files.length; i++){
                                         largeimg.value = largeimg.value.replace(name, " ");
@@ -193,7 +204,7 @@ var td2 = document.createElement("td");
     var btn = document.createElement("button");
     btn.setAttribute("class", "btn btn-danger delete");
     btn.setAttribute("data-type", "POST");
-    btn.setAttribute("data-url", temp + "&name=" + name);
+    btn.setAttribute("data-url", temp + "/" + name);
 
     var iInBtn = document.createElement('i');
     iInBtn.setAttribute("class", "glyphicon glyphicon-trash");
@@ -267,7 +278,7 @@ $js = <<<JS
         var btn = document.createElement("button");
         btn.setAttribute("class", "btn btn-danger delete");
         btn.setAttribute("data-type", "POST");
-        btn.setAttribute("data-url", temp + "&name=" + name[index]);
+        btn.setAttribute("data-url", temp + "/" + name[index]);
 
         var iInBtn = document.createElement('i');
         iInBtn.setAttribute("class", "glyphicon glyphicon-trash");

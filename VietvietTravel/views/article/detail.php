@@ -14,7 +14,7 @@ $visadetail = new app\models\Visadetail();
 <div class="main-content">
     <h3 class="thumb-caption"><?php echo $model->title ?></h3>
     <?php echo $model->detailinfo ?>
-    <div class="fb-like" data-href="http://viettravel.dev/article/detail/<?php echo $model->id ?>" data-width="100" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+    <div class="fb-like" data-href="http://viettravel.dev/article/<?php echo implode('-', explode(' ', $model->title)) ?>" data-width="100" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
     <div class="fb-comments" data-href="http://localhost/VietvietTravel/VietvietTravel/web/article/detail/<?php echo $model->id ?>" data-width="100%" data-numposts="5"></div>
     <?php if($model->title == "Vietnam visa on Arrival"){ ?>
     <div class="order">

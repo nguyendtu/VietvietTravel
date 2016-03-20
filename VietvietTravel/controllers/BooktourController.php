@@ -132,6 +132,7 @@ class BooktourController extends Controller
      */
     public function actionBooktour()
     {
+        $this->layout = "main";
         $model = new Booktour();
         if($model->load(Yii::$app->request->post())){
             $model->fullname = $_POST['genderName'] . " " . $model->fullname;

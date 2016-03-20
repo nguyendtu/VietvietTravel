@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'title',
                 'content' => function($model){
-                    return Html::a(''. $model->title, ['/article/detail', 'title' => $model->title]);
+                    return Html::a(''. $model->title, ['/article/' . implode('-', explode(' ', $model->title))]);
                 },
                 'options' => [
                     'width' => '20%',
@@ -102,9 +102,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 $js = <<<JS
 $(document).ready(function(){
-    var keys;
-    function deleteArticle(){
-        $.post('index.php?r=article/delete-multi-article', {keys: keys}, function(data, status){
+    var keys,
+        deleteArticle = function deleteArticle(){
+        $.post('/article/delete-multi-article', {keys: keys}, function(data, status){
             if(status){
                 for(var iKey = 0; iKey < keys.length; iKey++){
                     $("#w0").find("[ data-key=" + keys[iKey] + "]").attr("class", "sr-only");
@@ -115,12 +115,13 @@ $(document).ready(function(){
         });
     }
 
-    $('[name="selection[]"]').click(function(){
+    $('.article-index').on("click", '[name="selection[]"]', function(){
         keys = $('#w0').yiiGridView('getSelectedRows');
-    });
+
+        console.log(keys);
+    })
 
     $('#delete_article').click(function(){
-        alert('abc');
         deleteArticle();
     });
 });

@@ -12,7 +12,10 @@ use dosamigos\fileupload\FileUploadUI;
 
 <div class="article-form">
 
-    <?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+    <?php $form = ActiveForm::begin([
+        'action' => 'article/create',
+        'layout' => 'horizontal'
+    ]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -20,34 +23,15 @@ use dosamigos\fileupload\FileUploadUI;
         \yii\helpers\ArrayHelper::map(\app\models\Tourtype::find()->all(), 'id', 'name'), ['prompt' => '-- Choose a tourtype --']
     ) ?>
 
-    <?= $form->field($model, 'regdate')->widget(DatePicker::className(),[
-        'name' => 'regdate',
-        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => date('d-m-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-mm-yyyy'
-        ]
-    ]) ?>
-
-    <?= $form->field($model, 'editdate')->widget(DatePicker::className(), [
-        'name' => 'editdate',
-        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-        'value' => date('d-m-Y'),
-        'options' => ['placeholder' => date('d-m-Y')],
-        'pluginOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-mm-yyyy',
-        ]
-    ]) ?>
+    <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')])?>
+    <?= $form->field($model, 'editdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')])?>
 
     <?= $form->field($model, 'hot')->checkbox() ?>
 
     <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
     <div class="margin-top-1">
-    <?= $form->field($model, 'id_user', ['options' => ['class' => 'sr-only']])->textInput() ?>
+    <?= $form->field($model, 'id_user', ['options' => ['class' => 'sr-only']])->textInput(['value' => Yii::$app->user->identity->id]) ?>
     <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>

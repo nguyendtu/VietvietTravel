@@ -261,7 +261,7 @@ ul#nav_search .active a{
 	font-weight: bold;
 }
 .thumbnail img{
-	height: 200px;
+	height: 200px !important;
 	position: inherit;
 	top: 0px;
 	width: 100%;
@@ -843,6 +843,7 @@ ul#nav_search .active a{
 }
 .lg-tour .text-justify{
 	max-height: 60px;
+	height: 60px;
 	overflow: hidden;
 }
 .sm-tour > .caption > p{
