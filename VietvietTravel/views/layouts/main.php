@@ -258,7 +258,7 @@ $this->title = $info->name;
                             <ul class="list-services">
                                 <?php foreach($articleService as $row){ ?>
                                     <li class="item">
-                                        <a href="<?php echo \yii\helpers\Url::to(['article/detail', 'id' => $row->id])?>">
+                                        <a href="<?php echo \yii\helpers\Url::to(['article/'. implode('-', explode(" ",$row->title))]) ?>">
                                             <?= \yii\helpers\Html::img('@web/images/'. $row->smallimg, ['alt' => 'service']) ?>
                                         </a>
                                     </li>
@@ -277,7 +277,7 @@ $this->title = $info->name;
                                                 <span class="glyphicon glyphicon-grain"></span>
                                             </div>
                                             <div class="col-md-10">
-                                                <a href="<?php echo yii\helpers\Url::to(['article/detail', 'id' => $row->id]) ?>"><?php echo $row->title ?></a>
+                                                <a href="<?php echo yii\helpers\Url::to(['article/'. implode('-', explode(" ",$row->title))]) ?>"><?php echo $row->title ?></a>
                                             </div>
                                         </div>
                                     </li>

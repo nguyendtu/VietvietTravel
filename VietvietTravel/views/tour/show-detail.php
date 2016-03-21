@@ -60,7 +60,7 @@ $tourtype = $model->tourtype;
                                 </li>
                                 <?php } ?>
                             </ul>
-                            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#book_tour">
+                            <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#book_tour_<?= $model->id ?>">
                                 <span class="glyphicon glyphicon-share-alt"></span>
                                 BOOK THIS TOUR
                             </button>
@@ -140,7 +140,7 @@ $tourtype = $model->tourtype;
 
         </div>
     </div>
-    <div class="modal fade" id="book_tour" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal fade" id="book_tour_<?= $model->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">

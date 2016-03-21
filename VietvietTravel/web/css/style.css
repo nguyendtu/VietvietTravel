@@ -224,7 +224,7 @@ ul#nav_search .active a{
 	display: block;
 	padding: 5px;
 	margin-left: -10px;
-	margin-right: -10px;
+	/*margin-right: -10px;*/
 	border-bottom: 3px solid #246DA3;
 }
 .info{

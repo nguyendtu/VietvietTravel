@@ -59,6 +59,8 @@ use kartik\date\DatePicker;
         '12' => '12',
     ]) ?>
 
+    <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d H:i:s')]) ?>
+
     <?= $form->field($model, 'processtime')->dropDownList([
         'normal' => 'Normal (36 hours to 2 working days)',
         'urgent' => 'Urgent (within 1 working day',
