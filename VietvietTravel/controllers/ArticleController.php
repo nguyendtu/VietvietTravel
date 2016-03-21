@@ -145,7 +145,7 @@ class ArticleController extends Controller
      */
     public function actionTour(){
         $this->layout = "main";
-        $model = Article::find()->where(['not in', 'type', [100, 101]]);
+        $model = Article::find()->where(['not in', 'type', [100, 101, 102, 103]]);
 
         $provider = new ActiveDataProvider([
             'query' => $model,

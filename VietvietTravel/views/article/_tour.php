@@ -26,7 +26,7 @@ $tour = $model;
                 <h4><?php echo $tour->title ?></h4>
                 <p><?php echo $tour->briefinfo ?></p>
                 <button class="btn btn-primary">
-                    <a href="<?php echo \yii\helpers\Url::to(['article/'. implode('-', explode(" ", $tour->title))])?>">
+                    <a href="<?php echo \yii\helpers\Url::to(['article/'. implode('-', explode(" ", $tour->title)). '-'])?>">
                         <span class="glyphicon glyphicon-share-alt text-info"></span>
                         <span class="text-info">READ MORE</span>
                     </a>
