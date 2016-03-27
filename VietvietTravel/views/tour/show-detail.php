@@ -12,16 +12,16 @@ $tourtype = $model->tourtype;
         <div class="thumb-content">
             <div class="header">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-5 none-padding-right">
                         <a href="">
                             <?php if (isset($model->smallimg)) { ?>
-                            <?= \yii\helpers\Html::img('@web/images/'. $model->smallimg) ?>
+                            <?= \yii\helpers\Html::img('@web/images/'. $model->smallimg, ['style' => ['height' => '228px']]) ?>
                             <?php } ?>
                         </a>
                     </div>
                     <div class="col-md-7">
                         <div class="caption info-detail">
-                            <h4>TOUR INFORMATION</h4>
+                            <h4 class="text-caption">TOUR INFORMATION</h4>
                             <ul>
                                 <?php if(isset($model->code)){ ?>
                                 <li>
@@ -32,7 +32,7 @@ $tourtype = $model->tourtype;
                                 <?php if(isset($model->length)){ ?>
                                 <li>
                                     <span class="glyphicon glyphicon-share-alt"></span>
-                                    <p>Tour Length: <?= $model->length ?></p>
+                                    <p>Tour Length: <?= $model->length ?> Day</p>
                                 </li>
                                 <?php } ?>
                                 <?php if(isset($tourtype->name)){ ?>
@@ -60,15 +60,15 @@ $tourtype = $model->tourtype;
                                 </li>
                                 <?php } ?>
                             </ul>
+                            <div class="fb-like" data-href="http://viettravel.dev/tour/show-detail/<?php echo $model->id ?>" data-width="100" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true" style="display: block; margin-bottom: 10px;"></div>
                             <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#book_tour_<?= $model->id ?>">
                                 <span class="glyphicon glyphicon-share-alt"></span>
                                 BOOK THIS TOUR
                             </button>
                         </div>
-                        <div class="fb-like" data-href="http://viettravel.dev/tour/show-detail/<?php echo $model->id ?>" data-width="100" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                     </div>
                 </div>
-                <p><?php echo $model->detailinfo ?></p>
+                <p class="briefinfo"><?= $model->briefinfo ?></p>
             </div>
             <div class="galleria">
                 <?php $slides = explode(' ', $model->largeimg);
@@ -79,7 +79,7 @@ $tourtype = $model->tourtype;
                 <?php }} ?>
             </div>
             <hr>
-
+            <p><?= $model->detailinfo ?></p>
             <div class="fb-comments" data-href="http://localhost/VietvietTravel/VietvietTravel/web/index.php?r=tour%2Fshow-detail&id=<?php echo $model->id ?>" data-width="100%" data-numposts="5"></div>
             <div class="related-tour">
                 <h4>Related Tours</h4>

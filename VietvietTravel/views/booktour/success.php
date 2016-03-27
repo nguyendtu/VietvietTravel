@@ -8,26 +8,36 @@ if($model) {
     echo DetailView::widget([
         'model' => $model,
         'attributes' => [
-            [
-                'label' => 'TOUR',
-                'value' => $model->tour->name,
-            ],
             'fullname',
-            'email:html',
-            'phone:html',
-            'nation:html',
-            'nadults:html',
-            'listname:html',
-            'child:html',
-            'childinfo:html',
-            'depdate:html',
+            'email',
+            'phone',
+            'nation',
+            [
+                'label' => 'No. of adults',
+                'value' => $model->nadults == 1 ? $model->nadults . " person" : $model->naduls . " persons",
+            ],
+            'listname',
+            [
+                'label' => 'Do you have any kids in your group?',
+                'value' => $model->child == 1 ? "Yes" : "No",
+            ],
+            'childinfo',
+            [
+                'label' => 'Do you need our visa service?',
+                'value' => $model->visa? "Yes": "No",
+            ],
+            'depdate',
             'idea:html',
-            'visa:html',
-            'usebefore:html',
-            'reciveinfo:html',
-            'paymethod:html',
-            'knwthrough:html',
-
+            [
+                'label' => 'Went with us before?',
+                'value' => $model->usebefore ? "Yes" : "No",
+            ],
+            [
+                'label' => 'Receive our newsletters?',
+                'value' => $model->reciveinfo ? "Yes" : "No",
+            ],
+            'paymethod',
+            'knwthrough',
         ],
     ]);
 

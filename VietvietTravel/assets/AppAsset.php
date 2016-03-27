@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
         'themes/default/default.css',
         'galleria/themes/classic/galleria.classic.css',
         'css/style.css',
+        //'css/thumbnail-horizontal.css',
     ];
     public $js = [
         'js/script.js',

@@ -100,7 +100,9 @@ use kartik\date\DatePicker;
                                     smallimg.value = "";
                                     var files = data.result.files;
                                     for(var i = 0; i < files.length; i++){
-                                        smallimg.value = files[i].name;
+                                        var name = files[i].name.split(" ");
+                                        name = name.join("_");
+                                        smallimg.value = name;
                                     }
                                 }',
             'fileuploadfail' => 'function(e, data) {
@@ -135,9 +137,11 @@ use kartik\date\DatePicker;
             'fileuploaddone' => 'function(e, data) {
                                     var largeimg = document.getElementById("hotel-largeimg");
                                     files = data.result.files;
-                                    console.log(files.length);
+
                                     for(var i = 0; i < files.length; i++){
-                                        largeimg.value += files[i].name + " ";
+                                        var name = files[i].name.split(" ");
+                                        name = name.join("_");
+                                        largeimg.value += name + " ";
                                     }
                                 }',
             'fileuploadfail' => 'function(e, data) {

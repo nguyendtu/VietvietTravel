@@ -19,8 +19,9 @@ class FileUploadController extends Controller{
         $fileUpload = UploadedFile::getInstanceByName('FileUpload[fileUpload]');
 
         if($fileUpload){
+
             //$fileUpload->saveAs('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $fileUpload->baseName . '.' . $fileUpload->extension);
-            $fileUpload->saveAs(Yii::$app->basePath . '/web/images/' . $fileUpload->baseName . '.' . $fileUpload->extension);
+            $fileUpload->saveAs(Yii::$app->basePath . '/web/images/' . implode("_", explode(" ", $fileUpload->baseName)) . '.' . $fileUpload->extension);
 
             Yii::$app->response->format = Response::FORMAT_JSON;
             $response = [];
@@ -39,7 +40,9 @@ class FileUploadController extends Controller{
     }
 
     public function actionDelete($name){
-        return unlink('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $name);
+        //return unlink('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $name);
+        return unlink((Yii::$app->basePath . '/web/images/' . $name));
+        //return unlink('/images/' . $name);
     }
 }
 ?>

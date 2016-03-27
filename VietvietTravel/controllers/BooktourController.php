@@ -134,14 +134,17 @@ class BooktourController extends Controller
     {
         $this->layout = "main";
         $model = new Booktour();
+
+        $vietTravel = Infocompany::find()->where(['id' => 1])->one();
         if($model->load(Yii::$app->request->post())){
+
             $model->fullname = $_POST['genderName'] . " " . $model->fullname;
             if ($model->save()) {
                 $info = Infocompany::find()->where(['id' => 1])->one();
                 Yii::$app->mailer->compose('@app/views/mail/mail-layout', ['model' => $model])
                     ->setFrom($model->email)
-                    ->setTo('duytu2005@gmail.com')
-                    ->setSubject('Book tour')
+                    ->setTo($vietTravel->email)
+                    ->setSubject('[vietnam-vietviettravel.com] ' . $model->fullname . " Book tour")
                     ->send();
                 return $this->render('@app/views/booktour/success', [
                     'model' => $model,

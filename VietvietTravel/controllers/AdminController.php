@@ -57,7 +57,7 @@
 
 		public function actionIndex(){
 			//return $this->render("index");
-			return $this->redirect(['infocompany/view', 'id' => 1]);
+			return $this->redirect(['infocompany/update', 'id' => 1]);
 		}
 
 		public function actionAbout(){

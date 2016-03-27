@@ -13,7 +13,7 @@ $hotel = $model;
                 <p class="info"><em>Read more...</em></p>
             </div>
             <div class="caption">
-                <h4><?php echo $hotel->name ?></h4>
+                <h4><a href="<?php echo \yii\helpers\Url::to(['hotel/show-detail', 'id' => $hotel->id]); ?>"><?php echo $hotel->name ?></a></h4>
                 <p><?php echo $hotel->briefinfo ?></p>
                 <address>
                     <strong>Address:</strong> <?php echo $hotel->address ?> <br>

@@ -18,9 +18,6 @@ $this->title = 'VietViet Travel';
                                 <?= \yii\helpers\Html::img('@web/images/'. $slide['image'], ['data-thumb'=>"@web/" . $slide['image'], "alt"=>""]) ?>
                             <?php } ?>
                         </div>
-                        <div id="htmlcaption" class="nivo-html-caption">
-                            <strong>This</strong> is an example of a <em>HTML</em> caption with <a href="#">a link</a>.
-                        </div>
                     </div>
                 </div>
                 <!--= =============================== =========================-->
@@ -38,7 +35,7 @@ $this->title = 'VietViet Travel';
                                 <p class="info"><em>Read more...</em></p>
                             </div>
                             <div class="caption">
-                                <h4><?php echo $tour->name ?></h4>
+                                <h4><a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>"><?php echo $tour->name ?></a></h4>
                                 <p class="text-justify"><?php echo $tour->briefinfo ?></p>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6">
@@ -53,13 +50,13 @@ $this->title = 'VietViet Travel';
                                             <li class="details text-bold">
                                                 <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">Details</a>
                                             </li>
-                                            <li class="enquire" data-toggle="modal" data-target="#book_tour">
+                                            <li class="enquire" data-toggle="modal" data-target="#book_tour_<?= $tour->id ?>">
                                                 <span class="glyphicon glyphicon-circle-arrow-right"></span>
                                                 ENQUIRE NOW
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="modal fade" id="book_tour" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                    <div class="modal fade" id="book_tour_<?= $tour->id ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -120,7 +117,7 @@ $this->title = 'VietViet Travel';
                         </div>
                         <div class="col-md-7 sm-tour">
                             <div class="caption">
-                                <h4><?php echo $tour->name ?></h4>
+                                <h4><a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>"><?php echo $tour->name ?></a></h4>
                                 <p><?php echo $tour->briefinfo ?></p>
                                 <ul class="infomation inline text-right">
                                     <li class="details text-bold">

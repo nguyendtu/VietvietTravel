@@ -42,16 +42,22 @@ use dosamigos\fileupload\FileUploadUI;
             'accept' => 'image/*',
         ],
         'clientOptions' => [
-            'maxFileSize' => 2000000
+            'maxFileSize' => 2000000000
         ],
         'clientEvents' => [
             'fileuploaddone' => 'function(e, data) {
                                     var largeimg = document.getElementById("slide-image");
                                     files = data.result.files;
-                                    largeimg.value = files[0].name;
+                                    var name = files[0].name.split(" ");
+                                    name = name.join("_");
+
+                                    largeimg.value = name;
 
                                     var link = document.getElementById("slide-link");
-                                    link.value = "images/" + files[0].name;
+
+
+
+                                    link.value = "images/" + name;
                                 }',
             'fileuploadfail' => 'function(e, data) {
                                     console.log(e);
@@ -71,6 +77,7 @@ use dosamigos\fileupload\FileUploadUI;
 $url = \yii\helpers\Url::to(['file-upload/delete']);
 $js = <<<JS
     var name = $('#slide-image').attr('value');
+
     var tr = document.createElement("tr");
     tr.setAttribute(
         'class', 'template-download fade in'
@@ -84,7 +91,7 @@ $js = <<<JS
     aInPreview.setAttribute('download', name);
     aInPreview.setAttribute('data-gallery', "");
     var img = document.createElement("img");
-    img.setAttribute('src', '../../images/' + name);
+    img.setAttribute('src', '/images/' + name);
     aInPreview.appendChild(img);
     spanPreview.appendChild(aInPreview);
     td1.appendChild(spanPreview);

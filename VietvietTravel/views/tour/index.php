@@ -126,9 +126,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'hot',
                 'value' => function($model){
                     $hot = [
-                        '0' => 'Không hot',
-                        '1' => 'Vị trí trên',
-                        '2' => 'Vị trí dưới',
+                        '0' => 'No',
+                        '1' => 'Top Position',
+                        '2' => 'Bottom Position',
                     ];
 
                     return $hot[$model->hot];
@@ -205,11 +205,13 @@ $(document).ready(function(){
         $('#status').val($('[name="TourSearch[status]"]').val());
     });
 
-    $('#tasks').change(function(){
+    $('#tasks').change(function(e){
         if(event.target.value == "recycle-bin"){
             gotoRecycleBin();
         }else{
-            deleteTour();
+            if(confirm("Are you sure you want to delete this item?")){
+                deleteTour();
+            }
         }
         $('#tasks').val("");
     });

@@ -13,7 +13,7 @@ use dosamigos\fileupload\FileUploadUI;
 <div class="article-form">
 
     <?php $form = ActiveForm::begin([
-        'action' => 'article/create',
+        //'action' => 'article/create',
         'layout' => 'horizontal'
     ]); ?>
 
@@ -71,7 +71,9 @@ use dosamigos\fileupload\FileUploadUI;
                                     smallimg.value = "";
                                     var files = data.result.files;
                                     for(var i = 0; i < files.length; i++){
-                                        smallimg.value = files[i].name;
+                                        var name = files[i].name.split(" ");
+                                        name = name.join("_");
+                                        smallimg.value = name;
                                     }
                                 }',
             'fileuploadfail' => 'function(e, data) {
@@ -134,7 +136,7 @@ var td2 = document.createElement("td");
     var btn = document.createElement("button");
     btn.setAttribute("class", "btn btn-danger delete");
     btn.setAttribute("data-type", "POST");
-    btn.setAttribute("data-url", temp + "&name=" + name);
+    btn.setAttribute("data-url", temp + "/" + name);
 
     var iInBtn = document.createElement('i');
     iInBtn.setAttribute("class", "glyphicon glyphicon-trash");

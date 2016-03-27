@@ -49,7 +49,9 @@ use yii\bootstrap\ActiveForm;
                                     smallimg.value = "";
                                     var files = data.result.files;
                                     for(var i = 0; i < files.length; i++){
-                                        smallimg.value = files[i].name;
+                                        var name = files[i].name.split(" ");
+                                        name = name.join("_");
+                                        smallimg.value = name;
                                     }
                                 }',
             'fileuploadfail' => 'function(e, data) {

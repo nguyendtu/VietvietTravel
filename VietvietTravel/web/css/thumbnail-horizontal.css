@@ -1,0 +1,13 @@
+.thumbnail-horizontal.right-caption > img {
+    float: left;
+    margin-right: 9px;
+}
+
+.thumbnail-horizontal.right-caption {
+    float: left;
+}
+
+.thumbnail-horizontal.right-caption > .caption-thumbnail-horizontal {
+    padding: 4px;
+    float: left;
+}

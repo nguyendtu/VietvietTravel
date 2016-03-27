@@ -23,7 +23,7 @@ $tour = $model;
         </div>
         <div class="col-md-7">
             <div class="caption">
-                <h4><?php echo $tour->title ?></h4>
+                <h4><a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]); ?>"><?php echo $tour->title ?></a></h4>
                 <p><?php echo $tour->briefinfo ?></p>
                 <button class="btn btn-primary">
                     <a href="<?php echo \yii\helpers\Url::to(['article/'. implode('-', explode(" ", $tour->title)). '-'])?>">

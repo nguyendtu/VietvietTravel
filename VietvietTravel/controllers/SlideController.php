@@ -84,7 +84,7 @@ class SlideController extends Controller
         $image = new FileUpload();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -104,8 +104,13 @@ class SlideController extends Controller
         $model = $this->findModel($id);
         $smallimg = new FileUpload();
 
+        $oldImg = $model->image;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($oldImg != $model->image){
+                unlink((Yii::$app->basePath . '/web/images/' . $oldImg));
+            }
+            return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

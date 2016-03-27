@@ -10,7 +10,7 @@ $this->title = 'Create Tour';
 $this->params['breadcrumbs'][] = ['label' => 'Tours', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tour-create">
+<div class="tour-create" style="position: relative">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

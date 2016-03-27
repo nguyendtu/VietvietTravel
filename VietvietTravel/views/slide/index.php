@@ -38,9 +38,26 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'link',
-            'position',
+            [
+                'attribute' => 'position',
+                'value' => function($model){
+                    if($model->position == 1){
+                        return "Slide lớn";
+                    }else if($model->position == 2){
+                        return "Slide nhỏ trên";
+                    }else{
+                        return "Slide nhỏ dưới";
+                    }
+                },
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete}',
+                'options' => [
+                    'width' => '5%',
+                ]
+            ],
         ],
     ]); ?>
 

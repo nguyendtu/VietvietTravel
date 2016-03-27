@@ -115,7 +115,7 @@ $this->title = $info->name;
                             ['label' => 'Mekong Delta tour', 'url' => ['tour/Mekong-Delta-Tour']],
                             ['label' => 'Tour packages', 'url' => ['tour/Tour-Packages']],
                             ['label' => 'Open packages tour', 'url' => ['tour/Open-Packages-Tour']],
-                            ['label' => 'Northern Cruise', 'url' => ['tour/Northern-Cruise']],
+                            ['label' => 'Northern Cruise', 'url' => ['tour/Nothern-Cruise']],
                             ['label' => 'Adventure Tour', 'url' => ['tour/Adventure-Tour']],
                             ['label' => 'National park tour', 'url' => ['tour/National-Park-Tour']],
                         ],
@@ -240,10 +240,7 @@ $this->title = $info->name;
                         </div>
                     </div>
                     <div class="video-box sidebar">
-                        <video controls>
-                            <source src="../images/<?php echo $info->video ?>" type="video/mp4">
-                            <source src="../images/<?php echo $info->video ?>" type="video/ogg">
-                        </video>
+                        <iframe src="<?= $info->video ?>" width="100%" height="200"></iframe>
                         <?php $aboutUs = Article::find()->where(['type' => 102])->one() ?>
                         <h4><?= $aboutUs->title?></h4>
                         <p><?= $aboutUs->briefinfo ?></p>

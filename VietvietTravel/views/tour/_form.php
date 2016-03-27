@@ -68,7 +68,7 @@ use kartik\date\DatePicker;
 
 </div>
 
-<div class="smallUpload">
+<div class="smallUpload" style="top: 36%">
     <?= FileUploadUI::widget([
         'model' => $small,
         'attribute' => 'fileUpload',
@@ -79,15 +79,19 @@ use kartik\date\DatePicker;
             'accept' => 'image/*',
         ],
         'clientOptions' => [
-            'maxFileSize' => 2000000
+            'maxFileSize' => 5000000
         ],
         'clientEvents' => [
             'fileuploaddone' => 'function(e, data) {
                                     var smallimg = document.getElementById("tour-smallimg");
                                     smallimg.value = "";
                                     var files = data.result.files;
+
+                                    var name = files[0].name.split(" ");
+                                    name = name.join("_");
+
                                     for(var i = 0; i < files.length; i++){
-                                        smallimg.value = files[i].name;
+                                        smallimg.value = name;
                                     }
                                 }',
             'fileuploadfail' => 'function(e, data) {
@@ -103,7 +107,7 @@ use kartik\date\DatePicker;
     ]);
     ?>
 </div>
-<div class="largeUpload">
+<div class="largeUpload" style="top: 50%">
     <?= FileUploadUI::widget([
         'model' => $large,
         'attribute' => 'fileUpload',
@@ -121,9 +125,11 @@ use kartik\date\DatePicker;
             'fileuploaddone' => 'function(e, data) {
                                     var largeimg = document.getElementById("tour-largeimg");
                                     files = data.result.files;
-                                    console.log(files.length);
+
                                     for(var i = 0; i < files.length; i++){
-                                        largeimg.value += files[i].name + " ";
+                                        var name = files[i].name.split(" ");
+                                        name = name.join("_");
+                                        largeimg.value += name + " ";
                                     }
                                 }',
             'fileuploadfail' => 'function(e, data) {
@@ -134,6 +140,7 @@ use kartik\date\DatePicker;
                                     var name = data.url.substr(data.url.lastIndexOf("=") + 1, data.url.length);
                                     name = name.split("/");
                                     name = name[name.length - 1];
+                                    name = name + " ";
                                     var largeimg = document.getElementById("tour-largeimg");
                                     largeimg.value = largeimg.value.replace(name, "");
                                 }',
