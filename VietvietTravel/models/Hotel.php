@@ -39,7 +39,7 @@ class Hotel extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'id_location', 'address', 'price', 'briefinfo', 'phone', 'keyword'], 'required'],
-            [['star', 'id_location', 'status', 'hot', 'phone'], 'integer'],
+            [['star', 'id_location', 'status', 'hot'], 'integer'],
             [['briefinfo', 'detailinfo'], 'string'],
             [['regdate', 'editdate'], 'safe'],
             [['name', 'address', 'price'], 'string', 'max' => 255],

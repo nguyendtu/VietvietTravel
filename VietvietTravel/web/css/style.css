@@ -263,7 +263,7 @@ ul#nav_search .active a{
 	font-weight: bold;
 }
 .thumbnail img{
-	height: 200px !important;
+	height: 300px !important;
 	position: inherit;
 	top: 0px;
 	width: 100%;
@@ -283,6 +283,7 @@ ul#nav_search .active a{
 .price{
 	font-weight: bold;
 	font-size: 25px;
+	margin-top:-8px;
 	color: red;
 	opacity: initial;
 }
@@ -302,6 +303,7 @@ ul#nav_search .active a{
 }
 .details{
 	color: rgba(0, 78, 0, 0.8);
+	font-size: 16px;
 }
 .details:hover{
 	color: rgba(0, 78, 0, 1)
@@ -600,6 +602,7 @@ ul#nav_search .active a{
 .address tr td{
 	padding: 10px;
 }
+
 @media screen and (max-width: 767px){
 	.countries-tour .country{
 		width: 100%;
@@ -646,6 +649,23 @@ ul#nav_search .active a{
 	}
 	.navbar-nav{
 		margin: 0;
+	}
+	.hotel-info{
+		margin: 0;
+		padding: 0;
+	}
+	.details{
+		padding: 10px !important;
+	}
+}
+
+@media screen and (max-width: 400px){
+	.hotel-info{
+		margin: 0;
+		padding: 0;
+	}
+	.details{
+		padding: 10px !important;
 	}
 }
 
@@ -703,11 +723,18 @@ ul#nav_search .active a{
 	.site-admin{
 		margin-left: 15px;
 	}
-	/*.pagination{
-		position: absolute;
-		bottom: -50px;
-		right: 25px;
-	}*/
+
+	.hotel-info,
+	.hotel-price{
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	.details{
+		padding: 15px 0 !important;
+	}
+	.hotel-price{
+		padding: 2px 0 !important;
+	}
 }
 @media screen and (min-width: 1199px){
 	.navbar-header{
@@ -737,10 +764,10 @@ ul#nav_search .active a{
 		/*padding-left: 10px;*/
 		padding: 12px;
 	}
-	.bottom-bar{
+	/*.bottom-bar{
 		text-align: left;
 		overflow: hidden;
-	}
+	}*/
 	.bottom-bar .hotel-price{
 		padding: 8px;
 	}
@@ -754,11 +781,14 @@ ul#nav_search .active a{
 	.site-admin{
 		margin-left: 0;
 	}
-	/*.pagination{
-		position: absolute;
-		bottom: -50px;
-		right: 15px;
-	}*/
+	.hotel-info{
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	.details{
+		padding: 15px 0 !important;
+		text-align: center;
+	}
 }
 
 .galleria{
@@ -1001,8 +1031,34 @@ ul#nav_search .active a{
 	padding-right: 0;
 }
 .text-caption{
-	color: #f16745;
+	/*color: #f16745;*/
+	color: red;
 }
 .briefinfo{
 	margin-top: 10px;
+}
+.margin-top-3{
+	margin-top: 32%;
+}
+.price-height{
+	padding: 25px 0;
+}
+.text-price{
+	font-weight: bold;
+	font-size: 22px;
+	margin: -8px 0 0 0;
+	font-style: italic;
+	color: red;
+	opacity: initial;
+}
+.text-price-detail{
+	font-weight: bold;
+	font-size: 17px;
+	margin: -8px 0 0 0;
+	font-style: italic;
+	color: red;
+	opacity: initial;
+}
+.line{
+	border-top: 1px solid #246DA3;
 }

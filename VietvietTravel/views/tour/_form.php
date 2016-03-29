@@ -26,16 +26,24 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'startfrom')->textInput() ?>
 
+    <div class="form-group" id="pr-c">
+        <label for="" class="label-control col-md-3"></label>
+        <div class="col-md-6">
+            <input id="price-contact" type="radio" name="price-type" value="price-contact"> <label for="price-contact">Price Contact</label><br/>
+            <input id="price-detail" type="radio" name="price-type" value="price-detail"> <label for="price-detail">Price Detail</label><br/>
+            <input id="price" type="radio" name="price-type" value="price" checked> <label for="price">Price</label>
+        </div>
+    </div>
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
     <?= $form->field($model, 'editdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
 
     <?= $form->field($model, 'hot')->dropDownList([
-        '0' => 'Không hot',
-        '1' => 'Vị trí trên',
-        '2' => 'Vị trí dưới',
-    ], ['prompt' => '---Chọn vị trí---']) ?>
+        '0' => 'No',
+        '1' => 'Top Position',
+        '2' => 'Bottom Position',
+    ]) ?>
 
     <?= $form->field($model, 'status')->dropDownList([
         '1' => 'Active',
@@ -59,7 +67,7 @@ use kartik\date\DatePicker;
         <div class="margin-top-2">
             <label for="" class="label-control col-sm-3"></label>
             <div class="col-sm-6">
-                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['id' => 'tour-submit', 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
             </div>
         </div>
     </div>
@@ -68,7 +76,7 @@ use kartik\date\DatePicker;
 
 </div>
 
-<div class="smallUpload" style="top: 36%">
+<div class="smallUpload" style="top: 37%">
     <?= FileUploadUI::widget([
         'model' => $small,
         'attribute' => 'fileUpload',
@@ -289,8 +297,10 @@ $js = <<<JS
 
         $('#largeimg-form .files').append(tr);
         }
+
     }
+
+
 JS;
 $this->registerJs($js);
-
 ?>

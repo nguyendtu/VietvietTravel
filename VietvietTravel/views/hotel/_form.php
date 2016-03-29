@@ -17,41 +17,33 @@ use kartik\date\DatePicker;
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         <?= $form->field($model, 'id_location')->dropDownList(
             \yii\helpers\ArrayHelper::map($location->find()->all(), 'id', 'name'), ['prompt' => '-- Choose Location --']) ?>
+        <div class="form-group" id="pr-c">
+            <label for="" class="label-control col-md-3"></label>
+            <div class="col-md-6">
+                <input id="price-contact" type="radio" name="price-type" value="price-contact"> <label for="price-contact">Price Contact</label><br/>
+                <input id="price" type="radio" name="price-type" value="price" checked> <label for="price">Price</label>
+            </div>
+        </div>
         <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'editdate')->widget(DatePicker::className(),[
-            'name' => 'regdate',
-            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-            'value' => date('d-m-Y'),
-            'options' => ['placeholder' => date('d-m-Y')],
-            'pluginOptions' => [
-                'autoclose' => true,
-                'format' => 'dd-M-yyyy'
-            ]
-        ]) ?>
-        <?= $form->field($model, 'hot')->checkbox() ?>
+        <?= $form->field($model, 'editdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
         <?= $form->field($model, 'star')->dropDownList([
-            '1' => '1 Sao',
-            '2' => '2 Sao',
-            '3' => '3 Sao',
-            '4' => '4 Sao',
-            '5' => '5 Sao',
-        ], ['prompt' => '-- Chọn số sao']) ?>
+            '1' => '1 Star',
+            '2' => '2 Star',
+            '3' => '3 Star',
+            '4' => '4 Star',
+            '5' => '5 Star',
+        ], ['prompt' => '-- Choose star']) ?>
+        <?= $form->field($model, 'hot')->checkbox() ?>
         <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-        <?= $form->field($model, 'regdate')->widget(DatePicker::className(),[
-            'name' => 'regdate',
-            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-            'value' => date('d-m-Y'),
-            'options' => ['placeholder' => date('d-m-Y')],
-            'pluginOptions' => [
-                'autoclose' => true,
-                'format' => 'dd-M-yyyy'
-            ]
-        ]) ?>
+        <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
         <?= $form->field($model, 'status')->dropDownList([
             '1' => 'Active',
             '0' => 'DeActive',
         ]) ?>
-        <?= $form->field($model, 'phone')->textInput() ?>
+        <?= $form->field($model, 'phone')->textInput([
+            'placeholder' => \app\models\Infocompany::find()->where(['id' => 1])->one()->mobile,
+            'value' => \app\models\Infocompany::find()->where(['id' => 1])->one()->mobile
+        ]) ?>
         <div class="col-xs-12">
             <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
@@ -72,7 +64,7 @@ use kartik\date\DatePicker;
         <div class="margin-top-2">
             <label for="" class="label-control col-sm-3"></label>
             <div class="col-sm-6">
-                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['id' => 'hotel-submit', 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
             </div>
         </div>
     </div>
@@ -81,7 +73,7 @@ use kartik\date\DatePicker;
 
 </div>
 
-<div class="smallUpload">
+<div class="smallUpload" style="top: 35%;left: 25.5%;">
     <?= FileUploadUI::widget([
         'model' => $small,
         'attribute' => 'fileUpload',
@@ -92,7 +84,7 @@ use kartik\date\DatePicker;
             'accept' => 'image/*',
         ],
         'clientOptions' => [
-            'maxFileSize' => 2000000
+            'maxFileSize' => 8000000
         ],
         'clientEvents' => [
             'fileuploaddone' => 'function(e, data) {
@@ -119,7 +111,7 @@ use kartik\date\DatePicker;
     ?>
 </div>
 
-<div class="largeUpload">
+<div class="largeUpload" style="top: 48%">
     <?= FileUploadUI::widget([
         'model' => $large,
         'attribute' => 'fileUpload',
@@ -131,7 +123,7 @@ use kartik\date\DatePicker;
             'multiple' => true,
         ],
         'clientOptions' => [
-            'maxFileSize' => 2000000
+            'maxFileSize' => 8000000
         ],
         'clientEvents' => [
             'fileuploaddone' => 'function(e, data) {

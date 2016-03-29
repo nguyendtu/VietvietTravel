@@ -14,13 +14,17 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'parent')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'parent')->dropDownList(
+        \yii\helpers\ArrayHelper::map(\app\models\Tourtype::find()->where(['<>', 'parent', 'article'])->all(), 'parent', 'parent'), [
+            'prompt' => '--Choose parent--'
+        ]
+    ) ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'icon')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
-    <div class="form-group margin-top-1">
+    <div class="form-group margin-top-3">
         <label for="" class="label-control col-sm-3"></label>
         <div class="col-sm-6">
             <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -30,7 +34,8 @@ use yii\bootstrap\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
-<div class="smallUpload col-md-7" style="top: -70px; left: -140px;">
+<div class="smallUpload col-md-7" style="top: 58%;
+    left: 25%;">
     <?= \dosamigos\fileupload\FileUploadUI::widget([
         'model' => $small,
         'attribute' => 'fileUpload',

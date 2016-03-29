@@ -183,9 +183,6 @@ class TourtypeController extends Controller
                 if ($key == 'name'){
                     $parent .= "<li value='" . $value . "'>" . $value . ' ( ' . Yii::$app->db->createCommand('select count(id) from tour where id_tourtype = ' . $id)->queryAll()[0]['count(id)'] . ' )';
                     $parent .= "<div class='action sr-only'>
-    <a href='$view' data-method='post' class='text-success'>
-        <span class='glyphicon glyphicon-eye-open'></span>
-    </a>
     <a href='$update' data-method='post' class='text-success'>
         <span class='glyphicon glyphicon-pencil'></span>
     </a>

@@ -12,9 +12,19 @@ $tour = $model;
             <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]); ?>">
                 <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg, ['alt' => 'Tour']) ?>
                 <div class="tour-price price-top price-width">
-                    <h4>Price from</h4>
-                    <p class="price">$<?php echo $tour->price ?></p>
-                    <p>per cabin</p>
+                    <?php if($tour->price == '-1'){ ?>
+                        <h4>Please</h4>
+                        <p class="text-price" >Contact</>
+                        <p>Us</p>
+                    <?php } elseif($tour->price == '-2'){ ?>
+                        <h4>Please</h4>
+                        <p class="text-price" >Read</>
+                        <p>Details page</p>
+                    <?php } else{ ?>
+                        <h4>Price from</h4>
+                        <p class="price">$<?php echo $tour->price ?></p>
+                        <p>per person</p>
+                    <?php } ?>
                 </div>
             </a>
             <p class="doc"></p>

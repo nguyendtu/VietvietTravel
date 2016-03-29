@@ -39,10 +39,20 @@ $this->title = 'VietViet Travel';
                                 <p class="text-justify"><?php echo $tour->briefinfo ?></p>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6">
-                                        <div class="tour-price">
-                                            <h5>Price from</h5>
-                                            <p class="price">$<?php echo $tour->price ?></p>
-                                            <p>per cabin</p>
+                                        <div class="tour-price price-width">
+                                            <?php if($tour->price == '-1'){ ?>
+                                                <h4>Please</h4>
+                                                <p class="price" >Contact</>
+                                                <p>Us</p>
+                                            <?php } elseif($tour->price == '-2'){ ?>
+                                                <h4>Please</h4>
+                                                <p class="price" >Read</>
+                                                <p>Details page</p>
+                                            <?php } else{ ?>
+                                                <h4>Price from</h4>
+                                                <p class="price">$<?php echo $tour->price ?></p>
+                                                <p>per person</p>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-xs-6">
@@ -107,9 +117,19 @@ $this->title = 'VietViet Travel';
                             <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">
                                 <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg) ?>
                                 <div class="tour-price price-top price-width">
-                                    <h5>Price from</h5>
-                                    <p class="price">$<?php echo $tour->price ?></p>
-                                    <p>per cabin</p>
+                                    <?php if($tour->price == '-1'){ ?>
+                                        <h4>Please</h4>
+                                        <p class="text-price" >Contact</p>
+                                        <p>Us</p>
+                                    <?php } elseif($tour->price == '-2'){ ?>
+                                        <h4>Please</h4>
+                                        <p class="text-price" >Read</>
+                                        <p>Details page</p>
+                                    <?php } else{ ?>
+                                        <h4>Price from</h4>
+                                        <p class="price">$<?php echo $tour->price ?></p>
+                                        <p>per person</p>
+                                    <?php } ?>
                                 </div>
                             </a>
                             <p class="doc"></p>

@@ -24,6 +24,17 @@ for($i = 0; $i < count($articleService); $i++) {
     $services[] = ['label' => $articleService[$i]->title, 'url' => ['article/' . implode('-', explode(' ', $articleService[$i]->title))]];
 }
 $this->title = $info->name;
+
+$hotelInfo = \app\models\Location::find()->all();
+$hotelMenu = [];
+for($i = 0; $i < count($hotelInfo); $i++){
+    $item = [];
+    $item['label']  = 'Hotels in ' . $hotelInfo[$i]->name;
+    $hotelName = implode('-', explode(" ", $hotelInfo[$i]->name));
+    $item['url']    = ['hotel/' . $hotelName];
+
+    $hotelMenu[] = $item;
+}
 ?>
 
 <?php $this->beginPage() ?>
@@ -122,16 +133,7 @@ $this->title = $info->name;
                     ],
                     [
                         'label' => 'HOTEL DIRECTORY',
-                        'items' => [
-                            ['label' => 'Hotels in HCM city', 'url' => ['hotel/hcm']],
-                            ['label' => 'Hotels in Dalat', 'url' => ['hotel/da-lat']],
-                            ['label' => 'Hotels in Nhatrang', 'url' => ['hotel/nha-trang']],
-                            ['label' => 'Hotels in Hoi An', 'url' => ['hotel/hoi-an']],
-                            ['label' => 'Hotels in Hue', 'url' => ['hotel/hue']],
-                            ['label' => 'Hotels in Danang', 'url' => ['hotel/da-nang']],
-                            ['label' => 'Hotels in HaNoi', 'url' => ['hotel/ha-noi']],
-                            ['label' => 'Hotels in SaPa', 'url' => ['hotel/sa-pa']],
-                        ],
+                        'items' => $hotelMenu,
                     ],
                     ['label' => 'VIETNAM VISA ON ARRIVAL', 'url' => ['visa/create']],
                     ['label' => 'TOUR DIARY', 'url' => ['/article/tour']],

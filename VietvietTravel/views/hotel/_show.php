@@ -14,7 +14,7 @@ $hotel = $model;
             </div>
             <div class="caption">
                 <h4><a href="<?php echo \yii\helpers\Url::to(['hotel/show-detail', 'id' => $hotel->id]); ?>"><?php echo $hotel->name ?></a></h4>
-                <p><?php echo $hotel->briefinfo ?></p>
+                <p><?= \app\components\Helpers::limit_text($hotel->briefinfo, 50) ?></p>
                 <address>
                     <strong>Address:</strong> <?php echo $hotel->address ?> <br>
                     <strong>Location:</strong> Hotels in <?php echo $model->name ?> City
@@ -23,7 +23,7 @@ $hotel = $model;
             <div class="bottom-bar">
                 <div class="row">
                     <div class="col-sm-6">
-                        <ul class="tour-info">
+                        <ul class="hotel-info">
                             <li class="details">
                                 <span class="glyphicon glyphicon-share-alt"></span>
                                 <a class="details" href="<?php echo \yii\helpers\Url::to(['hotel/show-detail', 'id' => $hotel->id]) ?>">Details</a>
@@ -41,12 +41,11 @@ $hotel = $model;
                                     <?php } ?>
                                 <?php } ?>
                             </ul>
-                            <?php if($hotel->price){ ?>
+                            <?php if($hotel->price != '-1'){ ?>
                                 <p>Price from <span class="price-size">$<?php echo $hotel->price ?></span></p>
                             <?php }else{ ?>
                                 <p>contact for best price</p>
                             <?php } ?>
-                            <div class="price"></div>
                         </div>
                     </div>
                 </div>

@@ -42,11 +42,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'position',
                 'value' => function($model){
                     if($model->position == 1){
-                        return "Slide lớn";
+                        return "Slide";
                     }else if($model->position == 2){
-                        return "Slide nhỏ trên";
+                        return " Small slide top";
                     }else{
-                        return "Slide nhỏ dưới";
+                        return "Small slide bottom";
                     }
                 },
             ],

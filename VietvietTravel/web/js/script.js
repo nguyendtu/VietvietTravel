@@ -64,6 +64,25 @@ $(document).ready(function(){
 		};
 	}
 
+	$("#pr-c").on("click", function(event){
+		var target = event.target;
+
+		if(target.value === "price-contact"){
+			$('.form-group.field-tour-price').addClass("sr-only");
+			$("#tour-price").val('-1');
+			$('.form-group.field-hotel-price').addClass("sr-only");
+			$("#hotel-price").val('-1');
+		} else if(target.value === "price"){
+			$('.form-group.field-tour-price').removeClass("sr-only");
+			$("#tour-price").val('');
+			$('.form-group.field-hotel-price').removeClass("sr-only");
+			$("#hotel-price").val('');
+		} else{
+			$('.form-group.field-tour-price').addClass("sr-only");
+			$("#tour-price").val('-2');
+		}
+	});
+
 	$(window).scroll(function(){
 		if(document.body.scrollTop > 50 || document.documentElement.scrollTop > 50){
 			$('.go-top').addClass("show");
@@ -71,6 +90,19 @@ $(document).ready(function(){
 		}else{
 			$('.go-top').addClass("hide");
 			$('.go-top').removeClass("show");
+		}
+	});
+});
+
+$(document).ready(function(){
+	$("body").on("click", "button#tour-submit", function(){
+		if($("#tour-keyword").val().length == 0){
+			$("#tour-keyword").val($('#tour-id_tourtype option[value=' + $("#tour-id_tourtype").val() + ']').text());
+		}
+	});
+	$("body").on("click", "button#hotel-submit", function(){
+		if($("#hotel-keyword").val().length == 0){
+			$("#hotel-keyword").val( 'Hotels in ' + $('#hotel-id_location option[value=' + $("#hotel-id_location").val() + ']').text());
 		}
 	});
 });

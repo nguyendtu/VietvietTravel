@@ -15,13 +15,13 @@ $tourtype = $model->tourtype;
                     <div class="col-md-5 none-padding-right">
                         <a href="">
                             <?php if (isset($model->smallimg)) { ?>
-                            <?= \yii\helpers\Html::img('@web/images/'. $model->smallimg, ['style' => ['height' => '228px']]) ?>
+                            <?= \yii\helpers\Html::img('@web/images/'. $model->smallimg, ['style' => ['height' => '253px']]) ?>
                             <?php } ?>
                         </a>
                     </div>
                     <div class="col-md-7">
                         <div class="caption info-detail">
-                            <h4 class="text-caption">TOUR INFORMATION</h4>
+                            <h4 class="text-caption text-bold">TOUR INFORMATION</h4>
                             <ul>
                                 <?php if(isset($model->code)){ ?>
                                 <li>
@@ -46,6 +46,18 @@ $tourtype = $model->tourtype;
                                     <span class="glyphicon glyphicon-share-alt"></span>
                                     <p>Start From: <a href=""><?= $model->startfrom?></a></p>
                                 </li>
+                                <?php } ?>
+                                <?php if(isset($model->price)) { ?>
+                                    <li>
+                                        <span class="glyphicon glyphicon-share-alt"></span>
+                                        <?php if($model->price == '-1'){ ?>
+                                            <p>Price: <span class="text-price-detail">Please contact us</span></>
+                                        <?php } elseif($model->price == '-2'){ ?>
+                                            <p>Price: <span class="text-price-detail">Please detail in the table below</span></>
+                                        <?php } else{ ?>
+                                            <p>Price: From <span class="text-price-detail">$<?= $model->price?></span>/person</p>
+                                        <?php } ?>
+                                    </li>
                                 <?php } ?>
                                 <?php if(isset($model->keyword)){ ?>
                                 <li>
@@ -81,6 +93,9 @@ $tourtype = $model->tourtype;
             <hr>
             <p><?= $model->detailinfo ?></p>
             <div class="fb-comments" data-href="http://localhost/VietvietTravel/VietvietTravel/web/index.php?r=tour%2Fshow-detail&id=<?php echo $model->id ?>" data-width="100%" data-numposts="5"></div>
+
+            <div class="line"></div>
+
             <div class="related-tour">
                 <h4>Related Tours</h4>
                 <div class="thumb-contain">
@@ -94,9 +109,19 @@ $tourtype = $model->tourtype;
 
                                             <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg, ['alt' => 'Tour']) ?>
                                             <div class="tour-price price-top price-width">
-                                                <h4>Price from</h4>
-                                                <p class="price">$<?php echo $tour->price ?></p>
-                                                <p>per cabin</p>
+                                                <?php if($tour->price == '-1'){ ?>
+                                                    <h4>Please</h4>
+                                                    <p class="text-price" >Contact</>
+                                                    <p>Us</p>
+                                                <?php } elseif($tour->price == '-2'){ ?>
+                                                    <h4>Please</h4>
+                                                    <p class="text-price" >Read</>
+                                                    <p>Details page</p>
+                                                <?php } else{ ?>
+                                                    <h4>Price from</h4>
+                                                    <p class="price">$<?php echo $tour->price ?></p>
+                                                    <p>per person</p>
+                                                <?php } ?>
                                             </div>
                                         </a>
                                         <p class="doc"></p>
