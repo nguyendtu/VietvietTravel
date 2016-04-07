@@ -91,14 +91,7 @@ class InfocompanyController extends Controller
     public function actionCreate()
     {
         $model = new Infocompany();
-        $model->logoImg = UploadedFile::getInstanceByName('Infocompany[logoImg]');
-        if($model->logoImg){
-            $model->logoImg->saveAs('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $model->logoImg->baseName . '.' . $model->logoImg->extension);
-        }
-        $model->videoMp4 = UploadedFile::getInstanceByName('Infocompany[videoMp4]');
-        if($model->videoMp4){
-            $model->videoMp4->saveAs('C:/xampp/htdocs/VietvietTravel/VietvietTravel/web/images/' . $model->videoMp4->baseName . '.' . $model->videoMp4->extension);
-        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -118,21 +111,14 @@ class InfocompanyController extends Controller
     {
         $model = $this->findModel($id);
 
-        $small = new FileUpload();
-        $video = new FileUpload();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //return $this->redirect(['view', 'id' => $model->id]);
             return $this->render('update', [
                 'model' => $model,
-                'small' => $small,
-                'video' => $video,
             ]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'small' => $small,
-                'video' => $video,
             ]);
         }
     }

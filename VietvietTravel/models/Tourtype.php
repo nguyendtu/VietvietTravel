@@ -15,6 +15,7 @@ use Yii;
  */
 class Tourtype extends \yii\db\ActiveRecord
 {
+    public $simg;
     /**
      * @inheritdoc
      */

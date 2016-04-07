@@ -24,6 +24,8 @@ use Yii;
  */
 class Hotel extends \yii\db\ActiveRecord
 {
+    public $simg;
+    public $limg;
     /**
      * @inheritdoc
      */

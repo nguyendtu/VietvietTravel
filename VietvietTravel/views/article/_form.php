@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\date\DatePicker;
 use dosamigos\fileupload\FileUploadUI;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Article */
@@ -13,8 +14,18 @@ use dosamigos\fileupload\FileUploadUI;
 <div class="article-form">
 
     <?php $form = ActiveForm::begin([
-        //'action' => 'article/create',
-        'layout' => 'horizontal'
+        'layout' => 'horizontal',
+        'fieldConfig' => [
+            'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-1',
+                //'input' => 'col-sm-8'
+                'offset' => 'col-sm-offset-1',
+                'wrapper' => 'col-sm-10',
+                'error' => '',
+                'hint' => '',
+            ],
+        ],
     ]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
@@ -24,14 +35,43 @@ use dosamigos\fileupload\FileUploadUI;
     ) ?>
 
     <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')])?>
+
     <?= $form->field($model, 'editdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')])?>
 
     <?= $form->field($model, 'hot')->checkbox() ?>
 
-    <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+    <?= $form->field($model, 'img', ['options' => ['name' => 'simg', 'class' => 'form-group']])->label('Smallimg')->widget(FileInput::classname(), [
+        'options' => [
+            'accept' => 'image/*',
+            'name' => 'smallimg',
+        ],
+        'pluginOptions' => [
+            'uploadUrl' => \yii\helpers\Url::to(['/file-upload/upload']),
+            'maxFileCount' => 1,
+            'autoReplace' => true,
+        ],
+        'pluginEvents' => [
+            'fileuploaded' => 'function(event, data, previewId, index){
+               // var fileName = data.files[index].name.replace(" (Copy)", "1").replace(" ", "_");
+                var fileName = data.response.files.name;
 
-    <div class="margin-top-1">
+                $("#article-smallimg").val(fileName);
+            }',
+            'filesuccessremove' => 'function(event, id){
+                var name = $("#" + id + " img").attr("title"),
+                    fileName = name.replace(" ", "_");
+
+                $.post("/file-upload/delete/" + fileName);
+
+                $("#article-smallimg").val("");
+            }',
+        ]
+    ]) ?>
+
+    <?= $form->field($model, 'smallimg', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true, 'readonly' => true]) ?>
+
     <?= $form->field($model, 'id_user', ['options' => ['class' => 'sr-only']])->textInput(['value' => Yii::$app->user->identity->id]) ?>
+
     <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
@@ -42,122 +82,36 @@ use dosamigos\fileupload\FileUploadUI;
     ]) ?>
 
     <div class="form-group">
-        <label for="" class="label-control col-sm-3"></label>
-        <div class="col-sm-9">
+        <label for="" class="label-control col-sm-1"></label>
+        <div class="col-sm-10">
             <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
-    </div>
     </div>
     <?php ActiveForm::end(); ?>
 
 </div>
 
-<div class="smallUpload" style="top: -755px;">
-    <?= FileUploadUI::widget([
-        'model' => $small,
-        'attribute' => 'fileUpload',
-        'url' => ['file-upload/upload'],
-        'gallery' => false,
-        'options' => ['id' => 'smallimg'],
-        'fieldOptions' => [
-            'accept' => 'image/*',
-        ],
-        'clientOptions' => [
-            'maxFileSize' => 2000000
-        ],
-        'clientEvents' => [
-            'fileuploaddone' => 'function(e, data) {
-                                    var smallimg = document.getElementById("article-smallimg");
-                                    smallimg.value = "";
-                                    var files = data.result.files;
-                                    for(var i = 0; i < files.length; i++){
-                                        var name = files[i].name.split(" ");
-                                        name = name.join("_");
-                                        smallimg.value = name;
-                                    }
-                                }',
-            'fileuploadfail' => 'function(e, data) {
-                                    console.log(e);
-                                    console.log(data);
-                                }',
-            'fileuploaddestroy' => 'function(e, data){
-                                    var name = data.url.substr(data.url.lastIndexOf("=") + 1, data.url.length);
-                                    var smallimg = document.getElementById("article-smallimg");
-                                    smallimg.value = "";
-                                }',
-        ],
-    ]);
-    ?>
-</div>
 
 <?php
-$url = \yii\helpers\Url::to(['file-upload/delete']);
 $js = <<<JS
-    var name = $('#article-smallimg').attr('value');
-    var tr = document.createElement("tr");
-    tr.setAttribute(
-        'class', 'template-download fade in'
-    );
-    var td1 = document.createElement("td");
-    var spanPreview = document.createElement("span");
-    spanPreview.setAttribute("class", "preview");
-    var aInPreview = document.createElement("a");
-    aInPreview.setAttribute('href', 'images/' + name);
-    aInPreview.setAttribute('title', name);
-    aInPreview.setAttribute('download', name);
-    aInPreview.setAttribute('data-gallery', "");
-    var img = document.createElement("img");
-    img.setAttribute('src', '../../images/' + name);
-    aInPreview.appendChild(img);
-    spanPreview.appendChild(aInPreview);
-    td1.appendChild(spanPreview);
-    tr.appendChild(td1);
-
-var td2 = document.createElement("td");
-    var pInT2 = document.createElement("p");
-    pInT2.setAttribute("class", "name");
-    var aInT2 = document.createElement("a");
-    aInT2.setAttribute('href', 'images/' + name);
-    aInT2.setAttribute('title', name);
-    aInT2.setAttribute('download', name);
-    aInT2.setAttribute('data-gallery', "");
-    aInT2.innerHTML = name;
-    pInT2.appendChild(aInT2);
-    td2.appendChild(pInT2);
-    tr.appendChild(td2);
-    var temp = '$url';
-    var td3 = document.createElement('td');
-    var span = document.createElement("span");
-    span.setAttribute("class", "size");
-    span.innerHTML = "abc";
-    td3.appendChild(span);
-    tr.appendChild(td3);
-    var td4 = document.createElement("td");
-    var btn = document.createElement("button");
-    btn.setAttribute("class", "btn btn-danger delete");
-    btn.setAttribute("data-type", "POST");
-    btn.setAttribute("data-url", temp + "/" + name);
-
-    var iInBtn = document.createElement('i');
-    iInBtn.setAttribute("class", "glyphicon glyphicon-trash");
-    btn.appendChild(iInBtn);
-    var spanInBtn = document.createElement("span");
-    span.innerHTML = " Delete";
-    btn.appendChild(span);
-
-    var i = document.createElement("input");
-    i.setAttribute("type", "checkbox");
-    i.setAttribute("name", "delete");
-    i.setAttribute("value", 1);
-    i.setAttribute("class", "toggle");
-    td4.appendChild(btn);
-    td4.appendChild(i);
-    tr.appendChild(td4);
-
-$('#smallimg-form .files').append(tr);
-btn.click = function(e){
-    console.log(e.target);
-}
+    if('$model->smallimg' != ""){
+    var img =  "<div class='file-preview-frame' id='$model->smallimg' data-fileindex='0'>" +
+                    "<img src='/images/$model->smallimg' class='file-preview-image' title='$model->smallimg' alt='$model->smallimg' style='width:auto;height:160px;'>" +
+                    "<div class='file-thumbnail-footer'>" +
+                    "<div class='file-footer-caption' title='$model->smallimg'>$model->smallimg</div>" +
+                        "<div class='file-actions'>" +
+                            "<div class='file-footer-buttons'>" +
+                                "<button type='button' class='kv-file-upload btn btn-xs btn-default' title='Upload file'>   <i class='glyphicon glyphicon-upload text-info'></i></button>" +
+                                "<button type='button' id='btn-remove-file' class='kv-file-remove btn btn-xs btn-default' title='Remove file'><i class='glyphicon glyphicon-trash text-danger' data-input='smallimg'></i></button>" +
+                            "</div>" +
+                            "<div class='file-upload-indicator' title='Not uploaded yet'><i class='glyphicon glyphicon-hand-down text-warning'></i></div>" +
+                            "<div class='clearfix'></div>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>";
+        $(".file-preview-thumbnails").append(img);
+        $('.file-drop-zone-title').toggleClass("hide");
+    }
 JS;
 $this->registerJs($js);
 ?>

@@ -10,7 +10,7 @@ $tour = $model;
     <div class="row">
         <div class="col-md-5 hover-tour">
             <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]); ?>">
-                <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg, ['alt' => 'Tour']) ?>
+                <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg, ['alt' => 'Tour', 'id' => 'img-size']) ?>
                 <div class="tour-price price-top price-width">
                     <?php if($tour->price == '-1'){ ?>
                         <h4>Please</h4>
@@ -30,10 +30,10 @@ $tour = $model;
             <p class="doc"></p>
             <p class="info"><em>Read more...</em></p>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7" id="thumb-content">
             <div class="caption">
                 <h4><a href="<?= \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>"><?php echo $tour->name ?></a></h4>
-                <p><?php echo $tour->briefinfo ?></p>
+                <p><?= \app\components\Helpers::limit_text($tour->briefinfo, 40) ?></p>
                 <ul class="tour-info inline text-right">
                     <li class="details">
                         <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]); ?>">Details</a>

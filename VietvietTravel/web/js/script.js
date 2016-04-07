@@ -72,14 +72,20 @@ $(document).ready(function(){
 			$("#tour-price").val('-1');
 			$('.form-group.field-hotel-price').addClass("sr-only");
 			$("#hotel-price").val('-1');
+			/*$("#tour-small-upload").attr("style", "top: 38.5%");
+			$("#tour-large-upload").attr("style", "top: 51.5%");*/
 		} else if(target.value === "price"){
 			$('.form-group.field-tour-price').removeClass("sr-only");
 			$("#tour-price").val('');
 			$('.form-group.field-hotel-price').removeClass("sr-only");
 			$("#hotel-price").val('');
+			/*$("#tour-small-upload").attr("style", "top: 40.5%");
+			$("#tour-large-upload").attr("style", "top: 53%");*/
 		} else{
 			$('.form-group.field-tour-price').addClass("sr-only");
 			$("#tour-price").val('-2');
+			/*$("#tour-small-upload").attr("style", "top: 38.5%");
+			$("#tour-large-upload").attr("style", "top: 51.5%");*/
 		}
 	});
 
@@ -105,6 +111,8 @@ $(document).ready(function(){
 			$("#hotel-keyword").val( 'Hotels in ' + $('#hotel-id_location option[value=' + $("#hotel-id_location").val() + ']').text());
 		}
 	});
+
+	console.log($("#tour-smallimg").position());
 });
 
 window.onload=function () {

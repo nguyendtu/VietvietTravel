@@ -31,10 +31,8 @@ use yii\web\UploadedFile;
 class Infocompany extends \yii\db\ActiveRecord
 {
     /* logo img*/
-    public $logoImg;
+    public $slogo;
 
-    /* video mp4 */
-    public $videoMp4;
     /**
      * @inheritdoc
      */

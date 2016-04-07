@@ -36,7 +36,7 @@ $this->title = 'VietViet Travel';
                             </div>
                             <div class="caption">
                                 <h4><a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>"><?php echo $tour->name ?></a></h4>
-                                <p class="text-justify"><?php echo $tour->briefinfo ?></p>
+                                <p class="text-justify"><?= \app\components\Helpers::limit_text($tour->briefinfo, 50) ?></p>
                                 <div class="row">
                                     <div class="col-sm-6 col-xs-6">
                                         <div class="tour-price price-width">
@@ -115,7 +115,7 @@ $this->title = 'VietViet Travel';
                     <div class="row">
                         <div class="col-md-5 hover-tour">
                             <a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">
-                                <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg) ?>
+                                <?= \yii\helpers\Html::img('@web/images/'. $tour->smallimg, ['id' => 'img-size']) ?>
                                 <div class="tour-price price-top price-width">
                                     <?php if($tour->price == '-1'){ ?>
                                         <h4>Please</h4>
@@ -135,10 +135,10 @@ $this->title = 'VietViet Travel';
                             <p class="doc"></p>
                             <p class="info"><em>Read more...</em></p>
                         </div>
-                        <div class="col-md-7 sm-tour">
+                        <div class="col-md-7 sm-tour" id="thumb-content">
                             <div class="caption">
                                 <h4><a href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>"><?php echo $tour->name ?></a></h4>
-                                <p><?php echo $tour->briefinfo ?></p>
+                                <p><?= \app\components\Helpers::limit_text($tour->briefinfo, 50) ?></p>
                                 <ul class="infomation inline text-right">
                                     <li class="details text-bold">
                                         <span class="glyphicon glyphicon-share-alt"></span> <a class="details" href="<?php echo \yii\helpers\Url::to(['tour/show-detail', 'id' => $tour->id]) ?>">Details</a>

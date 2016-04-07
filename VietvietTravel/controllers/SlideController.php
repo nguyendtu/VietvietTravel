@@ -104,12 +104,7 @@ class SlideController extends Controller
         $model = $this->findModel($id);
         $smallimg = new FileUpload();
 
-        $oldImg = $model->image;
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if($oldImg != $model->image){
-                unlink((Yii::$app->basePath . '/web/images/' . $oldImg));
-            }
             return $this->redirect(['update', 'id' => $model->id]);
         } else {
             return $this->render('update', [

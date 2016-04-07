@@ -25,6 +25,9 @@ use Yii;
  */
 class Tour extends \yii\db\ActiveRecord
 {
+    public $limg;
+    public $simg;
+
     /**
      * @inheritdoc
      */

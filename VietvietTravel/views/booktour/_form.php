@@ -25,11 +25,12 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'id_tour', ['options' => ['class' => 'sr-only']])->textInput(['maxlength' => true]) ?>
     <h4>Contact Information</h4>
     <?= $form->field($model, 'fullname', [
-        'template' => "{label}\n<div class=\"col-md-2\"><select name='genderName' id='' class=\"form-control\">
-    <option value='1'>Mr</option>
-    <option value='2'>Ms</option>
-    <option value='3'>Mrs</option>
-</select></div><div class=\"col-md-5\" >\n{input}\n</div><div class=\"col-md-3\">\n{hint}\n{error}</div>",
+        'template' => "{label}\n<div class=\"col-md-2\">
+        <select name='genderName' id='' class=\"form-control\">
+            <option value='1'>Mr</option>
+            <option value='2'>Ms</option>
+            <option value='3'>Mrs</option>
+        </select></div><div class=\"col-md-5\" >\n{input}\n</div><div class=\"col-md-3\">\n{hint}\n{error}</div>",
     ])->textInput(['maxlength' => true])->hint("*") ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
@@ -70,7 +71,7 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'childinfo')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($booktour, 'depdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')])?>
+    <?= $form->field($model, 'depdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')])?>
 
     <?= $form->field($model, 'visa')->textInput() ?>
 

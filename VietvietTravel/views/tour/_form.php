@@ -1,9 +1,8 @@
 <?php
 
-use yii\helpers\Html;
+use kartik\file\FileInput;
 use yii\bootstrap\ActiveForm;
-use dosamigos\fileupload\FileUploadUI;
-use kartik\date\DatePicker;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Tour */
@@ -12,7 +11,20 @@ use kartik\date\DatePicker;
 
 <div class="tour-form">
 
-    <?php $form = ActiveForm::begin(['layout'  => 'horizontal']); ?>
+    <?php $form = ActiveForm::begin([
+        'layout' => 'horizontal',
+        'fieldConfig' => [
+            'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+            'horizontalCssClasses' => [
+                'label' => 'col-sm-1',
+                //'input' => 'col-sm-8'
+                //'offset' => 'col-sm-offset-4',
+                'wrapper' => 'col-sm-10',
+                'error' => '',
+                'hint' => '',
+            ],
+        ],
+    ]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -27,15 +39,14 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'startfrom')->textInput() ?>
 
     <div class="form-group" id="pr-c">
-        <label for="" class="label-control col-md-3"></label>
-        <div class="col-md-6">
+        <label for="" class="label-control col-md-1"></label>
+        <div class="col-md-10">
             <input id="price-contact" type="radio" name="price-type" value="price-contact"> <label for="price-contact">Price Contact</label><br/>
             <input id="price-detail" type="radio" name="price-type" value="price-detail"> <label for="price-detail">Price Detail</label><br/>
             <input id="price" type="radio" name="price-type" value="price" checked> <label for="price">Price</label>
         </div>
     </div>
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'regdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
     <?= $form->field($model, 'editdate', ['options' => ['class' => 'sr-only']])->textInput(['value' => date('Y-m-d')]) ?>
 
@@ -50,25 +61,94 @@ use kartik\date\DatePicker;
         '0' => 'DeActive',
     ]) ?>
 
-    <?= $form->field($model, 'smallimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
-    <div class="margin-top-1">
-        <?= $form->field($model, 'largeimg')->textInput(['maxlength' => true, 'readonly' => true]) ?>
+    <?= $form->field($model, 'simg', ['options' => ['name' => 'simg', 'class' => 'form-group']])->label('Smallimg')->widget(FileInput::classname(), [
+        'options' => [
+            'accept' => 'image/*',
+            'name' => 'smallimg',
+        ],
+        'pluginOptions' => [
+            'uploadUrl' => \yii\helpers\Url::to(['/file-upload/upload']),
+            'maxFileCount' => 1,
+            'autoReplace' => true,
+        ],
+        'pluginEvents' => [
+            'fileuploaded' => 'function(event, data, previewId, index){
+                $("#tour-smallimg").val(data.response.files.name);
+            }',
+            'filesuccessremove' => 'function(event, id){
+                var name = $("#" + id + " img").attr("title"),
+                    fileName = name.replace(" ", "_");
 
-        <div class="margin-top-1">
-            <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
+                $.post("/file-upload/delete/" + fileName);
+                var arr = $("#tour-smallimg").val().split(" ");
+                for(var i = 0; i < arr.length; i++){
+                    if(arr[i] === fileName){
+                        arr.splice(i, 1);
+                    }
+                }
 
-            <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
+                $("#tour-smallimg").val("");
+            }',
+        ]
+    ]) ?>
 
-            <?= $form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
-        </div>
-    </div>
+    <?= $form->field($model, 'smallimg')->label("")->textInput(['maxlength' => true, 'class' => 'sr-only']) ?>
+
+    <?= $form->field($model, 'limg', ['options' => ['name' => 'limg', 'class' => 'form-group']])->label('Largeimg')->widget(FileInput::classname(), [
+        'options' => [
+            'accept' => 'image/*',
+            'multiple' => true,
+            'name' => 'smallimg',
+        ],
+        'pluginOptions' => [
+            'uploadUrl' => \yii\helpers\Url::to(['/file-upload/upload']),
+            'maxFileCount' => 10,
+        ],
+        'pluginEvents' => [
+            'fileuploaded' => 'function(event, data, previewId, index){
+                var lag = $("#tour-largeimg").val().split(" "),
+                    //fileName = data.files[index].name.replace(" (Copy)", "1").replace(" ", "_");
+                    fileName = data.response.files.name;
+
+                for(var i = 0; i < lag.length; i++){
+                    if(lag[i] === ""){
+                        lag.splice(i, 1);
+                    }
+                }
+
+                lag.push(fileName);
+                $("#tour-largeimg").val(lag.join(" "));
+            }',
+            'filesuccessremove' => 'function(event, id){
+                var name = $("#" + id + " img").attr("title"),
+                    fileName = name.replace(" ", "_");
+
+                $.post("/file-upload/delete/" + fileName);
+                var arr = $("#tour-largeimg").val().split(" ");
+                for(var i = 0; i< arr.length; i++){
+                    if(arr[i] === fileName){
+                        arr.splice(i, 1);
+                    }
+                }
+
+                $("#tour-largeimg").val(arr.join(" "));
+            }',
+        ]
+    ]) ?>
+
+    <?= $form->field($model, 'largeimg')->label("")->textInput(['maxlength' => true, 'class' => 'sr-only']) ?>
+
+    <?= $form->field($model, 'briefinfo')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'detailinfo')->textarea(['rows' => 6, 'id' => 'mytextarea']) ?>
+
+    <?= $form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
-        <div class="margin-top-2">
-            <label for="" class="label-control col-sm-3"></label>
-            <div class="col-sm-6">
-                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['id' => 'tour-submit', 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-            </div>
+        <label for="" class="label-control col-sm-1"></label>
+        <div class="col-sm-10">
+            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['id' => 'tour-submit', 'class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     </div>
 
@@ -76,231 +156,55 @@ use kartik\date\DatePicker;
 
 </div>
 
-<div class="smallUpload" style="top: 37%">
-    <?= FileUploadUI::widget([
-        'model' => $small,
-        'attribute' => 'fileUpload',
-        'url' => ['file-upload/upload'],
-        'gallery' => false,
-        'options' => ['id' => 'smallimg'],
-        'fieldOptions' => [
-            'accept' => 'image/*',
-        ],
-        'clientOptions' => [
-            'maxFileSize' => 5000000
-        ],
-        'clientEvents' => [
-            'fileuploaddone' => 'function(e, data) {
-                                    var smallimg = document.getElementById("tour-smallimg");
-                                    smallimg.value = "";
-                                    var files = data.result.files;
-
-                                    var name = files[0].name.split(" ");
-                                    name = name.join("_");
-
-                                    for(var i = 0; i < files.length; i++){
-                                        smallimg.value = name;
-                                    }
-                                }',
-            'fileuploadfail' => 'function(e, data) {
-                                    console.log(e);
-                                    console.log(data);
-                                }',
-            'fileuploaddestroy' => 'function(e, data){
-                                    var name = data.url.substr(data.url.lastIndexOf("=") + 1, data.url.length);
-                                    var smallimg = document.getElementById("tour-smallimg");
-                                    smallimg.value = "";
-                                }',
-        ],
-    ]);
-    ?>
-</div>
-<div class="largeUpload" style="top: 50%">
-    <?= FileUploadUI::widget([
-        'model' => $large,
-        'attribute' => 'fileUpload',
-        'url' => ['file-upload/upload'],
-        'gallery' => false,
-        'options' => ['id' => 'largeimg'],
-        'fieldOptions' => [
-            'accept' => 'image/*',
-            'multiple' => true,
-        ],
-        'clientOptions' => [
-            'maxFileSize' => 2000000
-        ],
-        'clientEvents' => [
-            'fileuploaddone' => 'function(e, data) {
-                                    var largeimg = document.getElementById("tour-largeimg");
-                                    files = data.result.files;
-
-                                    for(var i = 0; i < files.length; i++){
-                                        var name = files[i].name.split(" ");
-                                        name = name.join("_");
-                                        largeimg.value += name + " ";
-                                    }
-                                }',
-            'fileuploadfail' => 'function(e, data) {
-                                    console.log(e);
-                                    console.log(data);
-                                }',
-            'fileuploaddestroy' => 'function(e, data){
-                                    var name = data.url.substr(data.url.lastIndexOf("=") + 1, data.url.length);
-                                    name = name.split("/");
-                                    name = name[name.length - 1];
-                                    name = name + " ";
-                                    var largeimg = document.getElementById("tour-largeimg");
-                                    largeimg.value = largeimg.value.replace(name, "");
-                                }',
-        ],
-    ]);
-    ?>
-</div>
-
 <?php
-$url = \yii\helpers\Url::to(['file-upload/delete']);
 $js = <<<JS
-    var name = $('#tour-smallimg').attr('value');
-    var tr = document.createElement("tr");
-    tr.setAttribute(
-        'class', 'template-download fade in'
-    );
-    var td1 = document.createElement("td");
-    var spanPreview = document.createElement("span");
-    spanPreview.setAttribute("class", "preview");
-    var aInPreview = document.createElement("a");
-    aInPreview.setAttribute('href', 'images/' + name);
-    aInPreview.setAttribute('title', name);
-    aInPreview.setAttribute('download', name);
-    aInPreview.setAttribute('data-gallery', "");
-    var img = document.createElement("img");
-    img.setAttribute('src', '../../images/' + name);
-    aInPreview.appendChild(img);
-    spanPreview.appendChild(aInPreview);
-    td1.appendChild(spanPreview);
-    tr.appendChild(td1);
-
-var td2 = document.createElement("td");
-    var pInT2 = document.createElement("p");
-    pInT2.setAttribute("class", "name");
-    var aInT2 = document.createElement("a");
-    aInT2.setAttribute('href', 'images/' + name);
-    aInT2.setAttribute('title', name);
-    aInT2.setAttribute('download', name);
-    aInT2.setAttribute('data-gallery', "");
-    aInT2.innerHTML = name;
-    pInT2.appendChild(aInT2);
-    td2.appendChild(pInT2);
-    tr.appendChild(td2);
-    var temp = '$url';
-    var td3 = document.createElement('td');
-    var span = document.createElement("span");
-    span.setAttribute("class", "size");
-    span.innerHTML = "abc";
-    td3.appendChild(span);
-    tr.appendChild(td3);
-    var td4 = document.createElement("td");
-    var btn = document.createElement("button");
-    btn.setAttribute("class", "btn btn-danger delete");
-    btn.setAttribute("data-type", "POST");
-    btn.setAttribute("data-url", temp + "/" + name);
-
-    var iInBtn = document.createElement('i');
-    iInBtn.setAttribute("class", "glyphicon glyphicon-trash");
-    btn.appendChild(iInBtn);
-    var spanInBtn = document.createElement("span");
-    span.innerHTML = " Delete";
-    btn.appendChild(span);
-
-    var i = document.createElement("input");
-    i.setAttribute("type", "checkbox");
-    i.setAttribute("name", "delete");
-    i.setAttribute("value", 1);
-    i.setAttribute("class", "toggle");
-    td4.appendChild(btn);
-    td4.appendChild(i);
-    tr.appendChild(td4);
-
-$('#smallimg-form .files').append(tr);
-btn.click = function(e){
-    console.log(e.target);
-}
-JS;
-$this->registerJs($js);
-
-$js = <<<JS
-    var name = $('#tour-largeimg').attr('value');
-    name = name.split(" ");
-    var temp = '$url';
-    for(var index = 0; index < name.length; index++){
-    if(name[index] != ""){
-        var tr = document.createElement("tr");
-        tr.setAttribute(
-            'class', 'template-download fade in'
-        );
-        var td1 = document.createElement("td");
-        var spanPreview = document.createElement("span");
-        spanPreview.setAttribute("class", "preview");
-        var aInPreview = document.createElement("a");
-        aInPreview.setAttribute('href', 'images/' + name[index]);
-        aInPreview.setAttribute('title', name[index]);
-        aInPreview.setAttribute('download', name[index]);
-        aInPreview.setAttribute('data-gallery', "");
-        var img = document.createElement("img");
-        img.setAttribute('src', '../../images/' + name[index]);
-        aInPreview.appendChild(img);
-        spanPreview.appendChild(aInPreview);
-        td1.appendChild(spanPreview);
-        tr.appendChild(td1);
-
-        var td2 = document.createElement("td");
-        var pInT2 = document.createElement("p");
-        pInT2.setAttribute("class", "name");
-        var aInT2 = document.createElement("a");
-        aInT2.setAttribute('href', 'images/' + name[index]);
-        aInT2.setAttribute('title', name[index]);
-        aInT2.setAttribute('download', name[index]);
-        aInT2.setAttribute('data-gallery', "");
-        aInT2.innerHTML = name[index];
-        pInT2.appendChild(aInT2);
-        td2.appendChild(pInT2);
-        tr.appendChild(td2);
-
-        var td3 = document.createElement('td');
-        var span = document.createElement("span");
-        span.setAttribute("class", "size");
-        span.innerHTML = "abc";
-        td3.appendChild(span);
-        tr.appendChild(td3);
-
-        var td4 = document.createElement("td");
-        var btn = document.createElement("button");
-        btn.setAttribute("class", "btn btn-danger delete");
-        btn.setAttribute("data-type", "POST");
-        btn.setAttribute("data-url", temp + "/" + name[index]);
-
-        var iInBtn = document.createElement('i');
-        iInBtn.setAttribute("class", "glyphicon glyphicon-trash");
-        btn.appendChild(iInBtn);
-        var spanInBtn = document.createElement("span");
-        span.innerHTML = " Delete";
-        btn.appendChild(span);
-
-        var i = document.createElement("input");
-        i.setAttribute("type", "checkbox");
-        i.setAttribute("name", "delete");
-        i.setAttribute("value", 1);
-        i.setAttribute("class", "toggle");
-        td4.appendChild(btn);
-        td4.appendChild(i);
-        tr.appendChild(td4);
-
-        $('#largeimg-form .files').append(tr);
-        }
-
+    if('$model->smallimg' != ""){
+    var img =  "<div class='file-preview-frame' id='$model->smallimg' data-fileindex='0'>" +
+                    "<img src='/images/$model->smallimg' class='file-preview-image' title='$model->smallimg' alt='$model->smallimg' style='width:auto;height:160px;'>" +
+                    "<div class='file-thumbnail-footer'>" +
+                    "<div class='file-footer-caption' title='$model->smallimg'>$model->smallimg</div>" +
+                        "<div class='file-actions'>" +
+                            "<div class='file-footer-buttons'>" +
+                                "<button type='button' class='kv-file-upload btn btn-xs btn-default' title='Upload file'>   <i class='glyphicon glyphicon-upload text-info'></i></button>" +
+                                "<button type='button' id='btn-remove-file' class='kv-file-remove btn btn-xs btn-default' title='Remove file'><i class='glyphicon glyphicon-trash text-danger' data-input='tour-smallimg'></i></button>" +
+                            "</div>" +
+                            "<div class='file-upload-indicator' title='Not uploaded yet'><i class='glyphicon glyphicon-hand-down text-warning'></i></div>" +
+                            "<div class='clearfix'></div>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>";
+        $(".field-tour-simg").find(".file-preview-thumbnails").append(img);
+        $(".field-tour-simg").find('.file-drop-zone-title').toggleClass("hide");
     }
 
+    if('$model->largeimg' != ''){
+        var lag = '$model->largeimg'.split(" ");
+        for(var i = 0; i < lag.length; i++){
+            var img =  "<div class='file-preview-frame' id='" + lag[i] + "' data-fileindex='0'>" +
+                    "<img src='/images/" + lag[i] + "' class='file-preview-image' title='" + lag[i] + "' alt='" + lag[i] + "' style='width:auto;height:160px;'>" +
+                    "<div class='file-thumbnail-footer'>" +
+                    "<div class='file-footer-caption' title='" + lag[i] + "'>" + lag[i] + "</div>" +
+                        "<div class='file-actions'>" +
+                            "<div class='file-footer-buttons'>" +
+                                "<button type='button' class='kv-file-upload btn btn-xs btn-default' title='Upload file'>   <i class='glyphicon glyphicon-upload text-info'></i></button>" +
+                                "<button type='button' id='btn-remove-file' class='kv-file-remove btn btn-xs btn-default' title='Remove file'><i class='glyphicon glyphicon-trash text-danger' data-input='tour-largeimg'></i></button>" +
+                            "</div>" +
+                            "<div class='file-upload-indicator' title='Not uploaded yet'><i class='glyphicon glyphicon-hand-down text-warning'></i></div>" +
+                            "<div class='clearfix'></div>" +
+                        "</div>" +
+                    "</div>" +
+                "</div>";
 
+            $(".field-tour-limg").find(".file-preview-thumbnails").append(img);
+        }
+        $(".field-tour-limg").find('.file-drop-zone-title').toggleClass("hide");
+    }
+
+    $("#w0").on("blur", "#infocompany-video", function(e){
+        var value = e.target.value.replace("watch?", "").replace("=", "/");
+        e.target.value = value;
+        $("#video").attr("src", value);
+    });
 JS;
 $this->registerJs($js);
 ?>

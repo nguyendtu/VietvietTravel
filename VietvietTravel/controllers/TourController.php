@@ -139,13 +139,8 @@ class TourController extends Controller
         $small = new FileUpload();
         $large = new FileUpload();
 
-        $olgImg = $model->smallimg;
-
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if($olgImg != $model->smallimg){
-                unlink(Yii::$app->basePath . "/web/images/" . $olgImg);
-            }
             return $this->render('update', [
                 'model' => $model,
                 'tourtype' => $tourtype,

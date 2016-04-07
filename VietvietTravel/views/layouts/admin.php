@@ -9,6 +9,8 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
+$infoCompany = \app\models\Infocompany::find()->where(['id' => 1])->one();
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -60,7 +62,7 @@ AppAsset::register($this);
                 <div id="admin-controls">
                 <?php
                     NavBar::begin([
-                        'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name]),
+                        'brandLabel' => Html::img('/images/' . $infoCompany->logo, ['alt'=>Yii::$app->name]),
                         'brandUrl' => Yii::$app->homeUrl,
                         'options' => [
                             'class' => 'navbar navbar-default nav-admin',
@@ -90,29 +92,6 @@ AppAsset::register($this);
                         ],
                     ]);
                 ?>
-                <!--<div class="navbar-footer">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <a class="btn btn-success" href="<?/*= \yii\helpers\Url::to(['site/index']) */?>">
-                                <span class="glyphicon glyphicon-home"></span>
-                                View Site
-                            </a>
-                        </div>
-                        <div class="col-md-6">
-                            <?php /*if(Yii::$app->user->isGuest){ */?>
-                                <a class="btn btn-primary" href="<?/*= \yii\helpers\Url::to(['admin/login']) */?>">
-                                    <span class="glyphicon glyphicon-log-in"></span>
-                                    Login
-                                </a>
-                            <?php /*}else{ */?>
-                                <a class="btn btn-danger" href="<?/*= \yii\helpers\Url::to(['admin/logout']) */?>">
-                                    <span class="glyphicon glyphicon-log-out"></span>
-                                    Logout
-                                </a>
-                            <?php /*} */?>
-                        </div>
-                    </div>
-                </div>-->
                 <?php
                     NavBar::end();
                 ?>
@@ -132,6 +111,7 @@ AppAsset::register($this);
 
 </div>
 <?php $this->endBody() ?>
+<script src="/js/admin.js"></script>
 <script src='https://cdn.tinymce.com/4/tinymce.min.js'></script>
 <script>
   tinymce.init({

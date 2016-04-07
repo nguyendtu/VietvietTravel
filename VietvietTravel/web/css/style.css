@@ -251,6 +251,10 @@ ul#nav_search .active a{
 	position: relative;
 	margin-bottom: 15px;
 }
+.thumbnail .caption > h4{
+	max-height: 38px;
+	height: 38px;
+}
 .thumbnail .caption > h4 > a{
 	color: rgb(0, 70, 0);
 	font-weight: bold;
@@ -538,10 +542,10 @@ ul#nav_search .active a{
 #book_tour h4{
 	text-decoration: underline;
 }
-.related-hotel .row{
-	margin: 0px;
-	margin-bottom: 10px;
-}
+/*.related-hotel .row{
+	!*margin: 0px;
+	margin-bottom: 10px;*!
+}*/
 .margin-top-1{
 	position: relative;
 	top: 150px;
@@ -564,10 +568,9 @@ ul#nav_search .active a{
 	position: absolute;
 	/*top: 95px;
 	left: 284px;*/
-	top: 5%;
-	left: 25.7%;
+	left: 8.5%;
 	height: 150px;
-	width: 49%;
+	width: 83%;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -580,10 +583,9 @@ ul#nav_search .active a{
 	width: 70%;
 	margin-left: 299px;*/
 	position: absolute;
-	top: 62%;
-	left: 25.7%;
+	left: 8.5%;
 	height: 150px;
-	width: 49%;
+	width: 83%;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -897,9 +899,9 @@ ul#nav_search .active a{
 	height: 60px;
 	overflow: hidden;
 }
-.sm-tour > .caption > p{
-	min-height: 110px;
-}
+/*.sm-tour > .caption > p{
+	!*min-height: 110px;*!
+}*/
 .info-company{
 	position: relative;
 }
@@ -1061,4 +1063,15 @@ ul#nav_search .active a{
 }
 .line{
 	border-top: 1px solid #246DA3;
+}
+.thumbnail #img-size,
+.thumbnail #thumb-content{
+	height: 200px !important;
+}
+
+
+.infomation > .details,
+.infomation .enquire{
+	text-align: left !important;
+	padding: 0 !important;
 }

@@ -14,6 +14,7 @@ use Yii;
  */
 class Slide extends \yii\db\ActiveRecord
 {
+    public $simg;
     /**
      * @inheritdoc
      */
